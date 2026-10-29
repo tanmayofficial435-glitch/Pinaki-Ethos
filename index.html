@@ -1,0 +1,2445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prism AI — Create. Edit. Imagine.</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            min-height: 100vh;
+
+            color: #f5f3ff;
+
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(124, 58, 237, 0.20),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(6, 182, 212, 0.16),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #070712,
+                    #0d0b1d 48%,
+                    #050914
+                );
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease;
+        }
+
+        body.light-theme {
+            color: #171528;
+
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(124, 58, 237, 0.12),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(6, 182, 212, 0.10),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f8f7ff,
+                    #eef2ff 52%,
+                    #f7fbff
+                );
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 5000;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 18px 6%;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+            background: rgba(7, 7, 18, 0.72);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .light-theme nav {
+            background: rgba(248, 247, 255, 0.80);
+
+            border-bottom-color: rgba(30, 30, 70, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .logo-orb {
+            width: 36px;
+            height: 36px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #06b6d4
+                );
+
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.35);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 650;
+
+            opacity: 0.72;
+
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .login-btn {
+            padding: 9px 15px;
+
+            border: 1px solid rgba(124, 58, 237, 0.35);
+
+            border-radius: 999px;
+
+            background: rgba(124, 58, 237, 0.10);
+
+            opacity: 1 !important;
+        }
+
+        .theme-btn {
+            padding: 9px 14px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            border-radius: 999px;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            color: inherit;
+
+            cursor: pointer;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 0.2s ease;
+        }
+
+        .light-theme .theme-btn {
+            border-color: rgba(30, 30, 70, 0.12);
+
+            background: rgba(30, 30, 70, 0.05);
+        }
+
+        .theme-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 700px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 100px 24px 80px;
+
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 9px 15px;
+
+            border: 1px solid rgba(124, 58, 237, 0.28);
+
+            border-radius: 999px;
+
+            background: rgba(124, 58, 237, 0.08);
+
+            color: #a78bfa;
+
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .hero h1 {
+            margin-top: 25px;
+
+            font-size: clamp(55px, 9vw, 105px);
+
+            line-height: 0.94;
+
+            letter-spacing: -5px;
+
+            font-weight: 950;
+        }
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    90deg,
+                    #a78bfa,
+                    #22d3ee,
+                    #c084fc
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 680px;
+
+            margin: 28px auto 0;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            opacity: 0.68;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            gap: 13px;
+
+            margin-top: 35px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 22px;
+
+            border-radius: 14px;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            transition: 0.2s ease;
+        }
+
+        .primary-btn {
+            border: none;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #06b6d4
+                );
+
+            box-shadow:
+                0 12px 35px
+                rgba(124, 58, 237, 0.22);
+        }
+
+        .secondary-btn {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .light-theme .secondary-btn {
+            border-color: rgba(30, 30, 70, 0.10);
+
+            background: rgba(30, 30, 70, 0.04);
+        }
+
+        .primary-btn:hover,
+        .secondary-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* =====================================================
+           TOOLS
+        ===================================================== */
+
+        .tools-section {
+            max-width: 1150px;
+
+            margin: 0 auto;
+
+            padding:
+                80px 24px
+                100px;
+        }
+
+        .section-heading {
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(32px, 5vw, 52px);
+
+            letter-spacing: -2px;
+        }
+
+        .section-heading p {
+            margin-top: 12px;
+
+            opacity: 0.62;
+        }
+
+        .tools-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .tool-card {
+            position: relative;
+
+            min-height: 220px;
+
+            padding: 27px;
+
+            border: 1px solid rgba(255, 255, 255, 0.09);
+
+            border-radius: 22px;
+
+            background: rgba(255, 255, 255, 0.045);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .light-theme .tool-card {
+            border-color: rgba(30, 30, 70, 0.09);
+
+            background: rgba(255, 255, 255, 0.62);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(124, 58, 237, 0.30);
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124, 58, 237, 0.20),
+                    rgba(6, 182, 212, 0.12)
+                );
+
+            font-size: 22px;
+
+            margin-bottom: 22px;
+        }
+
+        .tool-card h3 {
+            font-size: 20px;
+        }
+
+        .tool-card p {
+            margin-top: 9px;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            opacity: 0.62;
+        }
+
+        .tool-arrow {
+            position: absolute;
+
+            right: 24px;
+            bottom: 22px;
+
+            opacity: 0.5;
+
+            font-size: 18px;
+        }
+
+        /* =====================================================
+           ABOUT
+        ===================================================== */
+
+        .about-section {
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            padding:
+                50px 24px
+                100px;
+
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: clamp(32px, 5vw, 50px);
+
+            letter-spacing: -2px;
+        }
+
+        .about-section p {
+            margin-top: 20px;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            opacity: 0.65;
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            padding:
+                35px 20px
+                45px;
+
+            text-align: center;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+            font-size: 12px;
+
+            opacity: 0.60;
+        }
+
+        .light-theme footer {
+            border-top-color: rgba(30, 30, 70, 0.08);
+        }
+
+        /* =====================================================
+           WELCOME POPUP
+        ===================================================== */
+
+        .welcome-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 99999;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+
+            background: rgba(5, 5, 15, 0.62);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            animation: welcomeFadeIn 0.35s ease;
+        }
+
+        .welcome-popup {
+            position: relative;
+
+            width: min(980px, 100%);
+
+            padding: 58px 62px;
+
+            border-radius: 30px;
+
+            background: rgba(255, 255, 255, 0.98);
+
+            color: #171528;
+
+            box-shadow:
+                0 35px 110px
+                rgba(0, 0, 0, 0.40),
+
+                0 0 70px
+                rgba(124, 58, 237, 0.20);
+
+            overflow: hidden;
+
+            animation: welcomePopupIn 0.45s ease;
+        }
+
+        .welcome-popup::before {
+            content: "";
+
+            position: absolute;
+
+            width: 380px;
+            height: 380px;
+
+            top: -210px;
+            right: -100px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(124, 58, 237, 0.18),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+        .welcome-popup::after {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            bottom: -180px;
+            left: -100px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(6, 182, 212, 0.15),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+        .welcome-close {
+            position: absolute;
+
+            top: 18px;
+            right: 20px;
+
+            width: 42px;
+            height: 42px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: rgba(30, 30, 60, 0.07);
+
+            color: #444;
+
+            font-size: 27px;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        .welcome-close:hover {
+            transform: rotate(90deg);
+
+            background: rgba(30, 30, 60, 0.14);
+        }
+
+        .welcome-content {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 800px;
+        }
+
+        .welcome-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 9px 15px;
+
+            margin-bottom: 22px;
+
+            border-radius: 999px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124, 58, 237, 0.10),
+                    rgba(6, 182, 212, 0.10)
+                );
+
+            color: #6d3bd1;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+        .welcome-popup h2 {
+            font-size: clamp(40px, 7vw, 72px);
+
+            line-height: 0.98;
+
+            letter-spacing: -3px;
+
+            font-weight: 950;
+        }
+
+        .welcome-gradient {
+            background:
+                linear-gradient(
+                    90deg,
+                    #7c3aed,
+                    #06b6d4
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-popup p {
+            max-width: 730px;
+
+            margin: 23px 0 30px;
+
+            color: #66667a;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+        .welcome-features {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 32px;
+        }
+
+        .welcome-feature {
+            padding: 9px 13px;
+
+            border-radius: 10px;
+
+            background: #f3f1ff;
+
+            color: #55536a;
+
+            font-size: 12px;
+
+            font-weight: 750;
+        }
+
+        .welcome-button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px 25px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #06b6d4
+                );
+
+            font-size: 15px;
+
+            font-weight: 850;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 32px
+                rgba(124, 58, 237, 0.22);
+
+            transition: 0.2s ease;
+        }
+
+        .welcome-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 17px 40px
+                rgba(124, 58, 237, 0.30);
+        }
+
+        @keyframes welcomeFadeIn {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+
+        }
+
+        @keyframes welcomePopupIn {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(28px)
+                    scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a:not(.login-btn) {
+                display: none;
+            }
+
+            .nav-links .pricing-nav-link {
+                display: inline-flex;
+            }
+
+            .hero {
+                min-height: 620px;
+
+                padding-top: 80px;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .welcome-popup {
+                padding: 48px 30px;
+            }
+
+        }
+
+        @media (max-width: 560px) {
+
+            .logo span:last-child {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-popup {
+                padding: 42px 22px 30px;
+
+                border-radius: 22px;
+            }
+
+            .welcome-popup h2 {
+                font-size: 42px;
+
+                letter-spacing: -2px;
+            }
+
+            .welcome-popup p {
+                font-size: 15px;
+            }
+
+            .welcome-button {
+                width: 100%;
+            }
+
+        }
+    
+        /* ====================================================
+           START CREATING FLOW
+        ==================================================== */
+
+        .create-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(5, 5, 18, 0.66);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .create-overlay.show {
+            display: flex;
+        }
+
+        .create-modal {
+            max-height: 88vh;
+overflow-y: auto;
+            position: relative;
+            width: min(720px, 100%);
+            padding: 42px;
+            border: 1px solid rgba(124, 58, 237, 0.24);
+            border-radius: 30px;
+            background: rgba(15, 14, 31, 0.96);
+            box-shadow: 0 30px 100px rgba(0,0,0,.35), 0 0 60px rgba(124,58,237,.14);
+        }
+
+        .light-theme .create-modal {
+            background: rgba(255,255,255,.97);
+            border-color: rgba(124,58,237,.18);
+            box-shadow: 0 30px 90px rgba(54,38,120,.20), 0 0 50px rgba(124,58,237,.10);
+        }
+
+        .create-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            width: 40px;
+            height: 40px;
+            border: 0;
+            border-radius: 12px;
+            background: rgba(124,58,237,.10);
+            color: inherit;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .create-badge {
+            display: inline-flex;
+            padding: 8px 13px;
+            border-radius: 999px;
+            background: rgba(124,58,237,.10);
+            color: #7c3aed;
+            font-size: 12px;
+            font-weight: 850;
+            letter-spacing: .7px;
+        }
+
+        .create-modal h2 {
+            margin: 20px 0 10px;
+            font-size: clamp(30px, 5vw, 44px);
+            line-height: 1.08;
+            letter-spacing: -1.5px;
+        }
+
+        .create-modal p {
+            color: #85839a;
+            line-height: 1.65;
+            font-size: 16px;
+            margin-bottom: 28px;
+        }
+
+        .light-theme .create-modal p {
+            color: #66647a;
+        }
+
+        .create-choice-grid,
+       
+        .create-tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+}
+
+        .create-choice {
+            position: relative;
+            min-height: 235px;
+            padding: 30px;
+            border: 1px solid rgba(124,58,237,.20);
+            border-radius: 26px;
+            background: linear-gradient(145deg, rgba(124,58,237,.12), rgba(255,255,255,.025));
+            color: inherit;
+            text-align: left;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+        }
+        .create-choice::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(124,58,237,.14), transparent 45%, rgba(6,182,212,.09));
+            opacity: 0;
+            transition: opacity .28s ease;
+            pointer-events: none;
+        }
+        .create-choice:hover {
+            transform: translateY(-7px);
+            border-color: rgba(167,139,250,.58);
+            box-shadow: 0 22px 55px rgba(0,0,0,.24), 0 0 45px rgba(124,58,237,.18);
+        }
+        .create-choice:hover::before { opacity: 1; }
+        .create-choice-icon {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 62px;
+            height: 62px;
+            margin-bottom: 24px;
+            border-radius: 19px;
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            color: white;
+            font-size: 27px;
+            box-shadow: 0 12px 32px rgba(124,58,237,.25);
+        }
+        .create-choice strong {
+            position: relative;
+            z-index: 1;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 21px;
+            letter-spacing: -.3px;
+        }
+        .create-choice > span:last-child {
+            position: relative;
+            z-index: 1;
+            display: block;
+            max-width: 310px;
+            color: #9b98ad;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+        .create-choice::after {
+            content: "→";
+            position: absolute;
+            right: 25px;
+            bottom: 22px;
+            z-index: 1;
+            font-size: 25px;
+            opacity: .55;
+            transition: transform .25s ease, opacity .25s ease;
+        }
+        .create-choice:hover::after { transform: translateX(6px); opacity: 1; }
+        .ai-choice { background: linear-gradient(145deg, rgba(124,58,237,.16), rgba(6,182,212,.05)); }
+        .own-choice { background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(124,58,237,.06)); }
+        .light-theme .create-choice {
+            background: linear-gradient(145deg, rgba(124,58,237,.07), rgba(255,255,255,.88));
+            border-color: rgba(124,58,237,.16);
+            box-shadow: 0 12px 35px rgba(54,38,120,.07);
+        }
+        .light-theme .create-choice:hover {
+            box-shadow: 0 22px 55px rgba(54,38,120,.13), 0 0 40px rgba(124,58,237,.10);
+        }
+        .light-theme .create-choice > span:last-child { color: #69677c; }
+
+        .create-tool-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .create-tool {
+            min-height: 72px;
+            padding: 15px;
+            font-size: 20px;
+        }
+
+        .create-tool span {
+            display: block;
+            margin-top: 7px;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .create-back {
+            margin-top: 22px;
+            border: 0;
+            background: transparent;
+            color: #7c3aed;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        @media (max-width: 650px) {
+            .create-modal {
+                padding: 34px 22px 26px;
+                border-radius: 24px;
+            }
+
+            .create-choice-grid,
+            .create-tool-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .create-choice {
+                min-height: auto;
+            }
+        }
+
+
+        .prism-account-menu {
+            position: fixed;
+            top: 76px;
+            right: 6%;
+            width: min(320px, calc(100vw - 32px));
+            padding: 12px;
+            border: 1px solid rgba(167,139,250,.25);
+            border-radius: 22px;
+            background: rgba(15,14,31,.97);
+            color: #fff;
+            box-shadow: 0 25px 80px rgba(0,0,0,.48), 0 0 45px rgba(124,58,237,.13);
+            z-index: 10000;
+            display: none;
+            backdrop-filter: blur(20px);
+        }
+        .prism-account-menu.open { display: block; animation: accountMenuIn .18s ease; }
+        @keyframes accountMenuIn {
+            from { opacity: 0; transform: translateY(-7px) scale(.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .prism-account-head { padding: 14px; border-bottom: 1px solid #29263d; margin-bottom: 8px; }
+        .prism-account-name { font-weight: 900; font-size: 16px; }
+        .prism-account-email { color: #a9a4bb; font-size: 12px; margin-top: 5px; word-break: break-all; }
+        .prism-account-plan {
+            display: inline-block;
+            margin-top: 9px;
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: rgba(124,58,237,.14);
+            color: #c4adff;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .prism-account-item {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            text-align: left;
+            padding: 13px 12px;
+            border-radius: 13px;
+            cursor: pointer;
+            font-weight: 750;
+            transition: .18s ease;
+        }
+        .prism-account-item:hover { background: rgba(124,58,237,.14); transform: translateX(2px); }
+        .prism-account-item.danger { color: #ff7895; }
+        body.light-theme .prism-account-menu {
+            background: rgba(255,255,255,.98);
+            color: #171528;
+            border-color: rgba(124,58,237,.18);
+            box-shadow: 0 25px 80px rgba(43,30,80,.18), 0 0 45px rgba(124,58,237,.08);
+        }
+        body.light-theme .prism-account-head { border-color: #ddd7eb; }
+        body.light-theme .prism-account-email { color: #6f6981; }
+
+</style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav>
+
+        <div class="logo">
+
+            <span class="logo-orb">
+                ✦
+            </span>
+
+            <span>
+                Prism AI
+            </span>
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="features.html">
+                Features
+            </a>
+
+            <a href="pricing.html" class="pricing-nav-link">
+                Pricing
+            </a>
+
+            <a
+                href="login.html"
+                class="login-btn"
+            >
+                Sign In / Log In
+            </a>
+
+            <button
+                class="theme-btn"
+                id="themeToggle"
+                onclick="toggleTheme()"
+            >
+                ☀️ Light
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                ✦ One intelligent creative workspace
+            </div>
+
+            <h1>
+                Create.
+                <span class="gradient-text">
+                    Edit.
+                </span>
+                Imagine.
+            </h1>
+
+            <p>
+                Prism AI brings powerful creative tools into
+                one futuristic workspace. Write, code, translate,
+                create presentations, generate ideas, and
+                explore AI — all in one place.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#"
+                    class="primary-btn"
+                    id="startCreatingButton"
+                >
+                    Start Creating →
+                </a>
+
+                <a
+                    href="#tools"
+                    class="secondary-btn"
+                >
+                    Explore Tools
+                </a>
+
+                <a
+                    href="pricing.html"
+                    class="secondary-btn pricing-hero-btn"
+                >
+                    View Plans →
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         TOOLS
+    ====================================================== -->
+
+    <section
+        class="tools-section"
+        id="tools"
+    >
+
+        <div class="section-heading">
+
+            <h2>
+                Everything you need.
+            </h2>
+
+            <p>
+                Six creative tools. One Prism AI experience.
+            </p>
+
+        </div>
+
+
+        <div class="tools-grid">
+
+            <a
+                href="editor.html"
+                class="tool-card"
+            >
+
+                <div class="tool-icon">
+                    ✍️
+                </div>
+
+                <h3>
+                    AI Editor
+                </h3>
+
+                <p>
+                    Write, improve, rewrite, summarize,
+                    and organize your content.
+                </p>
+
+                <span class="tool-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="code.html"
+                class="tool-card"
+            >
+
+                <div class="tool-icon">
+                    💻
+                </div>
+
+                <h3>
+                    Code Generator
+                </h3>
+
+                <p>
+                    Turn simple ideas into useful code
+                    with Prism AI.
+                </p>
+
+                <span class="tool-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="ai.html"
+                class="tool-card"
+            >
+
+                <div class="tool-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Prism AI Assistant
+                </h3>
+
+                <p>
+                    Ask questions, explore ideas,
+                    and get intelligent guidance.
+                </p>
+
+                <span class="tool-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="translator.html"
+                class="tool-card"
+            >
+
+                <div class="tool-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    Translator
+                </h3>
+
+                <p>
+                    Translate useful phrases between
+                    multiple languages.
+                </p>
+
+                <span class="tool-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="ppt.html"
+                class="tool-card"
+            >
+
+                <div class="tool-icon">
+                    📊
+                </div>
+
+                <h3>
+                    PPT Maker
+                </h3>
+
+                <p>
+                    Turn a topic into a structured
+                    presentation in seconds.
+                </p>
+
+                <span class="tool-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="ideas.html"
+                class="tool-card"
+            >
+
+                <div class="tool-icon">
+                    💡
+                </div>
+
+                <h3>
+                    Idea Generator
+                </h3>
+
+                <p>
+                    Discover fresh project, website,
+                    school, and creative ideas.
+                </p>
+
+                <span class="tool-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section class="about-section">
+
+        <h2>
+            Built for curious minds.
+        </h2>
+
+        <p>
+            Prism AI is a futuristic all-in-one creative
+            platform designed to make experimenting with
+            ideas simple, visual, and fun. Whether you're
+            writing something new, building a project,
+            preparing a presentation, or simply exploring
+            what AI can do, Prism AI gives you a place to
+            start.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        Prism AI · Create. Edit. Imagine.
+
+    </footer>
+
+
+    <!-- =====================================================
+         START CREATING FLOW
+    ====================================================== -->
+
+    <div
+        class="create-overlay"
+        id="createFlow"
+        aria-hidden="true"
+    >
+        <div class="create-modal">
+
+            <button
+                class="create-close"
+                id="createFlowClose"
+                aria-label="Close create flow"
+            >
+                ×
+            </button>
+
+            <div class="create-step" id="createStepOne">
+                <div class="create-badge">✦ LET'S CREATE</div>
+
+                <h2>What do you want to create?</h2>
+
+                <p>
+                    Choose whether Prism AI should help generate it,
+                    or whether you want to create it yourself.
+                </p>
+
+               <div class="create-choice-grid">
+                    <button type="button" id="createWithAIButton" class="create-choice ai-choice">
+                        <span class="create-choice-icon">✦</span>
+                        <strong>Create with Prism AI</strong>
+                        <span>Start with an idea and let Prism AI generate, organize and improve your creation.</span>
+                    </button>
+
+                    <button
+    type="button"
+    id="createYourselfButton"
+    class="create-choice own-choice"
+    onclick="openOwnCreationTools()"
+>
+    <span class="create-choice-icon">✎</span>
+    <strong>Create it Yourself</strong>
+    <span>
+        Start from a blank canvas and control every part of your creation yourself.
+    </span>
+</button>
+                </div>
+            </div>
+
+            <div class="create-step" id="createStepTwo" hidden>
+                <div class="create-badge">✦ CHOOSE A TOOL</div>
+
+                <h2 id="createModeTitle">What do you want to make?</h2>
+
+                <p id="createModeText">Choose what you want to create and Prism AI will take you there.</p>
+
+               <div class="create-tool-grid" id="aiToolGrid">
+
+    <button class="create-tool" data-tool="editor">
+        ✍️ <span>AI Editor</span>
+    </button>
+
+    <button class="create-tool" data-tool="code">
+        💻 <span>Code</span>
+    </button>
+
+    <button class="create-tool" data-tool="ppt">
+        📊 <span>Presentation</span>
+    </button>
+
+    <button class="create-tool" data-tool="translator">
+        🌐 <span>Translation</span>
+    </button>
+
+    <button class="create-tool" data-tool="ideas">
+        💡 <span>Ideas</span>
+    </button>
+
+    <button class="create-tool" data-tool="ai">
+        🧠 <span>AI Assistant</span>
+    </button>
+   <button
+    class="create-tool"
+    id="makeLogoButton"
+    type="button"
+    onclick="window.location.href='logo.html';"
+>
+    ✦ <span>Make a Logo</span>
+</button>
+    <!-- NEW PRISM AI FEATURES -->
+
+    <button class="create-tool" data-tool="understand">
+        🧠 <span>Understand My Project</span>
+    </button>
+
+    <button class="create-tool" data-tool="mindmap">
+        🗺️ <span>AI Mind Map</span>
+    </button>
+
+    <button class="create-tool" data-tool="coach">
+        🎤 <span>Presentation Coach</span>
+    </button>
+
+    <button class="create-tool" data-tool="design">
+        🎨 <span>AI Design Generator</span>
+    </button>
+
+    <button class="create-tool" data-tool="improve">
+        ✨ <span>Make It Better</span>
+    </button>
+
+    <button class="create-tool" data-tool="social">
+        📱 <span>Social Media Studio</span>
+    </button>
+
+    <button class="create-tool" data-tool="magic">
+        🌟 <span>Prism Magic</span>
+    </button>
+
+</div>
+
+                <div class="create-tool-grid" id="ownToolGrid" hidden>
+                    <button class="create-tool" data-tool="ppt">📊 <span>Make a PPT</span></button>
+                    <button class="create-tool" data-tool="advertisement">📢 <span>Make an Advertisement</span></button>
+                    <button class="create-tool" data-tool="image-edit">🖼️ <span>Edit an Image</span></button>
+                    <button class="create-tool" data-tool="instagram">📱 <span>Make an Instagram Page</span></button>
+                    <button class="create-tool" data-tool="website">🌐 <span>Make a Website</span></button>
+                    <button class="create-tool" data-tool="poster">🎨 <span>Make a Poster</span></button>
+                    <button class="create-tool" data-tool="logo">✦ <span>Make a Logo</span></button>
+                    <button class="create-tool" data-tool="social-post">📲 <span>Make a Social Post</span></button>
+                    <button class="create-tool" data-tool="video-script">🎬 <span>Make a Video Script</span></button>
+                </div>
+
+                <button class="create-back" id="createFlowBack">← Back</button>
+            </div>
+
+            <div class="create-step" id="createStepThree" hidden>
+                <div class="create-badge">✦ CHOOSE HOW TO CREATE</div>
+
+                <h2 id="creationMethodTitle">How do you want to make it?</h2>
+
+                <p id="creationMethodText">Choose whether you want to build it yourself or let Prism AI help you.</p>
+
+                <div class="create-choice-grid">
+                    <button class="create-choice own-choice" id="methodOwn">
+                        <span class="create-choice-icon">✎</span>
+                        <strong>I’ll make it myself</strong>
+                        <span>Start with a blank canvas and build everything yourself.</span>
+                    </button>
+
+                    <button class="create-choice ai-choice" id="methodAI">
+                        <span class="create-choice-icon">✦</span>
+                        <strong>Let Prism AI make it</strong>
+                        <span>Tell Prism AI what you want and get a generated starting point.</span>
+                    </button>
+                </div>
+
+                <button class="create-back" id="createMethodBack">← Back</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         WELCOME POPUP
+    ====================================================== -->
+
+    <div
+        class="welcome-overlay"
+        id="prismWelcomePopup"
+    >
+
+        <div class="welcome-popup">
+
+            <button
+                class="welcome-close"
+                id="prismWelcomeClose"
+                aria-label="Close welcome message"
+            >
+                ×
+            </button>
+
+
+            <div class="welcome-content">
+
+                <div class="welcome-badge">
+                    ✦ Welcome to the future of creativity
+                </div>
+
+
+                <h2>
+
+                    WELCOME TO
+
+                    <span class="welcome-gradient">
+                        PRISM AI
+                    </span>
+
+                </h2>
+
+
+                <p>
+                    Your all-in-one creative AI workspace.
+                    Explore powerful tools for writing, coding,
+                    presentations, translation, ideas, and
+                    intelligent conversations — all brought
+                    together in one place.
+                </p>
+
+
+                <div class="welcome-features">
+
+                    <span class="welcome-feature">
+                        ✍️ AI Editor
+                    </span>
+
+                    <span class="welcome-feature">
+                        💻 Code Generator
+                    </span>
+
+                    <span class="welcome-feature">
+                        🧠 AI Assistant
+                    </span>
+
+                    <span class="welcome-feature">
+                        🌐 Translator
+                    </span>
+
+                    <span class="welcome-feature">
+                        📊 PPT Maker
+                    </span>
+
+                    <span class="welcome-feature">
+                        💡 Idea Generator
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="welcome-button"
+                    id="prismWelcomeStart"
+                >
+                    Start Exploring Prism AI →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* ====================================================
+           THEME
+        ==================================================== */
+
+        function applyTheme() {
+
+            const savedTheme =
+                localStorage.getItem("prismTheme");
+
+            const body =
+                document.body;
+
+            const button =
+                document.getElementById(
+                    "themeToggle"
+                );
+
+            if (savedTheme === "light") {
+
+                body.classList.add(
+                    "light-theme"
+                );
+
+                if (button) {
+                    button.textContent =
+                        "🌙 Dark";
+                }
+
+            } else {
+
+                body.classList.remove(
+                    "light-theme"
+                );
+
+                if (button) {
+                    button.textContent =
+                        "☀️ Light";
+                }
+
+            }
+        }
+
+
+        function toggleTheme() {
+
+            const body =
+                document.body;
+
+            const button =
+                document.getElementById(
+                    "themeToggle"
+                );
+
+            body.classList.toggle(
+                "light-theme"
+            );
+
+            if (
+                body.classList.contains(
+                    "light-theme"
+                )
+            ) {
+
+                localStorage.setItem(
+                    "prismTheme",
+                    "light"
+                );
+
+                if (button) {
+                    button.textContent =
+                        "🌙 Dark";
+                }
+
+            } else {
+
+                localStorage.setItem(
+                    "prismTheme",
+                    "dark"
+                );
+
+                if (button) {
+                    button.textContent =
+                        "☀️ Light";
+                }
+
+            }
+        }
+
+
+        /* ====================================================
+           LOGIN
+        ==================================================== */
+
+        function updateLoginStatus() {
+
+            const loggedIn =
+                localStorage.getItem(
+                    "prismLoggedIn"
+                ) === "true";
+
+            const userName =
+                localStorage.getItem(
+                    "prismUserName"
+                ) || "Prism User";
+
+            const button =
+                document.querySelector(
+                    ".login-btn"
+                );
+
+            if (!button) return;
+
+
+            if (loggedIn) {
+
+                button.textContent =
+                    "👤 " + userName;
+
+                button.href = "#";
+
+                button.onclick =
+                    function(event) {
+
+                        event.preventDefault();
+
+                        showAccountMenu();
+
+                    };
+
+            } else {
+
+                button.textContent =
+                    "Sign In / Log In";
+
+                button.href =
+                    "login.html";
+
+                button.onclick = null;
+
+            }
+        }
+
+
+        /* ====================================================
+           ACCOUNT
+        ==================================================== */
+
+        function escapeHTML(value) {
+            return String(value ?? "").replace(/[&<>"']/g, function(char) {
+                const map = {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"};
+                return map[char];
+            });
+        }
+
+        function showAccountMenu() {
+            let menu = document.getElementById("prismAccountMenu");
+
+            if (!menu) {
+                menu = document.createElement("div");
+                menu.id = "prismAccountMenu";
+                menu.className = "prism-account-menu";
+                document.body.appendChild(menu);
+                menu.addEventListener("click", function(event) {
+                    event.stopPropagation();
+                });
+            }
+
+            const name = localStorage.getItem("prismUserName") || "Prism User";
+            const email = localStorage.getItem("prismUserEmail") || "No email";
+            const plan = localStorage.getItem("prismPlan") || "Free";
+
+            if (menu.classList.contains("open")) {
+                menu.classList.remove("open");
+                return;
+            }
+
+            menu.innerHTML = `
+                <div class="prism-account-head">
+                    <div class="prism-account-name">👤 ${escapeHTML(name)}</div>
+                    <div class="prism-account-email">${escapeHTML(email)}</div>
+                    <span class="prism-account-plan">${escapeHTML(plan)} plan</span>
+                </div>
+                <button class="prism-account-item" type="button" onclick="seeProfile()">👤 See Profile</button>
+                <button class="prism-account-item" type="button" onclick="editProfile()">✎ Edit Profile</button>
+                <button class="prism-account-item" type="button" onclick="viewAccountPlan()">◇ View My Plan</button>
+                <button class="prism-account-item danger" type="button" onclick="logoutPrism()">↪ Log Out</button>
+            `;
+
+            menu.classList.add("open");
+        }
+
+        function seeProfile() {
+            window.location.href = "profile.html";
+        }
+
+        function editProfile() {
+            window.location.href = "profile.html#edit";
+        }
+
+        function viewAccountPlan() {
+            const plan = localStorage.getItem("prismPlan") || "Free";
+            alert("Your current Prism AI plan is: " + plan);
+            window.location.href = "pricing.html";
+        }
+        function openOwnCreationTools() {
+    console.log("Create it Yourself clicked");
+
+    const ownStep = document.getElementById("createStepOwn");
+    const aiStep = document.getElementById("createStepAI");
+
+    if (aiStep) {
+        aiStep.style.display = "none";
+    }
+
+    if (ownStep) {
+        ownStep.style.display = "block";
+        onclick="openOwnCreationTools()"
+    }
+}
+
+        function logoutPrism() {
+            localStorage.removeItem("prismLoggedIn");
+            localStorage.removeItem("prismUserName");
+            localStorage.removeItem("prismUserEmail");
+            localStorage.removeItem("prismUserId");
+            localStorage.removeItem("prismPlan");
+
+            const menu = document.getElementById("prismAccountMenu");
+            if (menu) menu.classList.remove("open");
+
+            updateLoginStatus();
+        }
+
+        document.addEventListener("click", function(event) {
+            const menu = document.getElementById("prismAccountMenu");
+            const accountButton = document.querySelector(".login-btn");
+
+            if (menu && menu.classList.contains("open") &&
+                !menu.contains(event.target) && event.target !== accountButton) {
+                menu.classList.remove("open");
+            }
+        });
+
+        /* ====================================================
+           START CREATING FLOW
+        ==================================================== */
+
+        const createToolPages = {
+
+    // EXISTING AI TOOLS
+    editor: "editor.html",
+    code: "code.html",
+    ppt: "ppt.html",
+    translator: "translator.html",
+    ideas: "ideas.html",
+    ai: "ai.html",
+
+    // NEW AI FEATURES
+    understand: "features.html",
+    mindmap: "features.html",
+    coach: "features.html",
+    design: "features.html",
+    improve: "features.html",
+    social: "features.html",
+    magic: "features.html",
+
+    // CREATE YOURSELF TOOLS
+    advertisement: "editor.html",
+    "image-edit": "editor.html",
+    instagram: "code.html",
+    website: "code.html",
+    poster: "editor.html",
+    logo: "logo.html",
+    "social-post": "editor.html",
+    "video-script": "editor.html"
+};
+
+        let selectedCreateMode = "ai";
+
+        function openCreateFlow() {
+
+            const loggedIn =
+                localStorage.getItem("prismLoggedIn") === "true";
+
+            if (!loggedIn) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            const flow = document.getElementById("createFlow");
+            const stepOne = document.getElementById("createStepOne");
+            const stepTwo = document.getElementById("createStepTwo");
+
+            if (!flow) return;
+
+            stepOne.hidden = false;
+            stepTwo.hidden = true;
+            flow.classList.add("show");
+            flow.setAttribute("aria-hidden", "false");
+        }
+
+        function closeCreateFlow() {
+            const flow = document.getElementById("createFlow");
+            if (!flow) return;
+            flow.classList.remove("show");
+            flow.setAttribute("aria-hidden", "true");
+        }
+
+        function chooseCreateMode(mode) {
+            selectedCreateMode = mode;
+
+            const stepOne = document.getElementById("createStepOne");
+            const stepTwo = document.getElementById("createStepTwo");
+            const title = document.getElementById("createModeTitle");
+            const text = document.getElementById("createModeText");
+            const aiGrid = document.getElementById("aiToolGrid");
+            const ownGrid = document.getElementById("ownToolGrid");
+
+            if (!stepOne || !stepTwo) return;
+
+            if (mode === "ai") {
+                title.textContent = "What do you want Prism AI to create?";
+                text.textContent = "Choose what you want Prism AI to generate and we will take you to the right tool.";
+                if (aiGrid) aiGrid.hidden = false;
+                if (ownGrid) ownGrid.hidden = true;
+            } else {
+                title.textContent = "What do you want to create yourself?";
+                text.textContent = "Choose something to make yourself. You can use your own ideas, content, images, and designs.";
+                if (aiGrid) aiGrid.hidden = true;
+                if (ownGrid) ownGrid.hidden = false;
+            }
+
+            stepOne.hidden = true;
+            stepTwo.hidden = false;
+        }
+
+        function selectCreateTool(tool) {
+            // Dedicated pages
+if (tool === "logo") {
+    localStorage.setItem("prismCreateMode", "ai");
+    localStorage.setItem("prismCreateTool", "logo");
+    localStorage.setItem("prismCreationLabel", "Make a Logo");
+
+    window.location.href = "logo.html";
+    return;
+}
+            selectedCreateMode = "pending";
+
+            localStorage.setItem("prismCreateTool", tool);
+const creationLabels = {
+
+    // EXISTING AI TOOLS
+    editor: "AI Editor",
+    code: "Code",
+    ppt: "Presentation",
+    translator: "Translation",
+    ideas: "Ideas",
+    ai: "AI Assistant",
+
+    // NEW AI FEATURES
+    understand: "Understand My Project",
+    mindmap: "AI Mind Map",
+    coach: "Presentation Coach",
+    design: "AI Design Generator",
+    improve: "Make It Better",
+    social: "Social Media Studio",
+    magic: "Prism Magic",
+
+    // CREATE YOURSELF
+    ppt: "Make a PPT",
+    advertisement: "Make an Advertisement",
+    "image-edit": "Edit an Image",
+    instagram: "Make an Instagram Page",
+    website: "Make a Website",
+    poster: "Make a Poster",
+    logo: "Make a Logo",
+    "social-post": "Make a Social Post",
+    "video-script": "Make a Video Script"
+};
+            const label = creationLabels[tool] || tool;
+            localStorage.setItem("prismCreationLabel", label);
+
+            const stepTwo = document.getElementById("createStepTwo");
+            const stepThree = document.getElementById("createStepThree");
+            const title = document.getElementById("creationMethodTitle");
+            const text = document.getElementById("creationMethodText");
+
+            if (!stepTwo || !stepThree) return;
+
+            title.textContent = "How do you want to make your " + label.toLowerCase() + "?";
+            text.textContent = "Choose whether you want a blank canvas to build yourself or let Prism AI create a starting version.";
+
+            stepTwo.hidden = true;
+            stepThree.hidden = false;
+        }
+        function openSelfCreator() {
+            localStorage.setItem("prismCreateMode", "self");
+            window.location.href = "self-create.html";
+        }
+
+        function openAICreator() {
+            localStorage.setItem("prismCreateMode", "ai");
+            const tool = localStorage.getItem("prismCreateTool") || "ai";
+            const aiPages = {
+                ppt: "ppt.html",
+                advertisement: "editor.html",
+                "image-edit": "editor.html",
+                instagram: "code.html",
+                website: "code.html",
+                poster: "editor.html",
+                logo: "logo.html",
+                "social-post": "editor.html",
+                "video-script": "editor.html"
+            };
+            window.location.href = aiPages[tool] || "ai.html";
+        }
+
+        function setupCreateFlow() {
+            const startButton = document.getElementById("startCreatingButton");
+            const closeButton = document.getElementById("createFlowClose");
+            const backButton = document.getElementById("createFlowBack");
+            const flow = document.getElementById("createFlow");
+
+            if (startButton) {
+                startButton.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    openCreateFlow();
+                });
+            }
+
+            if (closeButton) {
+                closeButton.addEventListener("click", closeCreateFlow);
+            }
+
+            if (backButton) {
+                backButton.addEventListener("click", function() {
+                    document.getElementById("createStepOne").hidden = false;
+                    document.getElementById("createStepTwo").hidden = true;
+                    document.getElementById("createStepThree").hidden = true;
+                });
+            }
+
+            const methodBack = document.getElementById("createMethodBack");
+            if (methodBack) {
+                methodBack.addEventListener("click", function() {
+                    document.getElementById("createStepTwo").hidden = false;
+                    document.getElementById("createStepThree").hidden = true;
+                });
+            }
+
+            const methodOwn = document.getElementById("methodOwn");
+            if (methodOwn) methodOwn.addEventListener("click", openSelfCreator);
+
+            const methodAI = document.getElementById("methodAI");
+            if (methodAI) methodAI.addEventListener("click", openAICreator);
+
+            document.querySelectorAll(".create-tool").forEach(function(button) {
+
+    button.addEventListener("click", function(event) {
+
+        event.preventDefault();
+
+        const tool = button.dataset.tool;
+
+        // LOGO HAS ITS OWN DEDICATED PAGE
+        if (tool === "logo") {
+
+            localStorage.setItem(
+                "prismCreateMode",
+                "ai"
+            );
+
+            localStorage.setItem(
+                "prismCreateTool",
+                "logo"
+            );
+
+            localStorage.setItem(
+                "prismCreationLabel",
+                "Make a Logo"
+            );
+
+            window.location.href = "logo.html";
+
+            return;
+        }
+
+        selectCreateTool(tool);
+
+    });
+
+});
+
+            document.querySelectorAll(".create-tool").forEach(function(button) {
+    button.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        const tool = button.dataset.tool;
+
+        // LOGO HAS ITS OWN PAGE
+        if (tool === "logo") {
+            window.location.href = "logo.html";
+            return;
+        }
+
+        selectCreateTool(tool);
+    });
+});
+
+            if (flow) {
+                flow.addEventListener("click", function(event) {
+                    if (event.target === flow) closeCreateFlow();
+                });
+            }
+
+            document.addEventListener("keydown", function(event) {
+                if (event.key === "Escape") closeCreateFlow();
+            });
+        }
+
+
+        /* ====================================================
+           WELCOME POPUP
+        ==================================================== */
+
+        function closeWelcomePopup() {
+
+            const popup =
+                document.getElementById(
+                    "prismWelcomePopup"
+                );
+
+            if (!popup) return;
+
+            localStorage.setItem(
+                "prismWelcomeSeen",
+                "true"
+            );
+
+            popup.style.animation =
+                "welcomeFadeIn 0.22s ease reverse";
+
+            setTimeout(
+                function() {
+
+                    popup.style.display = "none";
+
+                },
+                210
+            );
+        }
+
+
+        function setupWelcomePopup() {
+
+            const popup =
+                document.getElementById(
+                    "prismWelcomePopup"
+                );
+
+            const closeButton =
+                document.getElementById(
+                    "prismWelcomeClose"
+                );
+
+            const startButton =
+                document.getElementById(
+                    "prismWelcomeStart"
+                );
+
+            if (!popup) return;
+
+            const welcomeSeen =
+                localStorage.getItem(
+                    "prismWelcomeSeen"
+                );
+
+            if (welcomeSeen === "true") {
+                popup.style.display = "none";
+                return;
+            }
+
+            popup.style.display = "flex";
+
+            if (closeButton) {
+                closeButton.addEventListener(
+                    "click",
+                    closeWelcomePopup
+                );
+            }
+
+            if (startButton) {
+                startButton.addEventListener(
+                    "click",
+                    closeWelcomePopup
+                );
+            }
+        }
+
+
+        /* ====================================================
+           STARTUP
+        ==================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                applyTheme();
+
+                updateLoginStatus();
+
+                setupCreateFlow();
+
+                setupWelcomePopup();
+
+            }
+        );
+// ==========================================
+// START CREATING - CREATION METHOD BUTTONS
+// ==========================================
+
+const createWithAIButton =
+    document.getElementById("createWithAIButton");
+
+const createYourselfButton =
+    document.getElementById("createYourselfButton");
+
+if (createWithAIButton) {
+    createWithAIButton.addEventListener("click", function () {
+
+        console.log("Create with Prism AI clicked");
+
+        selectedCreateMode = "ai";
+
+        localStorage.setItem("prismCreateMode", "ai");
+
+        const aiGrid = document.getElementById("aiToolGrid");
+        const ownGrid = document.getElementById("ownToolGrid");
+
+        const stepTwo = document.getElementById("createStepTwo");
+        const stepThree = document.getElementById("createStepThree");
+
+        if (aiGrid) {
+            aiGrid.hidden = false;
+        }
+
+        if (ownGrid) {
+            ownGrid.hidden = true;
+        }
+
+        if (stepTwo) {
+            stepTwo.hidden = false;
+        }
+
+        if (stepThree) {
+            stepThree.hidden = true;
+        }
+    });
+}
+
+
+if (createYourselfButton) {
+    createYourselfButton.addEventListener("click", function () {
+
+        console.log("Create Yourself clicked");
+
+        selectedCreateMode = "self";
+
+        localStorage.setItem("prismCreateMode", "self");
+
+        const aiGrid = document.getElementById("aiToolGrid");
+        const ownGrid = document.getElementById("ownToolGrid");
+
+        const stepTwo = document.getElementById("createStepTwo");
+        const stepThree = document.getElementById("createStepThree");
+
+        if (aiGrid) {
+            aiGrid.hidden = true;
+        }
+
+        if (ownGrid) {
+            ownGrid.hidden = false;
+        }
+
+        if (stepTwo) {
+            stepTwo.hidden = false;
+        }
+
+        if (stepThree) {
+            stepThree.hidden = true;
+        }
+    });
+}
+    </script>
+
+</body>
+</html>

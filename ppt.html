@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prism AI — PPT Maker</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(120, 70, 255, 0.18), transparent 30%),
+                radial-gradient(circle at 85% 80%, rgba(0, 220, 255, 0.12), transparent 30%),
+                #070812;
+            color: #f5f5ff;
+            min-height: 100vh;
+            transition: 0.3s ease;
+        }
+
+        body.light-theme {
+            background:
+                radial-gradient(circle at 15% 20%, rgba(120, 70, 255, 0.12), transparent 30%),
+                radial-gradient(circle at 85% 80%, rgba(0, 180, 255, 0.10), transparent 30%),
+                #f5f7ff;
+            color: #151526;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            background: rgba(7, 8, 18, 0.78);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        body.light-theme nav {
+            background: rgba(245,247,255,0.82);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        body.light-theme .logo {
+            color: #151526;
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, #a855f7, #5ee7ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: #bfc1d9;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        body.light-theme .nav-links a {
+            color: #55566d;
+        }
+
+        body.light-theme .nav-links a:hover {
+            color: #151526;
+        }
+
+        .theme-btn {
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.06);
+            color: white;
+            border-radius: 10px;
+            padding: 9px 13px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        body.light-theme .theme-btn {
+            color: #151526;
+            background: rgba(0,0,0,0.04);
+            border-color: rgba(0,0,0,0.12);
+        }
+
+        .page {
+            width: min(1150px, 92%);
+            margin: auto;
+            padding: 70px 0 90px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 999px;
+            background: rgba(168,85,247,0.12);
+            border: 1px solid rgba(168,85,247,0.28);
+            color: #cfa7ff;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        body.light-theme .badge {
+            color: #7440bb;
+            background: rgba(168,85,247,0.10);
+        }
+
+        h1 {
+            font-size: clamp(42px, 7vw, 76px);
+            line-height: 0.98;
+            letter-spacing: -4px;
+            margin-bottom: 22px;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, #a855f7, #61e8ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #9da0bc;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        body.light-theme .hero p {
+            color: #62647b;
+        }
+
+        .workspace {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        .panel {
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 22px;
+            padding: 26px;
+            box-shadow: 0 20px 70px rgba(0,0,0,0.20);
+        }
+
+        body.light-theme .panel {
+            background: rgba(255,255,255,0.78);
+            border-color: rgba(0,0,0,0.08);
+            box-shadow: 0 20px 60px rgba(40,40,80,0.10);
+        }
+
+        .panel h2 {
+            font-size: 20px;
+            margin-bottom: 7px;
+        }
+
+        .panel-description {
+            color: #8589a5;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: #aeb0c8;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        body.light-theme label {
+            color: #5e6075;
+        }
+
+        textarea,
+        select {
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(0,0,0,0.18);
+            color: white;
+            border-radius: 13px;
+            padding: 13px 14px;
+            outline: none;
+            font: inherit;
+            margin-bottom: 19px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 125px;
+        }
+
+        body.light-theme textarea,
+        body.light-theme select {
+            background: white;
+            color: #171727;
+            border-color: rgba(0,0,0,0.12);
+        }
+
+        option {
+            background: #11121d;
+            color: white;
+        }
+
+        body.light-theme option {
+            background: white;
+            color: #171727;
+        }
+
+        textarea:focus,
+        select:focus {
+            border-color: #9b5cff;
+            box-shadow: 0 0 0 3px rgba(155,92,255,0.12);
+        }
+
+        .generate-btn {
+            width: 100%;
+            border: none;
+            border-radius: 13px;
+            padding: 14px;
+            background: linear-gradient(90deg, #8b5cf6, #4dddf7);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(104,95,255,0.28);
+        }
+
+        .presentation {
+            min-height: 560px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .presentation-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .presentation-header h2 {
+            font-size: 20px;
+        }
+
+        .slide-count {
+            color: #8e91ad;
+            font-size: 12px;
+        }
+
+        .slides {
+            display: grid;
+            gap: 16px;
+        }
+
+        .empty-state {
+            min-height: 450px;
+            border: 1px dashed rgba(255,255,255,0.15);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 35px;
+            color: #7f829e;
+        }
+
+        body.light-theme .empty-state {
+            border-color: rgba(0,0,0,0.13);
+            color: #77798f;
+        }
+
+        .empty-icon {
+            font-size: 46px;
+            margin-bottom: 15px;
+        }
+
+        .slide {
+            border-radius: 18px;
+            padding: 25px;
+            min-height: 155px;
+            background:
+                radial-gradient(circle at 85% 15%, rgba(94,231,255,0.14), transparent 30%),
+                linear-gradient(135deg, rgba(139,92,246,0.16), rgba(40,42,70,0.20));
+            border: 1px solid rgba(255,255,255,0.11);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.light-theme .slide {
+            background:
+                radial-gradient(circle at 85% 15%, rgba(94,231,255,0.13), transparent 30%),
+                linear-gradient(135deg, rgba(139,92,246,0.09), rgba(230,233,255,0.8));
+            border-color: rgba(0,0,0,0.08);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            font-size: 11px;
+            color: #8588a5;
+        }
+
+        .slide h3 {
+            font-size: 21px;
+            margin-bottom: 12px;
+            padding-right: 40px;
+        }
+
+        .slide p {
+            color: #a9acc5;
+            line-height: 1.55;
+            font-size: 13px;
+        }
+
+        body.light-theme .slide p {
+            color: #66697f;
+        }
+
+        .slide-tag {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 10px;
+            color: #bda0ff;
+            background: rgba(168,85,247,0.12);
+            border: 1px solid rgba(168,85,247,0.20);
+            padding: 5px 8px;
+            border-radius: 999px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .small-btn {
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            padding: 9px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        body.light-theme .small-btn {
+            color: #252538;
+            background: rgba(0,0,0,0.04);
+            border-color: rgba(0,0,0,0.10);
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 32px auto 0;
+            color: #aaa3ff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+        body.light-theme .back:hover {
+            color: #222238;
+        }
+
+        @media (max-width: 850px) {
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a:nth-child(2),
+            .nav-links a:nth-child(3) {
+                display: none;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            nav {
+                padding: 0 4%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 8px;
+            }
+
+            .theme-btn {
+                padding: 8px 9px;
+            }
+
+            .page {
+                width: 94%;
+                padding-top: 45px;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Prism <span>AI</span></a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="login.html" class="login-link">Sign In</a>
+            <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">☀️ Light</button>
+        </div>
+    </nav>
+
+    <main class="page">
+
+        <section class="hero">
+            <div class="badge">✦ AI PRESENTATION STUDIO</div>
+
+            <h1>Turn ideas into<br><span>presentations.</span></h1>
+
+            <p>
+                Give Prism AI a topic and let it organize your presentation
+                into clean, creative slides ready for your school project.
+            </p>
+        </section>
+
+        <section class="workspace">
+
+            <div class="panel">
+
+                <h2>Create your presentation</h2>
+
+                <p class="panel-description">
+                    Enter a topic and choose how you want your presentation to look.
+                </p>
+
+                <label for="topic">Presentation topic</label>
+
+                <textarea
+                    id="topic"
+                    placeholder="Example: Artificial Intelligence in Education"
+                ></textarea>
+
+                <label for="slideNumber">Number of slides</label>
+
+                <select id="slideNumber">
+                    <option value="4">4 slides</option>
+                    <option value="5" selected>5 slides</option>
+                    <option value="6">6 slides</option>
+                    <option value="7">7 slides</option>
+                    <option value="8">8 slides</option>
+                </select>
+
+                <label for="style">Presentation style</label>
+
+                <select id="style">
+                    <option value="futuristic">Futuristic</option>
+                    <option value="modern">Modern</option>
+                    <option value="minimal">Minimal</option>
+                    <option value="professional">Professional</option>
+                </select>
+
+                <label for="audience">Audience</label>
+
+                <select id="audience">
+                    <option value="school">School project</option>
+                    <option value="college">College presentation</option>
+                    <option value="general">General audience</option>
+                </select>
+
+                <button class="generate-btn" onclick="generatePresentation()">
+                    ✦ Generate Presentation
+                </button>
+
+            </div>
+
+            <div class="panel presentation">
+
+                <div class="presentation-header">
+                    <h2>Your presentation</h2>
+                    <span class="slide-count" id="slideCount">
+                        No slides yet
+                    </span>
+                </div>
+
+                <div id="slides" class="slides">
+
+                    <div class="empty-state">
+                        <div>
+                            <div class="empty-icon">▣</div>
+                            <h3>Your slides will appear here</h3>
+                            <p style="margin-top:10px;">
+                                Enter a topic and click Generate Presentation.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <a href="features.html" class="back">← Back to Features</a>
+
+    </main>
+
+    <script>
+        function applyTheme() {
+            const savedTheme = localStorage.getItem("prismTheme");
+
+            if (savedTheme === "light") {
+                document.body.classList.add("light-theme");
+                document.getElementById("themeToggle").textContent = "🌙 Dark";
+            } else {
+                document.body.classList.remove("light-theme");
+                document.getElementById("themeToggle").textContent = "☀️ Light";
+            }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("light-theme");
+
+            if (document.body.classList.contains("light-theme")) {
+                localStorage.setItem("prismTheme", "light");
+                document.getElementById("themeToggle").textContent = "🌙 Dark";
+            } else {
+                localStorage.setItem("prismTheme", "dark");
+                document.getElementById("themeToggle").textContent = "☀️ Light";
+            }
+        }
+
+        function generatePresentation() {
+            const topicInput = document.getElementById("topic");
+            const topic = topicInput.value.trim();
+
+            const number = Number(
+                document.getElementById("slideNumber").value
+            );
+
+            const style =
+                document.getElementById("style").value;
+
+            const audience =
+                document.getElementById("audience").value;
+
+            if (!topic) {
+                topicInput.focus();
+                alert("Please enter a presentation topic first.");
+                return;
+            }
+
+            const slides = document.getElementById("slides");
+
+            const slideData = createSlides(topic, number);
+
+            slides.innerHTML = "";
+
+            slideData.forEach((slide, index) => {
+
+                const card = document.createElement("div");
+
+                card.className = "slide";
+
+                card.innerHTML = `
+                    <div class="slide-number">
+                        ${index + 1} / ${slideData.length}
+                    </div>
+
+                    <h3>${escapeHTML(slide.title)}</h3>
+
+                    <p>${escapeHTML(slide.text)}</p>
+
+                    <span class="slide-tag">
+                        ${escapeHTML(style)} • ${escapeHTML(audience)}
+                    </span>
+                `;
+
+                slides.appendChild(card);
+            });
+
+            document.getElementById("slideCount").textContent =
+                `${number} slides generated`;
+
+            localStorage.setItem("prismLastPresentationTopic", topic);
+            localStorage.setItem("prismLastPresentationSlides", number);
+        }
+
+        function createSlides(topic, count) {
+
+            const lower = topic.toLowerCase();
+
+            let customSlides = [];
+
+            if (
+                lower.includes("artificial intelligence") ||
+                lower.includes("ai")
+            ) {
+                customSlides = [
+                    {
+                        title: "What is Artificial Intelligence?",
+                        text: "Artificial Intelligence is technology that enables computers to perform tasks that normally require human intelligence, such as learning, reasoning and understanding language."
+                    },
+                    {
+                        title: "How AI Works",
+                        text: "AI systems use data, algorithms and computing power to recognize patterns, make predictions and generate useful responses."
+                    },
+                    {
+                        title: "AI in Education",
+                        text: "AI can support students through personalized learning, writing assistance, research tools and interactive educational experiences."
+                    },
+                    {
+                        title: "Benefits and Challenges",
+                        text: "AI can improve productivity and access to information, but responsible use, privacy, accuracy and human judgment remain important."
+                    },
+                    {
+                        title: "The Future of AI",
+                        text: "Artificial Intelligence is continuing to evolve and may become an increasingly useful tool for creativity, education, science and everyday work."
+                    },
+                    {
+                        title: "Conclusion",
+                        text: "AI is a powerful technology. Learning how to use it responsibly can help people solve problems and create new possibilities."
+                    }
+                ];
+            } else {
+                customSlides = [
+                    {
+                        title: topic,
+                        text: `An introduction to ${topic}, including its meaning, importance and why this topic is worth exploring.`
+                    },
+                    {
+                        title: "Introduction",
+                        text: `${topic} is an interesting subject with important ideas, examples and real-world connections that can help us understand the topic better.`
+                    },
+                    {
+                        title: "Key Concepts",
+                        text: `The main concepts related to ${topic} can be organized into simple ideas, examples and important facts.`
+                    },
+                    {
+                        title: "Why It Matters",
+                        text: `Understanding ${topic} can help students connect classroom learning with real-world situations and future opportunities.`
+                    },
+                    {
+                        title: "Examples and Applications",
+                        text: `${topic} can be explored through practical examples, everyday situations and applications in the real world.`
+                    },
+                    {
+                        title: "Benefits and Challenges",
+                        text: `Like many important subjects, ${topic} has useful advantages as well as challenges that should be understood carefully.`
+                    },
+                    {
+                        title: "Future Possibilities",
+                        text: `The future of ${topic} may bring new ideas, discoveries and opportunities as technology and society continue to develop.`
+                    },
+                    {
+                        title: "Conclusion",
+                        text: `In conclusion, ${topic} is a valuable subject to understand and explore. The key ideas provide a strong foundation for further learning.`
+                    }
+                ];
+            }
+
+            return customSlides.slice(0, count);
+        }
+
+        function escapeHTML(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        applyTheme();
+    </script>
+
+</body>
+</html>

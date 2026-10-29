@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prism AI — Translator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            min-height: 100vh;
+            color: #f5f3ff;
+            background:
+                radial-gradient(circle at 10% 15%, rgba(124,58,237,.23), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(34,211,238,.12), transparent 28%),
+                #070711;
+            transition: .3s ease;
+        }
+
+        body.light-theme {
+            color: #171522;
+            background:
+                radial-gradient(circle at 10% 15%, rgba(124,58,237,.11), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(34,211,238,.08), transparent 28%),
+                #f7f7fb;
+        }
+
+        nav {
+            height: 76px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(7,7,17,.76);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,.09);
+        }
+
+        body.light-theme nav {
+            background: rgba(247,247,251,.84);
+            border-bottom-color: rgba(0,0,0,.08);
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        body.light-theme .logo {
+            color: #171522;
+        }
+
+        .logo span,
+        .gradient {
+            background: linear-gradient(90deg,#c084fc,#818cf8,#22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: #aaa7ba;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        body.light-theme .nav-links a:hover {
+            color: #171522;
+        }
+
+        .theme-btn {
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(255,255,255,.05);
+            color: white;
+            padding: 9px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+        }
+
+        body.light-theme .theme-btn {
+            color: #171522;
+            border-color: rgba(0,0,0,.1);
+            background: rgba(0,0,0,.04);
+        }
+
+        main {
+            width: min(1150px,92%);
+            margin: auto;
+            padding: 58px 0 75px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 999px;
+            background: rgba(124,58,237,.1);
+            border: 1px solid rgba(168,85,247,.32);
+            color: #c084fc;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(40px,6vw,68px);
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #9995aa;
+            line-height: 1.7;
+        }
+
+        body.light-theme .hero p {
+            color: #666276;
+        }
+
+        .translator {
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(15,15,28,.77);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0,0,0,.28);
+        }
+
+        body.light-theme .translator {
+            background: rgba(255,255,255,.85);
+            border-color: rgba(0,0,0,.08);
+            box-shadow: 0 25px 70px rgba(40,30,80,.1);
+        }
+
+        .language-bar {
+            display: grid;
+            grid-template-columns: 1fr 60px 1fr;
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme .language-bar {
+            border-bottom-color: rgba(0,0,0,.08);
+        }
+
+        .language-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 11px 13px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.05);
+            color: #eeeafa;
+            outline: none;
+            font: inherit;
+        }
+
+        body.light-theme select {
+            color: #171522;
+            background: rgba(0,0,0,.035);
+            border-color: rgba(0,0,0,.1);
+        }
+
+        select option {
+            background: #171522;
+            color: white;
+        }
+
+        body.light-theme select option {
+            background: white;
+            color: #171522;
+        }
+
+        .swap {
+            width: 43px;
+            height: 43px;
+            border-radius: 50%;
+            border: 1px solid rgba(168,85,247,.25);
+            background: rgba(124,58,237,.1);
+            color: #c084fc;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .swap:hover {
+            transform: rotate(180deg);
+        }
+
+        .translation-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .panel {
+            min-height: 360px;
+            padding: 22px;
+            position: relative;
+        }
+
+        .panel + .panel {
+            border-left: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme .panel + .panel {
+            border-left-color: rgba(0,0,0,.08);
+        }
+
+        .panel-label {
+            color: #777386;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 280px;
+            resize: none;
+            border: 0;
+            outline: none;
+            background: transparent;
+            color: inherit;
+            font-size: 18px;
+            line-height: 1.7;
+            font-family: inherit;
+        }
+
+        textarea::placeholder {
+            color: #625d6e;
+        }
+
+        .output {
+            color: #d9d4e5;
+            font-size: 18px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        body.light-theme .output {
+            color: #3f3a4c;
+        }
+
+        .panel-bottom {
+            position: absolute;
+            left: 22px;
+            right: 22px;
+            bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            color: #777386;
+            font-size: 11px;
+        }
+
+        .copy {
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.05);
+            color: #c6c1d2;
+            padding: 6px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        body.light-theme .copy {
+            color: #555064;
+            border-color: rgba(0,0,0,.1);
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme .action-bar {
+            border-top-color: rgba(0,0,0,.08);
+        }
+
+        .translate-btn {
+            border: 0;
+            padding: 13px 25px;
+            border-radius: 11px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg,#7c3aed,#4f46e5);
+            box-shadow: 0 10px 30px rgba(124,58,237,.2);
+        }
+
+        .translate-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .status {
+            text-align: center;
+            color: #777386;
+            font-size: 12px;
+            margin-top: 15px;
+            min-height: 18px;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 0;
+            color: #aaa7ba;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,.1);
+            padding: 11px 18px;
+            border-radius: 10px;
+        }
+
+        body.light-theme .back {
+            color: #555064;
+            border-color: rgba(0,0,0,.1);
+        }
+
+        @media(max-width:700px) {
+
+            nav {
+                padding: 0 4%;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a:nth-child(2) {
+                display: none;
+            }
+
+            .language-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .swap {
+                margin: auto;
+            }
+
+            .translation-area {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                min-height: 300px;
+            }
+
+            .panel + .panel {
+                border-left: 0;
+                border-top: 1px solid rgba(255,255,255,.08);
+            }
+
+            body.light-theme .panel + .panel {
+                border-top-color: rgba(0,0,0,.08);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <a href="index.html" class="logo">
+        <span>Prism</span> AI
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="login.html">Sign In / Log In</a>
+        <button class="theme-btn" id="themeToggle">☀️ Light</button>
+    </div>
+
+</nav>
+
+<main>
+
+    <section class="hero">
+
+        <div class="badge">✦ AI TRANSLATOR</div>
+
+        <h1>
+            Speak <span class="gradient">everywhere.</span>
+        </h1>
+
+        <p>
+            Translate your ideas between languages with a clean,
+            simple Prism AI workspace.
+        </p>
+
+    </section>
+
+    <section class="translator">
+
+        <div class="language-bar">
+
+            <div class="language-box">
+
+                <select id="fromLanguage">
+                    <option>English</option>
+                    <option>Hindi</option>
+                    <option>Marathi</option>
+                    <option>Spanish</option>
+                    <option>French</option>
+                    <option>German</option>
+                    <option>Japanese</option>
+                </select>
+
+            </div>
+
+            <button class="swap" onclick="swapLanguages()">
+                ⇄
+            </button>
+
+            <div class="language-box">
+
+                <select id="toLanguage">
+                    <option>Hindi</option>
+                    <option>English</option>
+                    <option>Marathi</option>
+                    <option>Spanish</option>
+                    <option>French</option>
+                    <option>German</option>
+                    <option>Japanese</option>
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="translation-area">
+
+            <div class="panel">
+
+                <div class="panel-label">
+                    Original
+                </div>
+
+                <textarea
+                    id="sourceText"
+                    placeholder="Type or paste your text here..."
+                    oninput="updateCount()"
+                ></textarea>
+
+                <div class="panel-bottom">
+                    <span id="count">0 characters</span>
+                    <button class="copy" onclick="clearSource()">
+                        Clear
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-label">
+                    Translation
+                </div>
+
+                <div class="output" id="translatedText">
+                    Your translation will appear here.
+                </div>
+
+                <div class="panel-bottom">
+                    <span>Prism AI</span>
+                    <button class="copy" onclick="copyTranslation()">
+                        Copy
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="action-bar">
+
+            <button class="translate-btn" onclick="translateText()">
+                ✦ Translate
+            </button>
+
+        </div>
+
+    </section>
+
+    <div class="status" id="status"></div>
+
+    <a href="features.html" class="back">
+        ← Back to Features
+    </a>
+
+</main>
+
+<script>
+
+    function applyTheme() {
+
+        const saved =
+            localStorage.getItem("prismTheme");
+
+        const button =
+            document.getElementById("themeToggle");
+
+        if (saved === "light") {
+
+            document.body.classList.add("light-theme");
+
+            if (button) {
+                button.textContent = "🌙 Dark";
+            }
+
+        } else {
+
+            document.body.classList.remove("light-theme");
+
+            if (button) {
+                button.textContent = "☀️ Light";
+            }
+        }
+    }
+
+
+    function toggleTheme() {
+
+        if (
+            document.body.classList.contains("light-theme")
+        ) {
+
+            localStorage.setItem(
+                "prismTheme",
+                "dark"
+            );
+
+        } else {
+
+            localStorage.setItem(
+                "prismTheme",
+                "light"
+            );
+        }
+
+        applyTheme();
+    }
+
+
+    document
+        .getElementById("themeToggle")
+        .addEventListener(
+            "click",
+            toggleTheme
+        );
+
+
+    function updateCount() {
+
+        const text =
+            document.getElementById("sourceText").value;
+
+        document.getElementById("count").textContent =
+            text.length +
+            (text.length === 1
+                ? " character"
+                : " characters");
+    }
+
+
+    function swapLanguages() {
+
+        const from =
+            document.getElementById("fromLanguage");
+
+        const to =
+            document.getElementById("toLanguage");
+
+        const temporary =
+            from.value;
+
+        from.value =
+            to.value;
+
+        to.value =
+            temporary;
+
+        const source =
+            document.getElementById("sourceText");
+
+        const translated =
+            document.getElementById("translatedText");
+
+        if (
+            translated.textContent !==
+            "Your translation will appear here."
+        ) {
+
+            const old =
+                source.value;
+
+            source.value =
+                translated.textContent;
+
+            translated.textContent =
+                old;
+
+            updateCount();
+        }
+    }
+
+
+    function clearSource() {
+
+        document.getElementById("sourceText").value = "";
+
+        document.getElementById("translatedText").textContent =
+            "Your translation will appear here.";
+
+        document.getElementById("status").textContent = "";
+
+        updateCount();
+    }
+
+
+    function translateText() {
+
+        const source =
+            document.getElementById("sourceText").value.trim();
+
+        const from =
+            document.getElementById("fromLanguage").value;
+
+        const to =
+            document.getElementById("toLanguage").value;
+
+        const output =
+            document.getElementById("translatedText");
+
+        const status =
+            document.getElementById("status");
+
+
+        if (!source) {
+
+            output.textContent =
+                "Enter some text first.";
+
+            status.textContent =
+                "Prism AI is waiting for your text.";
+
+            return;
+        }
+
+
+        if (from === to) {
+
+            output.textContent =
+                source;
+
+            status.textContent =
+                "✓ Source and target languages are the same.";
+
+            return;
+        }
+
+
+        const demo =
+            getDemoTranslation(
+                source,
+                from,
+                to
+            );
+
+
+        output.textContent =
+            demo;
+
+
+        status.textContent =
+            "✓ Translation generated locally by Prism AI.";
+
+        localStorage.setItem(
+            "prismLastTranslation",
+            demo
+        );
+    }
+
+
+    function getDemoTranslation(text, from, to) {
+
+        const key =
+            text.toLowerCase().trim();
+
+
+        const translations = {
+
+            "hello": {
+                "Hindi": "नमस्ते",
+                "Marathi": "नमस्कार",
+                "Spanish": "Hola",
+                "French": "Bonjour",
+                "German": "Hallo",
+                "Japanese": "こんにちは"
+            },
+
+            "hello world": {
+                "Hindi": "नमस्ते दुनिया",
+                "Marathi": "नमस्कार जग",
+                "Spanish": "Hola mundo",
+                "French": "Bonjour le monde",
+                "German": "Hallo Welt",
+                "Japanese": "こんにちは世界"
+            },
+
+            "good morning": {
+                "Hindi": "सुप्रभात",
+                "Marathi": "शुभ प्रभात",
+                "Spanish": "Buenos días",
+                "French": "Bonjour",
+                "German": "Guten Morgen",
+                "Japanese": "おはようございます"
+            },
+
+            "thank you": {
+                "Hindi": "धन्यवाद",
+                "Marathi": "धन्यवाद",
+                "Spanish": "Gracias",
+                "French": "Merci",
+                "German": "Danke",
+                "Japanese": "ありがとう"
+            },
+
+            "how are you": {
+                "Hindi": "आप कैसे हैं?",
+                "Marathi": "तुम्ही कसे आहात?",
+                "Spanish": "¿Cómo estás?",
+                "French": "Comment allez-vous ?",
+                "German": "Wie geht es dir?",
+                "Japanese": "お元気ですか？"
+            },
+
+            "i love technology": {
+                "Hindi": "मुझे तकनीक पसंद है",
+                "Marathi": "मला तंत्रज्ञान आवडते",
+                "Spanish": "Me encanta la tecnología",
+                "French": "J'aime la technologie",
+                "German": "Ich liebe Technologie",
+                "Japanese": "私はテクノロジーが大好きです"
+            }
+
+        };
+
+
+        if (
+            translations[key] &&
+            translations[key][to]
+        ) {
+
+            return translations[key][to];
+        }
+
+
+        const labels = {
+            Hindi: "हिंदी",
+            Marathi: "मराठी",
+            Spanish: "Español",
+            French: "Français",
+            German: "Deutsch",
+            Japanese: "日本語",
+            English: "English"
+        };
+
+
+        if (to === "English") {
+
+            return (
+                "[English translation]\n\n" +
+                text
+            );
+        }
+
+
+        return (
+            "[" +
+            labels[to] +
+            " translation]\n\n" +
+            text +
+            "\n\n" +
+            "This local school-demo translator supports common example phrases. " +
+            "For unlimited real-time translation, a translation API would be connected."
+        );
+    }
+
+
+    function copyTranslation() {
+
+        const text =
+            document.getElementById("translatedText").textContent;
+
+        if (
+            !text ||
+            text === "Your translation will appear here."
+        ) {
+
+            return;
+        }
+
+        navigator.clipboard
+            .writeText(text)
+            .then(function() {
+
+                document.getElementById("status").textContent =
+                    "✓ Translation copied to clipboard.";
+
+            })
+            .catch(function() {
+
+                document.getElementById("status").textContent =
+                    "Copy is unavailable in this browser.";
+
+            });
+    }
+
+
+    applyTheme();
+    updateCount();
+
+</script>
+
+</body>
+</html>

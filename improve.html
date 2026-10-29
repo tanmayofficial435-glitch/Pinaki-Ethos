@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make It Better — Prism AI</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    min-height:100vh;
+    color:#fff;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(124,92,255,.18),transparent 30%),
+        radial-gradient(circle at 85% 15%,rgba(0,210,255,.10),transparent 28%),
+        linear-gradient(135deg,#080812,#0d0b1c 55%,#080812);
+}
+
+body.light-theme{
+    color:#171528;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(124,58,237,.12),transparent 32%),
+        radial-gradient(circle at 85% 20%,rgba(6,182,212,.10),transparent 30%),
+        linear-gradient(135deg,#f8f7ff,#eef2ff 52%,#f7fbff);
+}
+
+nav{
+    height:76px;
+    padding:0 7%;
+    display:flex;
+    align-items:center;
+    gap:30px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    background:rgba(8,8,18,.72);
+    backdrop-filter:blur(18px);
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.light-theme nav{
+    background:rgba(255,255,255,.72);
+    border-color:rgba(30,20,80,.08);
+}
+
+.logo{
+    font-size:21px;
+    font-weight:800;
+    margin-right:auto;
+}
+
+.logo span{
+    color:#a78bfa;
+}
+
+nav a{
+    color:inherit;
+    text-decoration:none;
+    opacity:.78;
+    font-size:14px;
+}
+
+nav a:hover{
+    opacity:1;
+}
+
+.theme{
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.06);
+    color:inherit;
+    padding:10px 15px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.light-theme .theme{
+    border-color:rgba(40,30,100,.12);
+    background:rgba(255,255,255,.65);
+}
+
+main{
+    width:min(1050px,92%);
+    margin:0 auto;
+    padding:80px 0 100px;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:42px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 15px;
+    border-radius:999px;
+    background:rgba(139,92,246,.12);
+    border:1px solid rgba(139,92,246,.25);
+    color:#bda8ff;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.light-theme .badge{
+    color:#6334c7;
+    background:rgba(124,58,237,.08);
+}
+
+h1{
+    font-size:clamp(38px,6vw,68px);
+    line-height:1.02;
+    letter-spacing:-2px;
+    margin-bottom:18px;
+}
+
+.gradient{
+    background:linear-gradient(90deg,#a78bfa,#67e8f9);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    line-height:1.7;
+    opacity:.68;
+    font-size:17px;
+}
+
+.panel{
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(17,16,30,.76);
+    border-radius:28px;
+    padding:30px;
+    box-shadow:0 25px 80px rgba(0,0,0,.25);
+}
+
+.light-theme .panel{
+    background:rgba(255,255,255,.72);
+    border-color:rgba(40,30,100,.10);
+    box-shadow:0 25px 70px rgba(80,70,150,.12);
+}
+
+textarea{
+    width:100%;
+    min-height:280px;
+    resize:vertical;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.1);
+    background:#0b0b16;
+    color:#fff;
+    padding:20px;
+    font-size:16px;
+    line-height:1.6;
+    outline:none;
+}
+
+textarea:focus{
+    border-color:#8b5cf6;
+    box-shadow:0 0 0 3px rgba(139,92,246,.12);
+}
+
+.light-theme textarea{
+    background:#fff;
+    color:#171528;
+    border-color:rgba(40,30,100,.12);
+}
+
+.controls{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:20px 0;
+}
+
+.mode{
+    padding:11px 17px;
+    border-radius:13px;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.05);
+    color:inherit;
+    cursor:pointer;
+}
+
+.mode.active{
+    background:linear-gradient(135deg,#7652e8,#4f46e5);
+    border-color:transparent;
+}
+
+button.run{
+    width:100%;
+    border:0;
+    border-radius:16px;
+    padding:16px;
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(135deg,#8b5cf6,#6366f1);
+    box-shadow:0 15px 35px rgba(99,102,241,.25);
+}
+
+button.run:hover{
+    transform:translateY(-2px);
+}
+
+.status{
+    text-align:center;
+    margin-top:18px;
+    opacity:.7;
+}
+
+.result{
+    margin-top:25px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(0,0,0,.18);
+    border:1px solid rgba(255,255,255,.07);
+    white-space:pre-wrap;
+    line-height:1.7;
+    display:none;
+}
+
+.light-theme .result{
+    background:rgba(240,238,255,.7);
+    border-color:rgba(40,30,100,.08);
+}
+
+@media(max-width:700px){
+    nav{
+        padding:0 20px;
+        gap:15px;
+    }
+
+    nav a{
+        display:none;
+    }
+
+    main{
+        padding-top:55px;
+    }
+
+    .panel{
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">✦ <span>Prism AI</span></div>
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="workspace.html">Workspace</a>
+    <a href="pricing.html">Pricing</a>
+    <button class="theme" onclick="toggleTheme()" id="themeButton">☀️ Light</button>
+</nav>
+
+<main>
+
+<section class="hero">
+    <div class="badge">✨ Prism Intelligence</div>
+
+    <h1>
+        Make it <span class="gradient">better.</span>
+    </h1>
+
+    <p>
+        Give Prism AI your writing, idea, project or content.
+        Prism will analyze it and suggest meaningful improvements.
+    </p>
+</section>
+
+<section class="panel">
+
+<textarea id="contentInput"
+placeholder="Paste your content here...
+
+Example:
+My project is about renewable energy. Solar panels can help reduce pollution and provide clean electricity..."></textarea>
+
+<div class="controls">
+
+<button class="mode active" data-mode="complete">
+    ✨ Complete Improvement
+</button>
+
+<button class="mode" data-mode="writing">
+    ✍️ Writing
+</button>
+
+<button class="mode" data-mode="ideas">
+    💡 Ideas
+</button>
+
+<button class="mode" data-mode="project">
+    📚 Project
+</button>
+
+</div>
+
+<button class="run" onclick="improveContent()">
+    ✦ Improve with Prism AI
+</button>
+
+<div class="status" id="status"></div>
+
+<div class="result" id="result"></div>
+
+</section>
+
+</main>
+
+<script>
+
+let selectedMode = "complete";
+
+const prompts = {
+
+complete: `
+You are Prism AI's improvement engine.
+
+Analyze the user's content and improve it intelligently.
+
+Return:
+1. What is already good
+2. What could be improved
+3. Improved Version
+4. Clarity Improvements
+5. Stronger Ideas
+6. Final Suggestions
+
+Preserve the user's original meaning.
+Do not invent unsupported facts.
+`,
+
+writing: `
+You are Prism AI's writing improvement specialist.
+
+Improve the user's writing for:
+- grammar
+- clarity
+- structure
+- vocabulary
+- flow
+- readability
+
+Return:
+1. Problems Found
+2. Improved Version
+3. Writing Suggestions
+`,
+
+ideas: `
+You are Prism AI's idea improvement specialist.
+
+Analyze the user's idea and help make it more creative,
+specific and useful.
+
+Return:
+1. Current Idea
+2. Strong Points
+3. Missing Ideas
+4. New Directions
+5. Improved Idea
+6. Possible Extensions
+`,
+
+project: `
+You are Prism AI's school project improvement specialist.
+
+Analyze the project content.
+
+Return:
+1. Project Strength
+2. Missing Information
+3. Research Suggestions
+4. Structure Improvements
+5. Presentation Improvements
+6. Improved Project Direction
+7. Next Steps
+`
+};
+
+document.querySelectorAll(".mode").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        document.querySelectorAll(".mode")
+            .forEach(b => b.classList.remove("active"));
+
+        button.classList.add("active");
+
+        selectedMode = button.dataset.mode;
+
+    });
+
+});
+
+async function improveContent(){
+
+    const content =
+        document.getElementById("contentInput").value.trim();
+
+    const status =
+        document.getElementById("status");
+
+    const result =
+        document.getElementById("result");
+
+    if(!content){
+
+        status.textContent =
+            "Please enter something for Prism to improve.";
+
+        return;
+    }
+
+    status.textContent =
+        "✦ Prism is analyzing your content...";
+
+    result.style.display = "none";
+
+    try{
+
+        const response = await fetch("/api/ai", {
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                prompt:content,
+
+                system:prompts[selectedMode],
+
+                tool:"make-it-better"
+
+            })
+
+        });
+
+        const data = await response.json();
+
+        if(!response.ok){
+            throw new Error(
+                data.error || "AI request failed"
+            );
+        }
+
+        const answer =
+            data.response ||
+            data.answer ||
+            data.message ||
+            data.text ||
+            "";
+
+        result.textContent = answer ||
+            "Prism could not generate a response.";
+
+        result.style.display = "block";
+
+        status.textContent =
+            "✨ Improvement complete.";
+
+    }catch(error){
+
+        status.textContent =
+            "❌ " + error.message;
+
+    }
+
+}
+
+function applyTheme(){
+
+    const theme =
+        localStorage.getItem("prismTheme") || "dark";
+
+    document.body.classList.toggle(
+        "light-theme",
+        theme === "light"
+    );
+
+    document.getElementById("themeButton").textContent =
+        theme === "light"
+        ? "🌙 Dark"
+        : "☀️ Light";
+}
+
+function toggleTheme(){
+
+    const light =
+        document.body.classList.toggle("light-theme");
+
+    localStorage.setItem(
+        "prismTheme",
+        light ? "light" : "dark"
+    );
+
+    document.getElementById("themeButton").textContent =
+        light ? "🌙 Dark" : "☀️ Light";
+}
+
+applyTheme();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Prism AI — Logo Generator</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #080812;
+            --bg-soft: #101020;
+            --card: rgba(18, 17, 35, 0.88);
+            --card-strong: #121124;
+            --text: #ffffff;
+            --muted: #aaa7c5;
+            --border: rgba(255,255,255,0.09);
+            --purple: #8b5cf6;
+            --purple-light: #a78bfa;
+            --cyan: #22d3ee;
+            --pink: #ec4899;
+            --success: #34d399;
+            --danger: #fb7185;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(139,92,246,0.20),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(34,211,238,0.12),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(236,72,153,0.10),
+                    transparent 30%
+                ),
+                var(--bg);
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease;
+        }
+
+        body.light-theme {
+            --bg: #f7f7ff;
+            --bg-soft: #ffffff;
+            --card: rgba(255,255,255,0.90);
+            --card-strong: #ffffff;
+            --text: #18152b;
+            --muted: #66627d;
+            --border: rgba(80,60,140,0.12);
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(124,58,237,0.13),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(6,182,212,0.10),
+                    transparent 28%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f8f7ff,
+                    #eef2ff 55%,
+                    #f7fbff
+                );
+        }
+
+        /* ====================================================
+           NAVBAR
+        ==================================================== */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 34px;
+
+            background: rgba(8,8,18,0.78);
+            backdrop-filter: blur(20px);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        body.light-theme nav {
+            background: rgba(255,255,255,0.78);
+        }
+
+        .logo-brand {
+            color: var(--text);
+            text-decoration: none;
+
+            font-size: 21px;
+            font-weight: 900;
+
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .theme-button {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05);
+
+            color: var(--text);
+
+            border-radius: 999px;
+
+            padding: 9px 15px;
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+            transition: 0.2s ease;
+        }
+
+        .theme-button:hover {
+            transform: translateY(-1px);
+            border-color: rgba(139,92,246,0.45);
+        }
+
+        /* ====================================================
+           PAGE
+        ==================================================== */
+
+        .page {
+            width: min(1240px, calc(100% - 36px));
+
+            margin: 0 auto;
+
+            padding:
+                54px
+                0
+                80px;
+        }
+
+        .hero {
+            text-align: center;
+
+            max-width: 800px;
+
+            margin:
+                0 auto
+                44px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            border:
+                1px solid
+                rgba(139,92,246,0.30);
+
+            background:
+                rgba(139,92,246,0.09);
+
+            border-radius: 999px;
+
+            color: var(--purple-light);
+
+            font-size: 13px;
+            font-weight: 800;
+
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size:
+                clamp(40px, 6vw, 72px);
+
+            line-height: 0.98;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 20px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #ffffff,
+                    #c4b5fd,
+                    #67e8f9
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        body.light-theme h1 {
+            background:
+                linear-gradient(
+                    100deg,
+                    #4c1d95,
+                    #7c3aed,
+                    #0891b2
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .hero p {
+            color: var(--muted);
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+        /* ====================================================
+           MAIN GRID
+        ==================================================== */
+
+        .generator-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(320px, 0.85fr)
+                minmax(400px, 1.15fr);
+
+            gap: 24px;
+
+            align-items: start;
+        }
+
+        .card {
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 28px;
+
+            background:
+                var(--card);
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 80px
+                rgba(0,0,0,0.20);
+        }
+
+        body.light-theme .card {
+            box-shadow:
+                0 25px 70px
+                rgba(68,56,120,0.10);
+        }
+
+        /* ====================================================
+           FORM CARD
+        ==================================================== */
+
+        .brief-card {
+            padding: 28px;
+        }
+
+        .card-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 24px;
+        }
+
+        .card-heading h2 {
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        .card-heading p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .ai-dot {
+            width: 42px;
+            height: 42px;
+
+            flex: 0 0 auto;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(139,92,246,0.25),
+                    rgba(34,211,238,0.15)
+                );
+
+            border:
+                1px solid
+                rgba(139,92,246,0.25);
+
+            font-size: 19px;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 12px;
+
+            color: var(--muted);
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+
+            border:
+                1px solid
+                var(--border);
+
+            background:
+                rgba(255,255,255,0.045);
+
+            color: var(--text);
+
+            border-radius: 14px;
+
+            padding:
+                13px
+                14px;
+
+            outline: none;
+
+            font:
+                inherit;
+
+            font-size: 14px;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        body.light-theme input,
+        body.light-theme textarea,
+        body.light-theme select {
+            background: rgba(255,255,255,0.80);
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color:
+                rgba(139,92,246,0.65);
+
+            box-shadow:
+                0 0 0 4px
+                rgba(139,92,246,0.10);
+        }
+
+        textarea {
+            min-height: 100px;
+
+            resize: vertical;
+
+            line-height: 1.5;
+        }
+
+        select option {
+            color: #111;
+            background: #fff;
+        }
+
+        .style-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 8px;
+        }
+
+        .style-option {
+            position: relative;
+        }
+
+        .style-option input {
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+        .style-option span {
+            display: block;
+
+            padding: 11px 8px;
+
+            text-align: center;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 12px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        .style-option span:hover {
+            color: var(--text);
+
+            border-color:
+                rgba(139,92,246,0.35);
+        }
+
+        .style-option input:checked + span {
+            color: white;
+
+            border-color:
+                rgba(139,92,246,0.75);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(139,92,246,0.35),
+                    rgba(34,211,238,0.12)
+                );
+
+            box-shadow:
+                0 8px 24px
+                rgba(139,92,246,0.12);
+        }
+
+        body.light-theme
+        .style-option input:checked + span {
+            color: #4c1d95;
+        }
+
+        /* ====================================================
+           GENERATE BUTTON
+        ==================================================== */
+
+        .generate-button {
+            width: 100%;
+
+            border: 0;
+
+            border-radius: 16px;
+
+            padding: 16px 20px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #8b5cf6 45%,
+                    #0891b2
+                );
+
+            box-shadow:
+                0 16px 35px
+                rgba(124,58,237,0.25);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .generate-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 20px 42px
+                rgba(124,58,237,0.34);
+        }
+
+        .generate-button:disabled {
+            opacity: 0.55;
+
+            cursor: wait;
+
+            transform: none;
+        }
+
+        .cost-note {
+            margin-top: 11px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+        /* ====================================================
+           RESULT
+        ==================================================== */
+
+        .result-card {
+            min-height: 700px;
+
+            padding: 28px;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .result-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .result-header h2 {
+            font-size: 21px;
+        }
+
+        .status {
+            display: none;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 7px 11px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(52,211,153,0.10);
+
+            color:
+                var(--success);
+
+            border:
+                1px solid
+                rgba(52,211,153,0.18);
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+        .status.show {
+            display: inline-flex;
+        }
+
+        .status.loading {
+            color: var(--purple-light);
+
+            background:
+                rgba(139,92,246,0.10);
+
+            border-color:
+                rgba(139,92,246,0.18);
+        }
+
+        .loader-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background:
+                currentColor;
+
+            animation:
+                pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(0.65);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .image-stage {
+            flex: 1;
+
+            min-height: 480px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 22px;
+
+            border:
+                1px dashed
+                rgba(139,92,246,0.22);
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(139,92,246,0.09),
+                    transparent 55%
+                );
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+        .checkerboard {
+            background-color: rgba(255,255,255,0.025);
+
+            background-image:
+                linear-gradient(
+                    45deg,
+                    rgba(255,255,255,0.035) 25%,
+                    transparent 25%
+                ),
+                linear-gradient(
+                    -45deg,
+                    rgba(255,255,255,0.035) 25%,
+                    transparent 25%
+                ),
+                linear-gradient(
+                    45deg,
+                    transparent 75%,
+                    rgba(255,255,255,0.035) 75%
+                ),
+                linear-gradient(
+                    -45deg,
+                    transparent 75%,
+                    rgba(255,255,255,0.035) 75%
+                );
+
+            background-size: 28px 28px;
+
+            background-position:
+                0 0,
+                0 14px,
+                14px -14px,
+                -14px 0;
+        }
+
+        body.light-theme .checkerboard {
+            background-color: rgba(0,0,0,0.025);
+
+            background-image:
+                linear-gradient(
+                    45deg,
+                    rgba(0,0,0,0.035) 25%,
+                    transparent 25%
+                ),
+                linear-gradient(
+                    -45deg,
+                    rgba(0,0,0,0.035) 25%,
+                    transparent 25%
+                ),
+                linear-gradient(
+                    45deg,
+                    transparent 75%,
+                    rgba(0,0,0,0.035) 75%
+                ),
+                linear-gradient(
+                    -45deg,
+                    transparent 75%,
+                    rgba(0,0,0,0.035) 75%
+                );
+        }
+
+        .empty-state {
+            text-align: center;
+
+            max-width: 360px;
+
+            padding: 30px;
+        }
+
+        .empty-icon {
+            width: 74px;
+            height: 74px;
+
+            display: grid;
+            place-items: center;
+
+            margin: 0 auto 18px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(139,92,246,0.16),
+                    rgba(34,211,238,0.10)
+                );
+
+            border:
+                1px solid
+                rgba(139,92,246,0.18);
+
+            font-size: 32px;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+
+            margin-bottom: 9px;
+        }
+
+        .empty-state p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        #logoImage {
+            display: none;
+
+            max-width: 88%;
+
+            max-height: 500px;
+
+            object-fit: contain;
+
+            border-radius: 18px;
+
+            filter:
+                drop-shadow(
+                    0 18px 35px
+                    rgba(0,0,0,0.18)
+                );
+        }
+
+        #logoImage.show {
+            display: block;
+
+            animation:
+                logoAppear 0.45s ease;
+        }
+
+        @keyframes logoAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.94);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .result-info {
+            display: none;
+
+            margin-top: 16px;
+
+            padding: 14px 16px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,0.035);
+        }
+
+        .result-info.show {
+            display: block;
+        }
+
+        .result-info strong {
+            display: block;
+
+            margin-bottom: 5px;
+
+            font-size: 14px;
+        }
+
+        .result-info span {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        /* ====================================================
+           ACTIONS
+        ==================================================== */
+
+        .actions {
+            display: none;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 9px;
+
+            margin-top: 16px;
+        }
+
+        .actions.show {
+            display: grid;
+        }
+
+        .action-button {
+            border:
+                1px solid
+                var(--border);
+
+            background:
+                rgba(255,255,255,0.045);
+
+            color: var(--text);
+
+            padding: 12px 10px;
+
+            border-radius: 13px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            transition: 0.2s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-1px);
+
+            border-color:
+                rgba(139,92,246,0.40);
+
+            background:
+                rgba(139,92,246,0.09);
+        }
+
+        .action-button.primary {
+            color: white;
+
+            border-color: transparent;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #0891b2
+                );
+        }
+
+        /* ====================================================
+           ERROR
+        ==================================================== */
+
+        .error-box {
+            display: none;
+
+            margin-top: 14px;
+
+            padding: 13px 15px;
+
+            border-radius: 13px;
+
+            color: #fecdd3;
+
+            background:
+                rgba(251,113,133,0.08);
+
+            border:
+                1px solid
+                rgba(251,113,133,0.18);
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+        .error-box.show {
+            display: block;
+        }
+
+        /* ====================================================
+           FOOTER
+        ==================================================== */
+
+        footer {
+            text-align: center;
+
+            padding: 25px 0 0;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        /* ====================================================
+           RESPONSIVE
+        ==================================================== */
+
+        @media (max-width: 900px) {
+
+            .generator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-card {
+                min-height: 600px;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            nav {
+                padding: 0 16px;
+            }
+
+            .nav-links a:not(.home-link) {
+                display: none;
+            }
+
+            .page {
+                width: min(100% - 22px, 1240px);
+
+                padding-top: 35px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .brief-card,
+            .result-card {
+                padding: 20px;
+            }
+
+            .style-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
+            .image-stage {
+                min-height: 380px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav>
+
+        <a
+            href="index.html"
+            class="logo-brand"
+        >
+            ✦ Prism AI
+        </a>
+
+        <div class="nav-links">
+
+            <a
+                href="index.html"
+                class="home-link"
+            >
+                Home
+            </a>
+
+            <a href="features.html">
+                Features
+            </a>
+
+            <a href="pricing.html">
+                Pricing
+            </a>
+
+            <button
+                class="theme-button"
+                id="themeButton"
+                type="button"
+            >
+                ☾ Theme
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         PAGE
+    ====================================================== -->
+
+    <main class="page">
+
+        <section class="hero">
+
+            <div class="eyebrow">
+                ✦ Real AI Logo Generation
+            </div>
+
+            <h1>
+                Create your logo.
+            </h1>
+
+            <p>
+                Tell Prism AI about your brand and generate
+                a real logo image you can preview, download
+                and use in your projects.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             GENERATOR
+        ================================================== -->
+
+        <section class="generator-grid">
+
+
+            <!-- =============================================
+                 LEFT — LOGO BRIEF
+            ============================================== -->
+
+            <div class="card brief-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Logo Brief
+                        </h2>
+
+                        <p>
+                            Give Prism AI enough direction
+                            to create your visual identity.
+                        </p>
+
+                    </div>
+
+                    <div class="ai-dot">
+                        ✦
+                    </div>
+
+                </div>
+
+
+                <!-- BRAND -->
+
+                <div class="field">
+
+                    <label for="brandName">
+                        Brand / Project Name
+                    </label>
+
+                    <input
+                        id="brandName"
+                        type="text"
+                        placeholder="e.g. Prism AI"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="field">
+
+                    <label for="brandDescription">
+                        What is the brand about?
+                    </label>
+
+                    <textarea
+                        id="brandDescription"
+                        placeholder="Example: An AI workspace that helps students create projects, presentations and websites."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- STYLE -->
+
+                <div class="field">
+
+                    <label>
+                        Logo Style
+                    </label>
+
+                    <div class="style-grid">
+
+                        <label class="style-option">
+
+                            <input
+                                type="radio"
+                                name="style"
+                                value="Modern"
+                                checked
+                            >
+
+                            <span>
+                                Modern
+                            </span>
+
+                        </label>
+
+
+                        <label class="style-option">
+
+                            <input
+                                type="radio"
+                                name="style"
+                                value="Minimal"
+                            >
+
+                            <span>
+                                Minimal
+                            </span>
+
+                        </label>
+
+
+                        <label class="style-option">
+
+                            <input
+                                type="radio"
+                                name="style"
+                                value="Luxury"
+                            >
+
+                            <span>
+                                Luxury
+                            </span>
+
+                        </label>
+
+
+                        <label class="style-option">
+
+                            <input
+                                type="radio"
+                                name="style"
+                                value="Tech"
+                            >
+
+                            <span>
+                                Tech
+                            </span>
+
+                        </label>
+
+
+                        <label class="style-option">
+
+                            <input
+                                type="radio"
+                                name="style"
+                                value="Playful"
+                            >
+
+                            <span>
+                                Playful
+                            </span>
+
+                        </label>
+
+
+                        <label class="style-option">
+
+                            <input
+                                type="radio"
+                                name="style"
+                                value="Professional"
+                            >
+
+                            <span>
+                                Professional
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- COLORS -->
+
+                <div class="field">
+
+                    <label for="brandColors">
+                        Preferred Colors
+                    </label>
+
+                    <input
+                        id="brandColors"
+                        type="text"
+                        placeholder="e.g. Purple, cyan and white"
+                    >
+
+                </div>
+
+
+                <!-- SYMBOL -->
+
+                <div class="field">
+
+                    <label for="brandSymbol">
+                        Symbol / Icon Idea
+                    </label>
+
+                    <input
+                        id="brandSymbol"
+                        type="text"
+                        placeholder="e.g. Prism, star, AI spark, geometric P"
+                    >
+
+                </div>
+
+
+                <!-- AUDIENCE -->
+
+                <div class="field">
+
+                    <label for="audience">
+                        Target Audience
+                    </label>
+
+                    <select id="audience">
+
+                        <option>
+                            Students
+                        </option>
+
+                        <option>
+                            Young professionals
+                        </option>
+
+                        <option>
+                            Businesses
+                        </option>
+
+                        <option>
+                            Creators
+                        </option>
+
+                        <option>
+                            General audience
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- GENERATE -->
+
+                <button
+                    id="generateButton"
+                    class="generate-button"
+                    type="button"
+                >
+                    ✦ Generate Real Logo
+                </button>
+
+                <div class="cost-note">
+                    Image generation uses your OpenRouter
+                    image-generation balance.
+                </div>
+
+            </div>
+
+
+            <!-- =============================================
+                 RIGHT — RESULT
+            ============================================== -->
+
+            <div class="card result-card">
+
+                <div class="result-header">
+
+                    <div>
+
+                        <h2>
+                            Your Logo
+                        </h2>
+
+                    </div>
+
+                    <div
+                        id="status"
+                        class="status"
+                    >
+                        <span class="loader-dot"></span>
+                        <span id="statusText">
+                            Generating
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="imageStage"
+                    class="image-stage checkerboard"
+                >
+
+                    <div
+                        id="emptyState"
+                        class="empty-state"
+                    >
+
+                        <div class="empty-icon">
+                            ✦
+                        </div>
+
+                        <h3>
+                            Your logo will appear here
+                        </h3>
+
+                        <p>
+                            Fill in your brand details and
+                            click Generate Real Logo.
+                        </p>
+
+                    </div>
+
+
+                    <img
+                        id="logoImage"
+                        alt="AI generated Prism AI logo"
+                    >
+
+                </div>
+
+
+                <div
+                    id="resultInfo"
+                    class="result-info"
+                >
+
+                    <strong id="resultBrand">
+                        Logo generated
+                    </strong>
+
+                    <span id="resultStyle">
+                        AI-generated visual identity
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="actions"
+                    class="actions"
+                >
+
+                    <button
+                        id="downloadButton"
+                        class="action-button primary"
+                        type="button"
+                    >
+                        ↓ Download PNG
+                    </button>
+
+                    <button
+                        id="regenerateButton"
+                        class="action-button"
+                        type="button"
+                    >
+                        ↻ Generate Another
+                    </button>
+
+                    <button
+                        id="saveButton"
+                        class="action-button"
+                        type="button"
+                    >
+                        ✓ Save Logo
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="errorBox"
+                    class="error-box"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            Prism AI · Real AI-powered logo generation
+        </footer>
+
+    </main>
+
+
+    <script>
+
+        // ====================================================
+        // ELEMENTS
+        // ====================================================
+
+        const brandName =
+            document.getElementById("brandName");
+
+        const brandDescription =
+            document.getElementById("brandDescription");
+
+        const brandColors =
+            document.getElementById("brandColors");
+
+        const brandSymbol =
+            document.getElementById("brandSymbol");
+
+        const audience =
+            document.getElementById("audience");
+
+        const generateButton =
+            document.getElementById("generateButton");
+
+        const regenerateButton =
+            document.getElementById("regenerateButton");
+
+        const downloadButton =
+            document.getElementById("downloadButton");
+
+        const saveButton =
+            document.getElementById("saveButton");
+
+        const logoImage =
+            document.getElementById("logoImage");
+
+        const emptyState =
+            document.getElementById("emptyState");
+
+        const imageStage =
+            document.getElementById("imageStage");
+
+        const status =
+            document.getElementById("status");
+
+        const statusText =
+            document.getElementById("statusText");
+
+        const resultInfo =
+            document.getElementById("resultInfo");
+
+        const resultBrand =
+            document.getElementById("resultBrand");
+
+        const resultStyle =
+            document.getElementById("resultStyle");
+
+        const actions =
+            document.getElementById("actions");
+
+        const errorBox =
+            document.getElementById("errorBox");
+
+        const themeButton =
+            document.getElementById("themeButton");
+
+
+        // ====================================================
+        // THEME
+        // ====================================================
+
+        function applyTheme() {
+
+            const theme =
+                localStorage.getItem("prismTheme") ||
+                "dark";
+
+            if (theme === "light") {
+
+                document.body.classList.add(
+                    "light-theme"
+                );
+
+                themeButton.textContent =
+                    "☀ Light";
+
+            } else {
+
+                document.body.classList.remove(
+                    "light-theme"
+                );
+
+                themeButton.textContent =
+                    "☾ Theme";
+            }
+        }
+
+
+        themeButton.addEventListener(
+            "click",
+            function() {
+
+                const isLight =
+                    document.body.classList.contains(
+                        "light-theme"
+                    );
+
+                localStorage.setItem(
+                    "prismTheme",
+                    isLight
+                        ? "dark"
+                        : "light"
+                );
+
+                applyTheme();
+            }
+        );
+
+
+        applyTheme();
+
+
+        // ====================================================
+        // GET SELECTED STYLE
+        // ====================================================
+
+        function getSelectedStyle() {
+
+            const selected =
+                document.querySelector(
+                    'input[name="style"]:checked'
+                );
+
+            return selected
+                ? selected.value
+                : "Modern";
+        }
+
+
+        // ====================================================
+        // SHOW ERROR
+        // ====================================================
+
+        function showError(message) {
+
+            errorBox.textContent =
+                message;
+
+            errorBox.classList.add(
+                "show"
+            );
+        }
+
+
+        function clearError() {
+
+            errorBox.textContent =
+                "";
+
+            errorBox.classList.remove(
+                "show"
+            );
+        }
+
+
+        // ====================================================
+        // LOADING
+        // ====================================================
+
+        function setLoading(isLoading) {
+
+            if (isLoading) {
+
+                generateButton.disabled =
+                    true;
+
+                generateButton.textContent =
+                    "⏳ Generating your logo...";
+
+                status.classList.add(
+                    "show",
+                    "loading"
+                );
+
+                statusText.textContent =
+                    "Creating";
+
+            } else {
+
+                generateButton.disabled =
+                    false;
+
+                generateButton.textContent =
+                    "✦ Generate Real Logo";
+
+                status.classList.remove(
+                    "loading"
+                );
+            }
+        }
+
+
+        // ====================================================
+        // GENERATE LOGO
+        // ====================================================
+
+        async function generateLogo() {
+
+            clearError();
+
+            const brand =
+                brandName.value.trim();
+
+            if (!brand) {
+
+                showError(
+                    "Please enter your brand or project name."
+                );
+
+                brandName.focus();
+
+                return;
+            }
+
+
+            const description =
+                brandDescription.value.trim();
+
+            const style =
+                getSelectedStyle();
+
+            const colors =
+                brandColors.value.trim();
+
+            const symbol =
+                brandSymbol.value.trim();
+
+            const targetAudience =
+                audience.value;
+
+
+            setLoading(true);
+
+            emptyState.style.display =
+                "none";
+
+            logoImage.classList.remove(
+                "show"
+            );
+
+            actions.classList.remove(
+                "show"
+            );
+
+            resultInfo.classList.remove(
+                "show"
+            );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/generate-logo",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                brand,
+                                description,
+                                style,
+                                colors,
+                                symbol,
+                                audience:
+                                    targetAudience
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok ||
+                    !data.success) {
+
+                    throw new Error(
+                        data.error ||
+                        "Logo generation failed."
+                    );
+                }
+
+
+                if (!data.image) {
+
+                    throw new Error(
+                        "The server did not return a logo image."
+                    );
+                }
+
+
+                // ------------------------------------------
+                // DISPLAY ACTUAL GENERATED IMAGE
+                // ------------------------------------------
+
+                logoImage.src =
+                    data.image;
+
+                logoImage.classList.add(
+                    "show"
+                );
+
+
+                resultBrand.textContent =
+                    `${brand} — Logo generated`;
+
+                resultStyle.textContent =
+                    `${style} style · AI-generated image`;
+
+                resultInfo.classList.add(
+                    "show"
+                );
+
+                actions.classList.add(
+                    "show"
+                );
+
+                status.classList.remove(
+                    "loading"
+                );
+
+                status.classList.add(
+                    "show"
+                );
+
+                statusText.textContent =
+                    "Ready";
+
+
+                // Save current logo locally
+                localStorage.setItem(
+                    "prismLogoImage",
+                    data.image
+                );
+
+                localStorage.setItem(
+                    "prismLogoBrand",
+                    brand
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Logo generation error:",
+                    error
+                );
+
+                emptyState.style.display =
+                    "block";
+
+                showError(
+                    error.message ||
+                    "Could not generate the logo."
+                );
+
+                status.classList.remove(
+                    "show"
+                );
+
+            } finally {
+
+                setLoading(false);
+            }
+        }
+
+
+        // ====================================================
+        // BUTTON EVENTS
+        // ====================================================
+
+        generateButton.addEventListener(
+            "click",
+            generateLogo
+        );
+
+
+        regenerateButton.addEventListener(
+            "click",
+            generateLogo
+        );
+
+
+        // ====================================================
+        // DOWNLOAD PNG
+        // ====================================================
+
+        downloadButton.addEventListener(
+            "click",
+            function() {
+
+                const image =
+                    logoImage.src;
+
+                if (!image) {
+                    return;
+                }
+
+                const brand =
+                    brandName.value.trim()
+                    || "prism-logo";
+
+                const link =
+                    document.createElement("a");
+
+                link.href =
+                    image;
+
+                link.download =
+                    `${brand
+                        .toLowerCase()
+                        .replace(
+                            /[^a-z0-9]+/gi,
+                            "-"
+                        )
+                        .replace(
+                            /^-+|-+$/g,
+                            ""
+                        )}-logo.png`;
+
+                document.body.appendChild(
+                    link
+                );
+
+                link.click();
+
+                link.remove();
+            }
+        );
+
+
+        // ====================================================
+        // SAVE LOGO
+        // ====================================================
+
+        saveButton.addEventListener(
+            "click",
+            function() {
+
+                const image =
+                    logoImage.src;
+
+                if (!image) {
+                    return;
+                }
+
+                localStorage.setItem(
+                    "prismLogoImage",
+                    image
+                );
+
+                localStorage.setItem(
+                    "prismLogoBrand",
+                    brandName.value.trim()
+                );
+
+                saveButton.textContent =
+                    "✓ Saved";
+
+                setTimeout(
+                    function() {
+
+                        saveButton.textContent =
+                            "✓ Save Logo";
+
+                    },
+                    1800
+                );
+            }
+        );
+
+
+        // ====================================================
+        // RESTORE PREVIOUS LOGO
+        // ====================================================
+
+        const savedLogo =
+            localStorage.getItem(
+                "prismLogoImage"
+            );
+
+        const savedBrand =
+            localStorage.getItem(
+                "prismLogoBrand"
+            );
+
+
+        if (savedLogo) {
+
+            logoImage.src =
+                savedLogo;
+
+            logoImage.classList.add(
+                "show"
+            );
+
+            emptyState.style.display =
+                "none";
+
+            actions.classList.add(
+                "show"
+            );
+
+            resultInfo.classList.add(
+                "show"
+            );
+
+            resultBrand.textContent =
+                savedBrand
+                    ? `${savedBrand} — Saved logo`
+                    : "Saved logo";
+
+            resultStyle.textContent =
+                "Previously generated by Prism AI";
+
+            status.classList.add(
+                "show"
+            );
+
+            statusText.textContent =
+                "Saved";
+        }
+
+    </script>
+
+</body>
+</html>

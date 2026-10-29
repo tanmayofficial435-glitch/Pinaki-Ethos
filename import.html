@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prism AI — Import Anything</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #080812;
+            --card: rgba(18,17,36,.82);
+            --border: rgba(155,124,255,.2);
+            --text: #f7f5ff;
+            --muted: #aaa6c3;
+            --purple: #9b7cff;
+            --blue: #62d8ff;
+        }
+
+        body.light-theme {
+            --bg: #f6f4ff;
+            --card: rgba(255,255,255,.86);
+            --border: rgba(115,82,232,.18);
+            --text: #19152e;
+            --muted: #6c6680;
+            --purple: #704ee5;
+            --blue: #079bc7;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 10% 0%,rgba(155,124,255,.18),transparent 32%),
+                radial-gradient(circle at 90% 15%,rgba(98,216,255,.12),transparent 30%),
+                var(--bg);
+        }
+
+        .topbar {
+            height: 74px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            background: rgba(8,8,18,.65);
+            backdrop-filter: blur(20px);
+        }
+
+        body.light-theme .topbar {
+            background: rgba(255,255,255,.72);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .brand-symbol {
+            color: var(--purple);
+            font-size: 28px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav a:hover {
+            color: var(--text);
+        }
+
+        .theme {
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            border-radius: 12px;
+            padding: 10px 13px;
+            cursor: pointer;
+        }
+
+        .page {
+            width: min(1100px,90%);
+            margin: auto;
+            padding: 65px 0 90px;
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(40px,6vw,64px);
+            letter-spacing: -3px;
+        }
+
+        .gradient {
+            background: linear-gradient(100deg,var(--purple),var(--blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 18px auto 40px;
+        }
+
+        .drop-zone {
+            border: 2px dashed rgba(155,124,255,.4);
+            border-radius: 30px;
+            padding: 65px 30px;
+            background: var(--card);
+            text-align: center;
+            transition: .25s;
+        }
+
+        .drop-zone.dragging {
+            border-color: var(--purple);
+            transform: scale(1.01);
+            box-shadow: 0 0 60px rgba(155,124,255,.15);
+        }
+
+        .upload-icon {
+            width: 75px;
+            height: 75px;
+            display: grid;
+            place-items: center;
+            margin: auto;
+            border-radius: 24px;
+            background: rgba(155,124,255,.12);
+            font-size: 36px;
+        }
+
+        .drop-zone h2 {
+            margin-top: 22px;
+            font-size: 25px;
+        }
+
+        .drop-zone p {
+            color: var(--muted);
+            margin: 10px 0 25px;
+            font-size: 14px;
+        }
+
+        .upload-button {
+            display: inline-block;
+            padding: 13px 20px;
+            border-radius: 14px;
+            background: linear-gradient(135deg,var(--purple),#7046e8);
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .formats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .format {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .file-info {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--card);
+        }
+
+        .file-info.show {
+            display: block;
+        }
+
+        .file-name {
+            font-weight: 800;
+        }
+
+        .file-size {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .actions button {
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 12px 18px;
+            color: var(--text);
+            background: var(--card);
+            font-weight: 750;
+            cursor: pointer;
+        }
+
+        .actions .primary {
+            border: none;
+            color: white;
+            background: linear-gradient(135deg,var(--purple),#7046e8);
+        }
+
+        .notice {
+            margin-top: 30px;
+            padding: 18px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+            background: rgba(155,124,255,.04);
+        }
+
+        @media(max-width:700px) {
+            .nav {
+                display: none;
+            }
+
+            .drop-zone {
+                padding: 45px 20px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a class="brand" href="index.html">
+        <span class="brand-symbol">✦</span>
+        <span>Prism AI</span>
+    </a>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="workspace.html">Workspace</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+    </nav>
+
+    <button class="theme" id="themeButton" onclick="toggleTheme()">
+        ☀️
+    </button>
+
+</header>
+
+<main class="page">
+
+    <section class="hero">
+
+        <div class="eyebrow">
+            Prism AI Import
+        </div>
+
+        <h1>
+            Bring your material.
+            <span class="gradient">Prism understands it.</span>
+        </h1>
+
+        <p>
+            Upload project material and prepare it for research,
+            summarization, design, presentations and other Prism AI tools.
+        </p>
+
+        <div
+            class="drop-zone"
+            id="dropZone"
+            ondragover="handleDragOver(event)"
+            ondragleave="handleDragLeave(event)"
+            ondrop="handleDrop(event)"
+        >
+
+            <div class="upload-icon">
+                📥
+            </div>
+
+            <h2>
+                Drop your file here
+            </h2>
+
+            <p>
+                or choose a file from your computer
+            </p>
+
+            <label class="upload-button">
+                Choose File
+                <input
+                    type="file"
+                    id="fileInput"
+                    onchange="handleFile(event)"
+                    accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.webp"
+                >
+            </label>
+
+            <div class="formats">
+                <span class="format">PDF</span>
+                <span class="format">DOC</span>
+                <span class="format">DOCX</span>
+                <span class="format">TXT</span>
+                <span class="format">PNG</span>
+                <span class="format">JPG</span>
+            </div>
+
+        </div>
+
+        <div class="file-info" id="fileInfo">
+
+            <div class="file-name" id="fileName"></div>
+
+            <div class="file-size" id="fileSize"></div>
+
+            <div class="actions">
+
+                <button onclick="clearFile()">
+                    Remove
+                </button>
+
+                <button class="primary" onclick="understandFile()">
+                    🧠 Understand with Prism
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="notice">
+            🔐 Your file selection is currently handled in the browser.
+            Full document extraction and AI understanding will be connected
+            to the Prism backend as we build the import system.
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+
+    let selectedFile = null;
+
+    function toggleTheme() {
+
+        document.body.classList.toggle("light-theme");
+
+        const light =
+            document.body.classList.contains("light-theme");
+
+        localStorage.setItem(
+            "prismTheme",
+            light ? "light" : "dark"
+        );
+
+        document.getElementById("themeButton").textContent =
+            light ? "🌙" : "☀️";
+    }
+
+    function loadTheme() {
+
+        if (localStorage.getItem("prismTheme") === "light") {
+
+            document.body.classList.add("light-theme");
+
+            document.getElementById("themeButton").textContent =
+                "🌙";
+        }
+    }
+
+    function handleDragOver(event) {
+
+        event.preventDefault();
+
+        document
+            .getElementById("dropZone")
+            .classList.add("dragging");
+    }
+
+    function handleDragLeave(event) {
+
+        event.preventDefault();
+
+        document
+            .getElementById("dropZone")
+            .classList.remove("dragging");
+    }
+
+    function handleDrop(event) {
+
+        event.preventDefault();
+
+        document
+            .getElementById("dropZone")
+            .classList.remove("dragging");
+
+        const files = event.dataTransfer.files;
+
+        if (files.length) {
+            selectFile(files[0]);
+        }
+    }
+
+    function handleFile(event) {
+
+        const file = event.target.files[0];
+
+        if (file) {
+            selectFile(file);
+        }
+    }
+
+    function selectFile(file) {
+
+        selectedFile = file;
+
+        document.getElementById("fileName").textContent =
+            file.name;
+
+        document.getElementById("fileSize").textContent =
+            formatBytes(file.size);
+
+        document
+            .getElementById("fileInfo")
+            .classList.add("show");
+    }
+
+    function clearFile() {
+
+        selectedFile = null;
+
+        document.getElementById("fileInput").value = "";
+
+        document
+            .getElementById("fileInfo")
+            .classList.remove("show");
+    }
+
+    function formatBytes(bytes) {
+
+        if (bytes === 0) {
+            return "0 Bytes";
+        }
+
+        const sizes = [
+            "Bytes",
+            "KB",
+            "MB",
+            "GB"
+        ];
+
+        const i =
+            Math.floor(
+                Math.log(bytes) / Math.log(1024)
+            );
+
+        return (
+            Math.round(
+                bytes / Math.pow(1024, i) * 100
+            ) / 100
+        ) + " " + sizes[i];
+    }
+
+    function understandFile() {
+
+        if (!selectedFile) {
+            return;
+        }
+
+        localStorage.setItem(
+            "prismImportedFileName",
+            selectedFile.name
+        );
+
+        alert(
+            "File imported into Prism.\n\n" +
+            "The AI document-understanding engine will be connected next."
+        );
+    }
+
+    loadTheme();
+
+</script>
+
+</body>
+</html>

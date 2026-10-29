@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prism AI — Code Generator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 10% 15%, rgba(124,58,237,.22), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(34,211,238,.12), transparent 28%),
+                #070711;
+            color: #f5f3ff;
+            transition: .3s;
+        }
+
+        body.light-theme {
+            background:
+                radial-gradient(circle at 10% 15%, rgba(124,58,237,.11), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(34,211,238,.08), transparent 28%),
+                #f7f7fb;
+            color: #171522;
+        }
+
+        nav {
+            height: 76px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(7,7,17,.75);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,.09);
+        }
+
+        body.light-theme nav {
+            background: rgba(247,247,251,.84);
+            border-bottom-color: rgba(0,0,0,.08);
+        }
+
+        .logo {
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        body.light-theme .logo {
+            color: #171522;
+        }
+
+        .logo span,
+        .gradient {
+            background: linear-gradient(90deg,#c084fc,#818cf8,#22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: #aaa7ba;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        body.light-theme .nav-links a:hover {
+            color: #171522;
+        }
+
+        .theme-btn {
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(255,255,255,.05);
+            color: white;
+            padding: 9px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+        }
+
+        body.light-theme .theme-btn {
+            color: #171522;
+            border-color: rgba(0,0,0,.1);
+            background: rgba(0,0,0,.04);
+        }
+
+        main {
+            width: min(1200px,92%);
+            margin: auto;
+            padding: 58px 0 80px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 999px;
+            background: rgba(124,58,237,.1);
+            border: 1px solid rgba(168,85,247,.32);
+            color: #c084fc;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(40px,6vw,68px);
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #9995aa;
+            line-height: 1.7;
+        }
+
+        body.light-theme .hero p {
+            color: #666276;
+        }
+
+        .generator {
+            display: grid;
+            grid-template-columns: 330px 1fr;
+            min-height: 590px;
+            overflow: hidden;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(15,15,28,.76);
+            box-shadow: 0 25px 80px rgba(0,0,0,.28);
+        }
+
+        body.light-theme .generator {
+            background: rgba(255,255,255,.84);
+            border-color: rgba(0,0,0,.08);
+            box-shadow: 0 25px 70px rgba(40,30,80,.1);
+        }
+
+        .controls {
+            padding: 25px;
+            border-right: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme .controls {
+            border-right-color: rgba(0,0,0,.08);
+        }
+
+        .controls h2 {
+            font-size: 17px;
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: #888394;
+            margin: 18px 0 8px;
+        }
+
+        textarea,
+        select {
+            width: 100%;
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.045);
+            color: #eeeafa;
+            border-radius: 11px;
+            padding: 12px;
+            outline: none;
+            font: inherit;
+        }
+
+        body.light-theme textarea,
+        body.light-theme select {
+            color: #171522;
+            background: rgba(0,0,0,.035);
+            border-color: rgba(0,0,0,.1);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        select option {
+            background: #161522;
+            color: white;
+        }
+
+        body.light-theme select option {
+            background: white;
+            color: #171522;
+        }
+
+        .generate {
+            width: 100%;
+            margin-top: 23px;
+            padding: 13px;
+            border: 0;
+            border-radius: 11px;
+            cursor: pointer;
+            color: white;
+            font-weight: 700;
+            background: linear-gradient(135deg,#7c3aed,#4f46e5);
+            box-shadow: 0 10px 30px rgba(124,58,237,.2);
+        }
+
+        .generate:hover {
+            transform: translateY(-1px);
+        }
+
+        .output {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .output-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 18px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme .output-top {
+            border-bottom-color: rgba(0,0,0,.08);
+        }
+
+        .dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dots span {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #575263;
+        }
+
+        .file-name {
+            margin-left: 7px;
+            color: #9995aa;
+            font-size: 12px;
+        }
+
+        .copy {
+            margin-left: auto;
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.05);
+            color: #c9c4d5;
+            padding: 7px 11px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        body.light-theme .copy {
+            color: #555064;
+            border-color: rgba(0,0,0,.1);
+        }
+
+        pre {
+            flex: 1;
+            margin: 0;
+            padding: 25px;
+            overflow: auto;
+            white-space: pre-wrap;
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.75;
+            color: #d8d3e3;
+        }
+
+        body.light-theme pre {
+            color: #3f3a4c;
+        }
+
+        .hint {
+            padding: 14px 25px;
+            color: #777386;
+            font-size: 12px;
+            border-top: 1px solid rgba(255,255,255,.07);
+        }
+
+        body.light-theme .hint {
+            border-top-color: rgba(0,0,0,.07);
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 0;
+            text-decoration: none;
+            color: #aaa7ba;
+            border: 1px solid rgba(255,255,255,.1);
+            padding: 11px 18px;
+            border-radius: 10px;
+        }
+
+        body.light-theme .back {
+            color: #555064;
+            border-color: rgba(0,0,0,.1);
+        }
+
+        @media(max-width:800px) {
+            .generator {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                border-right: 0;
+                border-bottom: 1px solid rgba(255,255,255,.08);
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a:nth-child(2) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html" class="logo">
+        <span>Prism</span> AI
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="login.html">Sign In / Log In</a>
+        <button class="theme-btn" id="themeToggle">☀️ Light</button>
+    </div>
+</nav>
+
+<main>
+
+    <section class="hero">
+        <div class="badge">✦ AI CODE GENERATOR</div>
+
+        <h1>
+            Build with <span class="gradient">Prism.</span>
+        </h1>
+
+        <p>
+            Describe what you want to build and Prism AI creates a
+            ready-to-explore code concept for your project.
+        </p>
+    </section>
+
+    <section class="generator">
+
+        <aside class="controls">
+
+            <h2>Describe your project</h2>
+
+            <label for="request">What should Prism create?</label>
+
+            <textarea
+                id="request"
+                placeholder="Example: Create a modern landing page for a space photography website..."
+            ></textarea>
+
+            <label for="language">Language</label>
+
+            <select id="language">
+                <option>HTML</option>
+                <option>JavaScript</option>
+                <option>Python</option>
+                <option>CSS</option>
+            </select>
+
+            <label for="style">Style</label>
+
+            <select id="style">
+                <option>Modern</option>
+                <option>Minimal</option>
+                <option>Futuristic</option>
+                <option>Professional</option>
+            </select>
+
+            <button class="generate" onclick="generateCode()">
+                ✦ Generate Code
+            </button>
+
+        </aside>
+
+        <section class="output">
+
+            <div class="output-top">
+
+                <div class="dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="file-name" id="fileName">
+                    generated.html
+                </div>
+
+                <button class="copy" onclick="copyCode()">
+                    Copy
+                </button>
+
+            </div>
+
+            <pre id="codeOutput"><code>/*
+
+    Welcome to Prism AI Code Generator.
+
+    Describe your project on the left
+    and click "Generate Code".
+
+*/</code></pre>
+
+            <div class="hint" id="status">
+                Ready to generate locally.
+            </div>
+
+        </section>
+
+    </section>
+
+    <a href="features.html" class="back">
+        ← Back to Features
+    </a>
+
+</main>
+
+<script>
+
+    function applyTheme() {
+
+        const saved = localStorage.getItem("prismTheme");
+        const button = document.getElementById("themeToggle");
+
+        if (saved === "light") {
+
+            document.body.classList.add("light-theme");
+
+            if (button) {
+                button.textContent = "🌙 Dark";
+            }
+
+        } else {
+
+            document.body.classList.remove("light-theme");
+
+            if (button) {
+                button.textContent = "☀️ Light";
+            }
+        }
+    }
+
+
+    function toggleTheme() {
+
+        if (document.body.classList.contains("light-theme")) {
+
+            localStorage.setItem("prismTheme", "dark");
+
+        } else {
+
+            localStorage.setItem("prismTheme", "light");
+        }
+
+        applyTheme();
+    }
+
+
+    document
+        .getElementById("themeToggle")
+        .addEventListener("click", toggleTheme);
+
+
+    function generateCode() {
+
+        const request =
+            document.getElementById("request").value.trim();
+
+        const language =
+            document.getElementById("language").value;
+
+        const style =
+            document.getElementById("style").value;
+
+        const output =
+            document.getElementById("codeOutput");
+
+        const status =
+            document.getElementById("status");
+
+        const fileName =
+            document.getElementById("fileName");
+
+
+        if (!request) {
+
+            output.textContent =
+`Prism AI is waiting for an idea.
+
+Try something like:
+
+"Create a futuristic portfolio website."
+
+Then click Generate Code.`;
+
+            status.textContent =
+                "Please describe what you want to build.";
+
+            return;
+        }
+
+
+        if (language === "HTML") {
+
+            fileName.textContent = "generated.html";
+
+            output.textContent =
+`<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prism AI Project</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(
+                    circle at top,
+                    #7c3aed,
+                    #080812 55%
+                );
+            color: white;
+        }
+
+        .card {
+            width: min(700px, 85%);
+            padding: 50px;
+            border-radius: 25px;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.15);
+            backdrop-filter: blur(15px);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+        }
+
+        p {
+            color: #c8c4d4;
+            line-height: 1.7;
+        }
+
+        button {
+            border: 0;
+            padding: 13px 22px;
+            border-radius: 10px;
+            color: white;
+            background: #7c3aed;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1>Prism AI</h1>
+
+        <p>
+            ${request.replace(/</g, "&lt;")}
+        </p>
+
+        <p>
+            Style: ${style}
+        </p>
+
+        <button>
+            Explore
+        </button>
+
+    </div>
+
+</body>
+
+</html>`;
+
+        }
+
+        else if (language === "JavaScript") {
+
+            fileName.textContent = "generated.js";
+
+            output.textContent =
+`// Prism AI generated concept
+
+const project = {
+    request: "${request.replace(/"/g, '\\"')}",
+    style: "${style}",
+    createdBy: "Prism AI"
+};
+
+function startProject() {
+
+    console.log("Project:", project);
+
+    console.log(
+        "Your ${style.toLowerCase()} project is ready."
+    );
+}
+
+startProject();`;
+
+        }
+
+        else if (language === "Python") {
+
+            fileName.textContent = "generated.py";
+
+            output.textContent =
+`# Prism AI generated concept
+
+project = {
+    "request": "${request.replace(/"/g, '\\"')}",
+    "style": "${style}",
+    "created_by": "Prism AI"
+}
+
+
+def start_project():
+
+    print("Prism AI project")
+    print(project)
+
+
+if __name__ == "__main__":
+    start_project()`;
+
+        }
+
+        else {
+
+            fileName.textContent = "generated.css";
+
+            output.textContent =
+`/* Prism AI generated ${style.toLowerCase()} styles */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: grid;
+    place-items: center;
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #7c3aed,
+            transparent 40%
+        ),
+        #080812;
+
+    color: white;
+}
+
+.prism-card {
+
+    padding: 40px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    backdrop-filter:
+        blur(18px);
+}`;
+
+        }
+
+
+        localStorage.setItem(
+            "prismLastRequest",
+            request
+        );
+
+        status.textContent =
+            "✓ Code concept generated locally by Prism AI.";
+    }
+
+
+    function copyCode() {
+
+        const code =
+            document.getElementById("codeOutput").textContent;
+
+        navigator.clipboard
+            .writeText(code)
+            .then(() => {
+
+                document.getElementById("status").textContent =
+                    "✓ Code copied to clipboard.";
+
+            })
+            .catch(() => {
+
+                document.getElementById("status").textContent =
+                    "Copy is unavailable in this browser.";
+
+            });
+    }
+
+
+    applyTheme();
+
+</script>
+
+</body>
+</html>

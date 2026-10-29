@@ -1,0 +1,536 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prism AI — Token Store</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    color: #f5f3ff;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(124,58,237,.20), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(6,182,212,.14), transparent 28%),
+        linear-gradient(135deg, #070711, #0c0a18 55%, #080812);
+}
+
+body.light {
+    color: #171528;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(124,58,237,.12), transparent 32%),
+        radial-gradient(circle at 85% 20%, rgba(6,182,212,.10), transparent 30%),
+        linear-gradient(135deg, #f8f7ff, #eef2ff 52%, #f7fbff);
+}
+
+nav {
+    height: 76px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    backdrop-filter: blur(20px);
+}
+
+body.light nav {
+    border-color: rgba(30,20,80,.08);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.logo span {
+    color: #8b5cf6;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav-btn {
+    border: 1px solid rgba(139,92,246,.35);
+    background: rgba(139,92,246,.10);
+    color: inherit;
+    padding: 10px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.container {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+    padding: 70px 0 100px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(139,92,246,.12);
+    border: 1px solid rgba(139,92,246,.30);
+    color: #bda7ff;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+body.light .badge {
+    color: #6d35d8;
+}
+
+h1 {
+    font-size: clamp(42px, 7vw, 72px);
+    line-height: 1;
+    letter-spacing: -3px;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    color: #aaa4bd;
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+body.light .hero p {
+    color: #68627a;
+}
+
+.section-title {
+    font-size: 28px;
+    margin-bottom: 22px;
+}
+
+.token-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.token-card {
+    position: relative;
+    padding: 28px;
+    min-height: 280px;
+    border-radius: 28px;
+    border: 1px solid rgba(139,92,246,.20);
+    background: linear-gradient(
+        145deg,
+        rgba(139,92,246,.13),
+        rgba(255,255,255,.035)
+    );
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    transition: .3s ease;
+    overflow: hidden;
+}
+
+.token-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(124,58,237,.18);
+    filter: blur(50px);
+    top: -70px;
+    right: -70px;
+}
+
+.token-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(139,92,246,.55);
+    box-shadow: 0 25px 70px rgba(124,58,237,.18);
+}
+
+body.light .token-card {
+    background: rgba(255,255,255,.72);
+    border-color: rgba(100,70,180,.15);
+    box-shadow: 0 20px 50px rgba(50,30,100,.08);
+}
+
+.token-icon {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.token-card h3 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.token-card p {
+    color: #aaa4bd;
+    line-height: 1.5;
+    min-height: 48px;
+}
+
+body.light .token-card p {
+    color: #68627a;
+}
+
+.price {
+    font-size: 30px;
+    font-weight: 800;
+    margin: 20px 0;
+}
+
+.buy-btn {
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.buy-btn:hover {
+    transform: scale(1.02);
+}
+
+.member-section {
+    margin-top: 65px;
+}
+
+.member-card {
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+    gap: 30px;
+    align-items: center;
+    padding: 35px;
+    border-radius: 30px;
+    border: 1px solid rgba(6,182,212,.25);
+    background:
+        radial-gradient(circle at 90% 10%, rgba(6,182,212,.14), transparent 30%),
+        rgba(255,255,255,.035);
+}
+
+body.light .member-card {
+    background: rgba(255,255,255,.75);
+}
+
+.member-card h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.member-card p {
+    color: #aaa4bd;
+    line-height: 1.7;
+}
+
+body.light .member-card p {
+    color: #68627a;
+}
+
+.member-controls {
+    padding: 24px;
+    border-radius: 22px;
+    background: rgba(0,0,0,.16);
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+body.light .member-controls {
+    background: rgba(240,238,255,.7);
+    border-color: rgba(40,30,80,.08);
+}
+
+.member-controls label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 9px;
+}
+
+.member-controls input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(139,92,246,.30);
+    background: rgba(0,0,0,.20);
+    color: inherit;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.member-token-result {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.info {
+    margin-top: 45px;
+    text-align: center;
+    color: #888298;
+    font-size: 14px;
+}
+
+@media(max-width: 950px) {
+    .token-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .member-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 600px) {
+    .token-grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        padding: 0 4%;
+    }
+
+    .nav-btn {
+        padding: 8px 11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Prism <span>AI</span></div>
+
+    <div class="nav-right">
+        <button class="nav-btn" onclick="toggleTheme()" id="themeBtn">
+            🌙 Dark
+        </button>
+
+        <button class="nav-btn" onclick="window.location.href='index.html'">
+            Home
+        </button>
+    </div>
+</nav>
+
+<main class="container">
+
+    <section class="hero">
+        <div class="badge">✦ PRISM TOKEN STORE</div>
+
+        <h1>Buy Tokens.<br>Create Anything.</h1>
+
+        <p>
+            Prism AI no longer uses monthly plans.
+            Buy tokens when you need them and spend them only
+            on the AI features you actually use.
+        </p>
+    </section>
+
+    <h2 class="section-title">Choose Your Token Pack</h2>
+
+    <section class="token-grid">
+
+        <article class="token-card">
+            <div class="token-icon">🟣</div>
+            <h3>100 Tokens</h3>
+            <p>Perfect for trying individual Prism AI features.</p>
+            <div class="price">₹49</div>
+            <button class="buy-btn" onclick="buyTokens(100,49)">
+                Buy 100 Tokens
+            </button>
+        </article>
+
+        <article class="token-card">
+            <div class="token-icon">🔵</div>
+            <h3>500 Tokens</h3>
+            <p>A larger balance for regular AI creation.</p>
+            <div class="price">₹199</div>
+            <button class="buy-btn" onclick="buyTokens(500,199)">
+                Buy 500 Tokens
+            </button>
+        </article>
+
+        <article class="token-card">
+            <div class="token-icon">🟣</div>
+            <h3>1,000 Tokens</h3>
+            <p>For students and creators using Prism frequently.</p>
+            <div class="price">₹349</div>
+            <button class="buy-btn" onclick="buyTokens(1000,349)">
+                Buy 1,000 Tokens
+            </button>
+        </article>
+
+        <article class="token-card">
+            <div class="token-icon">💎</div>
+            <h3>5,000 Tokens</h3>
+            <p>A large Prism AI creation balance.</p>
+            <div class="price">₹1,499</div>
+            <button class="buy-btn" onclick="buyTokens(5000,1499)">
+                Buy 5,000 Tokens
+            </button>
+        </article>
+
+    </section>
+
+    <section class="member-section">
+
+        <h2 class="section-title">👥 Add a Member With You</h2>
+
+        <div class="member-card">
+
+            <div>
+                <h2>Bring someone into your Prism workspace.</h2>
+
+                <p>
+                    Add members to your Prism account and purchase
+                    additional tokens for them. Each member currently
+                    receives <strong>500 tokens</strong>.
+                </p>
+            </div>
+
+            <div class="member-controls">
+
+                <label for="memberCount">
+                    Number of members
+                </label>
+
+                <input
+                    id="memberCount"
+                    type="number"
+                    min="1"
+                    value="1"
+                    oninput="calculateMembers()"
+                >
+
+                <div class="member-token-result" id="memberResult">
+                    1 member = 500 tokens
+                </div>
+
+                <button class="buy-btn" onclick="buyMembers()">
+                    Add Members & Continue
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="info">
+        Token prices and feature costs can be changed from Prism's
+        central token configuration.
+    </div>
+
+</main>
+
+<script>
+
+const MEMBER_TOKENS = 500;
+
+function buyTokens(tokens, price) {
+
+    localStorage.setItem("prismCheckoutType", "tokens");
+    localStorage.setItem("prismCheckoutTokens", tokens);
+    localStorage.setItem("prismCheckoutPrice", price);
+    localStorage.removeItem("prismCheckoutMembers");
+
+    window.location.href = "billing.html";
+}
+
+function calculateMembers() {
+
+    const input = document.getElementById("memberCount");
+
+    let members = Number(input.value);
+
+    if (!members || members < 1) {
+        members = 1;
+        input.value = 1;
+    }
+
+    const tokens = members * MEMBER_TOKENS;
+
+    document.getElementById("memberResult").textContent =
+        `${members} member${members === 1 ? "" : "s"} = ${tokens} tokens`;
+}
+
+function buyMembers() {
+
+    const members =
+        Math.max(
+            1,
+            Number(document.getElementById("memberCount").value) || 1
+        );
+
+    const tokens = members * MEMBER_TOKENS;
+
+    localStorage.setItem("prismCheckoutType", "members");
+    localStorage.setItem("prismCheckoutMembers", members);
+    localStorage.setItem("prismCheckoutTokens", tokens);
+
+    /*
+      Change this when you decide the actual member price.
+      Currently ₹99 per member is used only as a placeholder.
+    */
+    const pricePerMember = 99;
+
+    localStorage.setItem(
+        "prismCheckoutPrice",
+        members * pricePerMember
+    );
+
+    window.location.href = "billing.html";
+}
+
+function toggleTheme() {
+
+    document.body.classList.toggle("light");
+
+    const light =
+        document.body.classList.contains("light");
+
+    localStorage.setItem("prismTheme", light ? "light" : "dark");
+
+    document.getElementById("themeBtn").textContent =
+        light ? "☀️ Light" : "🌙 Dark";
+}
+
+(function loadTheme() {
+
+    const saved =
+        localStorage.getItem("prismTheme");
+
+    if (saved === "light") {
+
+        document.body.classList.add("light");
+
+        document.getElementById("themeBtn").textContent =
+            "☀️ Light";
+    }
+
+})();
+
+calculateMembers();
+
+</script>
+
+</body>
+</html>
+```

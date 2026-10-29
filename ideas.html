@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prism AI — Idea Generator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #f5f5ff;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.20), transparent 30%),
+                radial-gradient(circle at 85% 80%, rgba(0, 220, 255, 0.14), transparent 30%),
+                #070812;
+            transition: 0.3s ease;
+        }
+
+        body.light-theme {
+            color: #171727;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.12), transparent 30%),
+                radial-gradient(circle at 85% 80%, rgba(0, 200, 255, 0.10), transparent 30%),
+                #f5f7ff;
+        }
+
+        nav {
+            height: 74px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(7, 8, 18, 0.80);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        body.light-theme nav {
+            background: rgba(245, 247, 255, 0.85);
+            border-bottom-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        body.light-theme .logo {
+            color: #171727;
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, #a855f7, #5ee7ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #bfc1d9;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        body.light-theme .nav-links a {
+            color: #5e6075;
+        }
+
+        body.light-theme .nav-links a:hover {
+            color: #171727;
+        }
+
+        .theme-btn {
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.06);
+            color: white;
+            border-radius: 10px;
+            padding: 9px 13px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        body.light-theme .theme-btn {
+            color: #171727;
+            background: rgba(0,0,0,0.04);
+            border-color: rgba(0,0,0,0.12);
+        }
+
+        .page {
+            width: min(1120px, 92%);
+            margin: auto;
+            padding: 70px 0 90px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 999px;
+            color: #cfa8ff;
+            background: rgba(168,85,247,0.12);
+            border: 1px solid rgba(168,85,247,0.28);
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        body.light-theme .badge {
+            color: #7440bb;
+        }
+
+        h1 {
+            font-size: clamp(42px, 7vw, 74px);
+            line-height: 1;
+            letter-spacing: -4px;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, #a855f7, #61e8ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #9da0bc;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        body.light-theme .hero p {
+            color: #62647b;
+        }
+
+        .workspace {
+            display: grid;
+            grid-template-columns: 330px 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        .panel {
+            padding: 26px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.10);
+            box-shadow: 0 20px 70px rgba(0,0,0,0.20);
+        }
+
+        body.light-theme .panel {
+            background: rgba(255,255,255,0.80);
+            border-color: rgba(0,0,0,0.08);
+            box-shadow: 0 20px 60px rgba(40,40,80,0.10);
+        }
+
+        .panel h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #8589a5;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            color: #aeb0c8;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        body.light-theme label {
+            color: #5e6075;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            margin-bottom: 19px;
+            border-radius: 13px;
+            border: 1px solid rgba(255,255,255,0.12);
+            outline: none;
+            background: rgba(0,0,0,0.18);
+            color: white;
+            font: inherit;
+        }
+
+        body.light-theme input,
+        body.light-theme select {
+            background: white;
+            color: #171727;
+            border-color: rgba(0,0,0,0.12);
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #9b5cff;
+            box-shadow: 0 0 0 3px rgba(155,92,255,0.12);
+        }
+
+        option {
+            background: #11121d;
+            color: white;
+        }
+
+        body.light-theme option {
+            background: white;
+            color: #171727;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 13px;
+            background: linear-gradient(90deg, #8b5cf6, #4dddf7);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(104,95,255,0.28);
+        }
+
+        .results {
+            min-height: 530px;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .results-header h2 {
+            font-size: 20px;
+        }
+
+        .result-count {
+            color: #8589a5;
+            font-size: 12px;
+        }
+
+        .empty {
+            min-height: 430px;
+            border: 1px dashed rgba(255,255,255,0.15);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #7f829e;
+            padding: 30px;
+        }
+
+        body.light-theme .empty {
+            border-color: rgba(0,0,0,0.13);
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .ideas {
+            display: grid;
+            gap: 14px;
+        }
+
+        .idea {
+            padding: 21px;
+            border-radius: 17px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.09);
+            transition: 0.2s;
+        }
+
+        body.light-theme .idea {
+            background: rgba(255,255,255,0.82);
+            border-color: rgba(0,0,0,0.08);
+        }
+
+        .idea:hover {
+            transform: translateY(-2px);
+            border-color: rgba(168,85,247,0.35);
+        }
+
+        .idea-number {
+            color: #a78bfa;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 9px;
+        }
+
+        .idea h3 {
+            font-size: 17px;
+            margin-bottom: 9px;
+        }
+
+        .idea p {
+            color: #9da0bc;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        body.light-theme .idea p {
+            color: #62647b;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-top: 13px;
+            padding: 5px 9px;
+            border-radius: 999px;
+            color: #bda0ff;
+            background: rgba(168,85,247,0.12);
+            border: 1px solid rgba(168,85,247,0.20);
+            font-size: 10px;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 32px auto 0;
+            color: #aaa3ff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+        body.light-theme .back:hover {
+            color: #222238;
+        }
+
+        @media (max-width: 850px) {
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a:nth-child(2),
+            .nav-links a:nth-child(3) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 520px) {
+            nav {
+                padding: 0 4%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .theme-btn {
+                padding: 8px 9px;
+            }
+
+            .page {
+                width: 94%;
+                padding-top: 45px;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <a href="index.html" class="logo">
+            Prism <span>AI</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="login.html">Sign In</a>
+
+            <button
+                class="theme-btn"
+                id="themeToggle"
+                onclick="toggleTheme()">
+                ☀️ Light
+            </button>
+        </div>
+
+    </nav>
+
+
+    <main class="page">
+
+        <section class="hero">
+
+            <div class="badge">
+                ✦ CREATIVE IDEA ENGINE
+            </div>
+
+            <h1>
+                Never run out of<br>
+                <span>ideas.</span>
+            </h1>
+
+            <p>
+                Give Prism AI a topic and generate fresh project,
+                presentation, website and creative ideas in seconds.
+            </p>
+
+        </section>
+
+
+        <section class="workspace">
+
+            <div class="panel">
+
+                <h2>Generate ideas</h2>
+
+                <p class="description">
+                    Tell Prism AI what you are working on and choose
+                    the type of ideas you need.
+                </p>
+
+
+                <label for="topic">
+                    Topic
+                </label>
+
+                <input
+                    id="topic"
+                    type="text"
+                    placeholder="Example: Artificial Intelligence"
+                >
+
+
+                <label for="type">
+                    Idea type
+                </label>
+
+                <select id="type">
+                    <option value="project">Project ideas</option>
+                    <option value="website">Website ideas</option>
+                    <option value="presentation">Presentation ideas</option>
+                    <option value="science">Science ideas</option>
+                    <option value="business">Business ideas</option>
+                    <option value="creative">Creative ideas</option>
+                </select>
+
+
+                <label for="level">
+                    Difficulty
+                </label>
+
+                <select id="level">
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+
+
+                <label for="amount">
+                    Number of ideas
+                </label>
+
+                <select id="amount">
+                    <option value="3">3 ideas</option>
+                    <option value="4" selected>4 ideas</option>
+                    <option value="5">5 ideas</option>
+                    <option value="6">6 ideas</option>
+                </select>
+
+
+                <button
+                    class="generate-btn"
+                    onclick="generateIdeas()">
+                    ✦ Generate Ideas
+                </button>
+
+            </div>
+
+
+            <div class="panel results">
+
+                <div class="results-header">
+
+                    <h2>Your ideas</h2>
+
+                    <span
+                        class="result-count"
+                        id="resultCount">
+                        No ideas yet
+                    </span>
+
+                </div>
+
+
+                <div id="ideaResults">
+
+                    <div class="empty">
+
+                        <div>
+
+                            <div class="empty-icon">
+                                ✦
+                            </div>
+
+                            <h3>
+                                Your next great idea starts here
+                            </h3>
+
+                            <p style="margin-top:10px;">
+                                Enter a topic and generate some ideas.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <a
+            href="features.html"
+            class="back">
+            ← Back to Features
+        </a>
+
+    </main>
+
+
+    <script>
+
+        function applyTheme() {
+
+            const savedTheme = localStorage.getItem("prismTheme");
+
+            const button = document.getElementById("themeToggle");
+
+            if (savedTheme === "light") {
+
+                document.body.classList.add("light-theme");
+
+                button.textContent = "🌙 Dark";
+
+            } else {
+
+                document.body.classList.remove("light-theme");
+
+                button.textContent = "☀️ Light";
+            }
+        }
+
+
+        function toggleTheme() {
+
+            document.body.classList.toggle("light-theme");
+
+            const button = document.getElementById("themeToggle");
+
+            if (document.body.classList.contains("light-theme")) {
+
+                localStorage.setItem("prismTheme", "light");
+
+                button.textContent = "🌙 Dark";
+
+            } else {
+
+                localStorage.setItem("prismTheme", "dark");
+
+                button.textContent = "☀️ Light";
+            }
+        }
+
+
+        function generateIdeas() {
+
+            const topicInput = document.getElementById("topic");
+
+            const topic = topicInput.value.trim();
+
+            const type = document.getElementById("type").value;
+
+            const level = document.getElementById("level").value;
+
+            const amount = Number(
+                document.getElementById("amount").value
+            );
+
+
+            if (topic === "") {
+
+                alert("Please enter a topic first.");
+
+                topicInput.focus();
+
+                return;
+            }
+
+
+            const ideas = createIdeas(topic, type);
+
+            const selectedIdeas = ideas.slice(0, amount);
+
+            const results = document.getElementById("ideaResults");
+
+            results.innerHTML = "";
+
+
+            const ideaList = document.createElement("div");
+
+            ideaList.className = "ideas";
+
+
+            selectedIdeas.forEach(function(idea, index) {
+
+                const card = document.createElement("div");
+
+                card.className = "idea";
+
+
+                const number = document.createElement("div");
+
+                number.className = "idea-number";
+
+                number.textContent =
+                    "IDEA " +
+                    String(index + 1).padStart(2, "0");
+
+
+                const title = document.createElement("h3");
+
+                title.textContent = idea.title;
+
+
+                const description = document.createElement("p");
+
+                description.textContent = idea.description;
+
+
+                const tag = document.createElement("span");
+
+                tag.className = "tag";
+
+                tag.textContent = level;
+
+
+                card.appendChild(number);
+
+                card.appendChild(title);
+
+                card.appendChild(description);
+
+                card.appendChild(tag);
+
+                ideaList.appendChild(card);
+            });
+
+
+            results.appendChild(ideaList);
+
+
+            document.getElementById("resultCount").textContent =
+                selectedIdeas.length + " ideas generated";
+
+
+            localStorage.setItem(
+                "prismLastIdeaTopic",
+                topic
+            );
+        }
+
+
+        function createIdeas(topic, type) {
+
+            const name =
+                topic.charAt(0).toUpperCase() +
+                topic.slice(1);
+
+
+            if (type === "website") {
+
+                return [
+
+                    {
+                        title: name + " Learning Hub",
+                        description:
+                            "Create a modern website that teaches visitors about " +
+                            topic +
+                            " using simple explanations, visuals and interactive sections."
+                    },
+
+                    {
+                        title: "The Future of " + name,
+                        description:
+                            "Build a futuristic website showing how " +
+                            topic +
+                            " could develop and change in the future."
+                    },
+
+                    {
+                        title: name + " Explorer",
+                        description:
+                            "Create an interactive website where students can explore important facts, examples and discoveries about " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: name + " Challenge Zone",
+                        description:
+                            "Design a website with quizzes, challenges and activities that help visitors learn about " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: name + " Timeline",
+                        description:
+                            "Create a visual timeline showing the history, important events and future possibilities connected to " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: name + " AI Guide",
+                        description:
+                            "Create an AI-inspired guide that helps visitors discover different parts of " +
+                            topic +
+                            "."
+                    }
+
+                ];
+            }
+
+
+            if (type === "presentation") {
+
+                return [
+
+                    {
+                        title: "Introduction to " + name,
+                        description:
+                            "Explain what " +
+                            topic +
+                            " is and introduce the main ideas in a simple way."
+                    },
+
+                    {
+                        title: "Why " + name + " Matters",
+                        description:
+                            "Show why " +
+                            topic +
+                            " is important and how it connects to everyday life."
+                    },
+
+                    {
+                        title: "The Evolution of " + name,
+                        description:
+                            "Explain how " +
+                            topic +
+                            " developed over time and highlight important milestones."
+                    },
+
+                    {
+                        title: name + ": Past, Present and Future",
+                        description:
+                            "Compare the past, current situation and possible future of " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: "Benefits and Challenges",
+                        description:
+                            "Present the major advantages and challenges related to " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: "The Future of " + name,
+                        description:
+                            "Explore exciting possibilities and unanswered questions surrounding " +
+                            topic +
+                            "."
+                    }
+
+                ];
+            }
+
+
+            if (type === "science") {
+
+                return [
+
+                    {
+                        title: name + " Experiment",
+                        description:
+                            "Design a safe classroom experiment that demonstrates an important concept connected to " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: name + " Observation Lab",
+                        description:
+                            "Create a project based on observing, recording and explaining real-world examples of " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: name + " Model",
+                        description:
+                            "Build a physical or digital model that visually explains how an important part of " +
+                            topic +
+                            " works."
+                    },
+
+                    {
+                        title: name + " Data Project",
+                        description:
+                            "Collect simple data related to " +
+                            topic +
+                            ", organize it into charts and explain the patterns."
+                    },
+
+                    {
+                        title: name + " Future Research",
+                        description:
+                            "Explore a scientific question about " +
+                            topic +
+                            " and suggest what researchers could investigate next."
+                    },
+
+                    {
+                        title: name + " Visual Guide",
+                        description:
+                            "Create an illustrated guide that makes an important " +
+                            topic +
+                            " concept easy to understand."
+                    }
+
+                ];
+            }
+
+
+            if (type === "business") {
+
+                return [
+
+                    {
+                        title: name + " Student Startup",
+                        description:
+                            "Design a small startup concept that solves a real problem connected with " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: name + " Digital Service",
+                        description:
+                            "Create an online service that helps people learn, manage or discover something related to " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: name + " Community Platform",
+                        description:
+                            "Build a platform where people interested in " +
+                            topic +
+                            " can share ideas and resources."
+                    },
+
+                    {
+                        title: name + " Productivity Tool",
+                        description:
+                            "Create a product that makes a common task involving " +
+                            topic +
+                            " easier or faster."
+                    },
+
+                    {
+                        title: name + " Education Brand",
+                        description:
+                            "Create an educational brand that makes learning about " +
+                            topic +
+                            " more engaging."
+                    },
+
+                    {
+                        title: "Future " + name + " Company",
+                        description:
+                            "Imagine a future company built around an emerging opportunity related to " +
+                            topic +
+                            "."
+                    }
+
+                ];
+            }
+
+
+            if (type === "creative") {
+
+                return [
+
+                    {
+                        title: name + " Story",
+                        description:
+                            "Turn " +
+                            topic +
+                            " into a short story with an interesting character, challenge and discovery."
+                    },
+
+                    {
+                        title: name + " Digital Poster",
+                        description:
+                            "Create a futuristic poster that communicates the most interesting ideas about " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: name + " Mini Game",
+                        description:
+                            "Turn important concepts from " +
+                            topic +
+                            " into a simple interactive game."
+                    },
+
+                    {
+                        title: name + " Video Concept",
+                        description:
+                            "Create a short educational video concept explaining " +
+                            topic +
+                            " through visuals and narration."
+                    },
+
+                    {
+                        title: name + " Creative Campaign",
+                        description:
+                            "Design a creative campaign that makes people curious about " +
+                            topic +
+                            "."
+                    },
+
+                    {
+                        title: name + " Future World",
+                        description:
+                            "Imagine a fictional future world shaped by " +
+                            topic +
+                            " and describe how people would live there."
+                    }
+
+                ];
+            }
+
+
+            return [
+
+                {
+                    title: name + " Smart Assistant",
+                    description:
+                        "Create a simple tool that helps students explore " +
+                        topic +
+                        " using useful examples and quick explanations."
+                },
+
+                {
+                    title: "Interactive " + name + " Explorer",
+                    description:
+                        "Build an interactive experience where users can discover important concepts, facts and examples about " +
+                        topic +
+                        "."
+                },
+
+                {
+                    title: name + " Learning Dashboard",
+                    description:
+                        "Design a dashboard that organizes " +
+                        topic +
+                        " into topics, progress cards and learning activities."
+                },
+
+                {
+                    title: name + " Quiz Challenge",
+                    description:
+                        "Create a quiz game about " +
+                        topic +
+                        " with questions, scores and a final result."
+                },
+
+                {
+                    title: name + " Future Lab",
+                    description:
+                        "Explore how " +
+                        topic +
+                        " could change in the future through a creative project."
+                },
+
+                {
+                    title: name + " Research Hub",
+                    description:
+                        "Create a digital research hub containing key facts, examples, questions and explanations about " +
+                        topic +
+                        "."
+                }
+
+            ];
+        }
+
+
+        applyTheme();
+
+    </script>
+
+</body>
+</html>
