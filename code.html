@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prism AI — Code Generator</title>
+    <title>Pinaki Ethos — Code Generator</title>
 
     <style>
         * {
@@ -375,7 +375,7 @@
         </h1>
 
         <p>
-            Describe what you want to build and Prism AI creates a
+            Describe what you want to build and Pinaki Ethos creates a
             ready-to-explore code concept for your project.
         </p>
     </section>
@@ -439,7 +439,7 @@
 
             <pre id="codeOutput"><code>/*
 
-    Welcome to Prism AI Code Generator.
+    Welcome to Pinaki Ethos Code Generator.
 
     Describe your project on the left
     and click "Generate Code".
@@ -530,7 +530,7 @@
         if (!request) {
 
             output.textContent =
-`Prism AI is waiting for an idea.
+`Pinaki Ethos is waiting for an idea.
 
 Try something like:
 
@@ -558,7 +558,7 @@ Then click Generate Code.`;
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Prism AI Project</title>
+    <title>Pinaki Ethos Project</title>
 
     <style>
 
@@ -613,7 +613,7 @@ Then click Generate Code.`;
 
     <div class="card">
 
-        <h1>Prism AI</h1>
+        <h1>Pinaki Ethos</h1>
 
         <p>
             ${request.replace(/</g, "&lt;")}
@@ -640,12 +640,12 @@ Then click Generate Code.`;
             fileName.textContent = "generated.js";
 
             output.textContent =
-`// Prism AI generated concept
+`// Pinaki Ethos generated concept
 
 const project = {
     request: "${request.replace(/"/g, '\\"')}",
     style: "${style}",
-    createdBy: "Prism AI"
+    createdBy: "Pinaki Ethos"
 };
 
 function startProject() {
@@ -666,18 +666,18 @@ startProject();`;
             fileName.textContent = "generated.py";
 
             output.textContent =
-`# Prism AI generated concept
+`# Pinaki Ethos generated concept
 
 project = {
     "request": "${request.replace(/"/g, '\\"')}",
     "style": "${style}",
-    "created_by": "Prism AI"
+    "created_by": "Pinaki Ethos"
 }
 
 
 def start_project():
 
-    print("Prism AI project")
+    print("Pinaki Ethos project")
     print(project)
 
 
@@ -691,7 +691,7 @@ if __name__ == "__main__":
             fileName.textContent = "generated.css";
 
             output.textContent =
-`/* Prism AI generated ${style.toLowerCase()} styles */
+`/* Pinaki Ethos generated ${style.toLowerCase()} styles */
 
 body {
     margin: 0;
@@ -742,7 +742,7 @@ body {
         );
 
         status.textContent =
-            "✓ Code concept generated locally by Prism AI.";
+            "✓ Code concept generated locally by Pinaki Ethos.";
     }
 
 

@@ -1,5 +1,5 @@
 // ============================================================
-// PRISM AI — GLOBAL SCRIPT
+// Pinaki Ethos — GLOBAL SCRIPT
 // ============================================================
 
 // ------------------------------------------------------------
@@ -133,14 +133,14 @@ function createAccountPanel() {
                 </div>
 
                 <div class="prism-account-status">
-                    ✦ Prism AI account active
+                    ✦ Pinaki Ethos account active
                 </div>
 
                 <button
                     class="prism-account-explore"
                     onclick="goToFeatures()"
                 >
-                    Explore Prism AI →
+                    Explore Pinaki Ethos →
                 </button>
 
                 <button
@@ -216,7 +216,7 @@ function seeProfile() {
         ) || "No email";
 
     alert(
-        "👤 Your Prism AI Profile\n\n" +
+        "👤 Your Pinaki Ethos Profile\n\n" +
         "Name: " + name + "\n" +
         "Email: " + email
     );
@@ -361,7 +361,7 @@ function logoutPrism() {
     updateLoginStatus();
 
     setTimeout(function () {
-        alert("You have been logged out of Prism AI.");
+        alert("You have been logged out of Pinaki Ethos.");
         window.location.href = "index.html";
     }, 150);
 }

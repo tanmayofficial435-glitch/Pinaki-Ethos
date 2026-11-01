@@ -1,7 +1,7 @@
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -10,18 +10,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -30,18 +30,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -50,18 +50,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -70,18 +70,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -90,18 +90,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -110,18 +110,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -130,18 +130,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -150,18 +150,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -170,18 +170,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -190,18 +190,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -210,18 +210,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -230,18 +230,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -250,18 +250,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -270,18 +270,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -290,18 +290,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -310,18 +310,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -330,18 +330,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -350,18 +350,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -370,18 +370,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -390,18 +390,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -410,18 +410,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -430,18 +430,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -450,18 +450,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -470,18 +470,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -490,18 +490,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -510,18 +510,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -530,18 +530,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -550,18 +550,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -570,18 +570,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -590,18 +590,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -610,18 +610,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -630,18 +630,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -650,18 +650,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -670,18 +670,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -690,18 +690,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -710,18 +710,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -730,18 +730,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -750,18 +750,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -770,18 +770,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -790,18 +790,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -810,18 +810,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -830,18 +830,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -850,18 +850,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -870,18 +870,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -890,18 +890,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -910,18 +910,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -930,18 +930,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -950,18 +950,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -970,18 +970,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -990,18 +990,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1010,18 +1010,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1030,18 +1030,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1050,18 +1050,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1070,18 +1070,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1090,18 +1090,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1110,18 +1110,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1130,18 +1130,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1150,18 +1150,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1170,18 +1170,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1190,18 +1190,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1210,18 +1210,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1230,18 +1230,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1250,18 +1250,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1270,18 +1270,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1290,18 +1290,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1310,18 +1310,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1330,18 +1330,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1350,18 +1350,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1370,18 +1370,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1390,18 +1390,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1410,18 +1410,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1430,18 +1430,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1450,18 +1450,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1470,18 +1470,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1490,18 +1490,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1510,18 +1510,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1530,18 +1530,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1550,18 +1550,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1570,18 +1570,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1590,18 +1590,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1610,18 +1610,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1630,18 +1630,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1650,18 +1650,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1670,18 +1670,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1690,18 +1690,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1710,18 +1710,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1730,18 +1730,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1750,18 +1750,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1770,18 +1770,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1790,18 +1790,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1810,18 +1810,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1830,18 +1830,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1850,18 +1850,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1870,18 +1870,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1890,18 +1890,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1910,18 +1910,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1930,18 +1930,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1950,18 +1950,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1970,18 +1970,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -1990,18 +1990,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2010,18 +2010,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2030,18 +2030,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2050,18 +2050,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2070,18 +2070,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2090,18 +2090,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2110,18 +2110,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2130,18 +2130,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2150,18 +2150,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2170,18 +2170,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2190,18 +2190,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2210,18 +2210,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2230,18 +2230,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2250,18 +2250,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2270,18 +2270,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2290,18 +2290,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2310,18 +2310,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2330,18 +2330,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2350,18 +2350,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2370,18 +2370,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2390,18 +2390,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2410,18 +2410,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ suppress logs { quiet: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2430,18 +2430,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2450,18 +2450,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2470,18 +2470,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2490,18 +2490,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2510,18 +2510,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2530,18 +2530,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2550,18 +2550,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2570,18 +2570,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ override existing { override: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2590,18 +2590,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2610,18 +2610,18 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2630,13 +2630,13 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 
 🔐 LOGIN REQUEST
@@ -2677,7 +2677,7 @@
 ✅ User saved successfully!
 🆔 User ID: 1789362725533
 📧 Email: prismai1prismaii@gmail.com
-💾 Database: /Users/tezsidai/Prism AI/data/users.db
+💾 Database: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 SIGN UP REQUEST
 👤 Name: Prajwal
@@ -2894,14 +2894,14 @@
 ◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
 
 🗄️ Opening SQLite database...
-📁 /Users/tezsidai/Prism AI/data/users.db
+📁 /Users/tezsidai/Pinaki Ethos/data/users.db
 ✅ SQLite database opened.
 👥 Users table: READY
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2910,7 +2910,7 @@
 🆓 Model: openrouter/free
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
@@ -2922,7 +2922,7 @@
 🔐 SIGN UP REQUEST RECEIVED
 ======================================
 ✅ Database is ready for signup.
-👤 Name: prism ai
+👤 Name: Pinaki Ethos
 📧 Email: prismtest2026@example.com
 🔎 Checking whether email already exists...
 ✅ Email is available.
@@ -2934,17 +2934,17 @@
 ======================================
 ✅ ACCOUNT CREATED SUCCESSFULLY
 ======================================
-👤 Name: prism ai
+👤 Name: Pinaki Ethos
 📧 Email: prismtest2026@example.com
 🆔 User ID: 1789371374083-4kz6nla0
-💾 Database: /Users/tezsidai/Prism AI/data/users.db
+💾 Database: /Users/tezsidai/Pinaki Ethos/data/users.db
 ======================================
 
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 🔑 OpenRouter API key loaded.
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2955,7 +2955,7 @@
 🔎 Web Search: OpenRouter Web
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
@@ -2963,13 +2963,13 @@
 
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
 🔑 OpenRouter API key loaded.
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -2980,7 +2980,7 @@
 🔎 Web Search: OpenRouter Web
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
@@ -2988,13 +2988,13 @@
 
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 ◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 🔑 OpenRouter API key loaded.
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -3005,7 +3005,7 @@
 🔎 Web Search: OpenRouter Web
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
@@ -3013,7 +3013,7 @@
 
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY
 
 🔎 WEB SEARCH REQUEST
@@ -3045,7 +3045,7 @@ Tool: logo-generator
 🔑 OpenRouter API key loaded.
 
 ======================================
-        PRISM AI BACKEND
+        Pinaki Ethos BACKEND
 ======================================
 
 🌐 http://localhost:3000
@@ -3056,7 +3056,7 @@ Tool: logo-generator
 🔎 Web Search: OpenRouter Web
 
 🗄️ Database: SQLite
-📁 Database file: /Users/tezsidai/Prism AI/data/users.db
+📁 Database file: /Users/tezsidai/Pinaki Ethos/data/users.db
 
 🔐 Authentication API: READY
 🤖 AI API: READY
@@ -3064,10 +3064,10 @@ Tool: logo-generator
 🎨 Logo Generation API: READY
 
 
-🚀 Prism AI server is listening.
+🚀 Pinaki Ethos server is listening.
 🌐 http://localhost:3000
 
 
 🗄️ SQLite database connected:
-/Users/tezsidai/Prism AI/data/users.db
+/Users/tezsidai/Pinaki Ethos/data/users.db
 👥 Users table: READY

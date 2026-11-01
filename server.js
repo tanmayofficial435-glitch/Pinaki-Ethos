@@ -1,5 +1,5 @@
 // ============================================================
-// PRISM AI BACKEND
+// Pinaki Ethos BACKEND
 // ============================================================
 
 const express = require("express");
@@ -672,7 +672,7 @@ app.post("/api/ai", async (req, res) => {
 
         const system = String(
             req.body.system ||
-            "You are Prism AI, a helpful, intelligent and creative AI assistant."
+            "You are Pinaki Ethos, a helpful, intelligent and creative AI assistant."
         );
 
         if (!prompt) {
@@ -750,7 +750,7 @@ app.post("/api/google-search", async (req, res) => {
                 {
                     role: "system",
                     content:
-                        "You are Prism AI Research Lab. Search the web and provide accurate, useful information. Clearly distinguish facts from uncertainty."
+                        "You are Pinaki Ethos Research Lab. Search the web and provide accurate, useful information. Clearly distinguish facts from uncertainty."
                 },
                 {
                     role: "user",
@@ -911,7 +911,7 @@ app.use("/api", (req, res) => {
 app.listen(PORT, () => {
     console.log("");
     console.log("======================================");
-    console.log("        PRISM AI BACKEND");
+    console.log("        Pinaki Ethos BACKEND");
     console.log("======================================");
     console.log("");
     console.log(`🌐 http://localhost:${PORT}`);

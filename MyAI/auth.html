@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My AI — Account</title>
+
+    <style>
+        :root {
+            --bg: #08080f;
+            --panel: rgba(19, 19, 31, 0.88);
+            --panel-2: rgba(255, 255, 255, 0.035);
+            --border: rgba(255, 255, 255, 0.09);
+            --text: #f6f6fb;
+            --muted: #9698ab;
+            --accent: #8b5cf6;
+            --accent-2: #6d4aff;
+            --danger: #fb7185;
+            --success: #4ade80;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(139, 92, 246, 0.16),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 85%,
+                    rgba(79, 70, 229, 0.12),
+                    transparent 28%
+                ),
+                var(--bg);
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            border: none;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        /* =========================
+           NAV
+        ========================= */
+
+        .nav {
+            width: min(1180px, 100%);
+            margin: 0 auto 60px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b5cf6,
+                    #4f46e5
+                );
+
+            font-size: 20px;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 17px;
+        }
+
+        .brand-subtitle {
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .back-btn {
+            padding: 10px 14px;
+
+            border-radius: 11px;
+
+            border: 1px solid var(--border);
+
+            background: var(--panel-2);
+
+            color: #d6d7e2;
+
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            width: min(880px, 100%);
+            margin: 0 auto 42px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 7px 11px;
+
+            border-radius: 999px;
+
+            color: #cfc7ff;
+
+            background:
+                rgba(139, 92, 246, 0.12);
+
+            border:
+                1px solid rgba(139, 92, 246, 0.18);
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            margin: 16px 0 10px;
+
+            font-size:
+                clamp(34px, 5vw, 58px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+        }
+
+        .gradient {
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #a78bfa
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto;
+
+            color: var(--muted);
+
+            line-height: 1.7;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           ACCOUNT AREA
+        ========================= */
+
+        .account-grid {
+            width: min(1000px, 100%);
+            margin: 0 auto 80px;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 0.95fr)
+                minmax(0, 1.05fr);
+
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--panel);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 22px;
+
+            padding: 26px;
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 80px
+                rgba(0, 0, 0, 0.28);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 6px;
+
+            padding: 5px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255, 255, 255, 0.035);
+
+            margin-bottom: 24px;
+        }
+
+        .tab {
+            flex: 1;
+
+            padding: 10px;
+
+            border-radius: 9px;
+
+            color: var(--muted);
+
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .tab.active {
+            color: white;
+
+            background:
+                rgba(139, 92, 246, 0.18);
+        }
+
+        .form-title {
+            margin: 0 0 6px;
+
+            font-size: 22px;
+        }
+
+        .form-subtitle {
+            margin: 0 0 22px;
+
+            color: var(--muted);
+
+            line-height: 1.5;
+
+            font-size: 12px;
+        }
+
+        .field {
+            margin-bottom: 14px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #d8d9e4;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .field input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid var(--border);
+
+            outline: none;
+
+            color: white;
+
+            background:
+                rgba(255, 255, 255, 0.035);
+        }
+
+        .field input:focus {
+            border-color:
+                rgba(139, 92, 246, 0.55);
+        }
+
+        .primary-btn {
+            width: 100%;
+
+            margin-top: 6px;
+
+            padding: 13px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b5cf6,
+                    #6d4aff
+                );
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 12px 28px
+                rgba(109, 74, 255, 0.20);
+        }
+
+        .primary-btn:hover {
+            filter: brightness(1.08);
+        }
+
+        .primary-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .message {
+            min-height: 18px;
+
+            margin-top: 12px;
+
+            font-size: 12px;
+
+            text-align: center;
+        }
+
+        .message.error {
+            color: var(--danger);
+        }
+
+        .message.success {
+            color: var(--success);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* =========================
+           ACCOUNT BENEFITS
+        ========================= */
+
+        .benefits {
+            display: grid;
+            gap: 11px;
+        }
+
+        .benefit {
+            display: flex;
+            gap: 11px;
+
+            padding: 13px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255, 255, 255, 0.028);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .benefit-icon {
+            width: 34px;
+            height: 34px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(139, 92, 246, 0.12);
+        }
+
+        .benefit strong {
+            display: block;
+
+            margin-bottom: 4px;
+
+            font-size: 12px;
+        }
+
+        .benefit span {
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.45;
+        }
+
+        /* =========================
+           PLANS
+        ========================= */
+
+        .plans-section {
+            width: min(1180px, 100%);
+            margin: 0 auto 80px;
+        }
+
+        .section-heading {
+            text-align: center;
+
+            margin-bottom: 24px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 8px;
+
+            font-size: 29px;
+        }
+
+        .section-heading p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+        .plans {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 18px;
+        }
+
+        .plan {
+            position: relative;
+
+            padding: 24px;
+
+            border-radius: 21px;
+
+            background:
+                rgba(18, 18, 29, 0.86);
+
+            border:
+                1px solid var(--border);
+
+            backdrop-filter: blur(20px);
+        }
+
+        .plan.featured {
+            border-color:
+                rgba(139, 92, 246, 0.42);
+
+            box-shadow:
+                0 20px 60px
+                rgba(91, 33, 182, 0.15);
+        }
+
+        .popular {
+            position: absolute;
+
+            top: 16px;
+            right: 16px;
+
+            padding: 5px 8px;
+
+            border-radius: 999px;
+
+            color: #ded7ff;
+
+            background:
+                rgba(139, 92, 246, 0.14);
+
+            font-size: 9px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        .plan-name {
+            margin-bottom: 7px;
+
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .plan-description {
+            min-height: 36px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.45;
+        }
+
+        .price {
+            margin: 22px 0;
+
+            font-size: 38px;
+            font-weight: 800;
+
+            letter-spacing: -1px;
+        }
+
+        .price span {
+            color: var(--muted);
+
+            font-size: 11px;
+            font-weight: 500;
+
+            letter-spacing: 0;
+        }
+
+        .feature-list {
+            margin: 0;
+            padding: 0;
+
+            list-style: none;
+
+            display: grid;
+            gap: 10px;
+        }
+
+        .feature-list li {
+            display: flex;
+            gap: 8px;
+
+            color: #d5d6e1;
+
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
+        .feature-check {
+            color: #a78bfa;
+            font-weight: 800;
+        }
+
+        .plan-btn {
+            width: 100%;
+
+            margin-top: 22px;
+
+            padding: 12px;
+
+            border-radius: 11px;
+
+            cursor: pointer;
+
+            color: white;
+
+            background:
+                rgba(255,255,255,0.055);
+
+            border:
+                1px solid var(--border);
+        }
+
+        .plan.featured .plan-btn {
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b5cf6,
+                    #6d4aff
+                );
+
+            border-color: transparent;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            width: min(1180px, 100%);
+
+            margin: 0 auto;
+
+            padding: 22px 0;
+
+            border-top:
+                1px solid var(--border);
+
+            color: #6f7184;
+
+            text-align: center;
+
+            font-size: 10px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .account-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .plans {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .page {
+                padding: 16px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- =========================
+         NAV
+    ========================== -->
+
+    <nav class="nav">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🧠
+            </div>
+
+            <div>
+                <div class="brand-name">
+                    My AI
+                </div>
+
+                <div class="brand-subtitle">
+                    Your local AI workspace
+                </div>
+            </div>
+
+        </div>
+
+
+        <button
+            class="back-btn"
+            onclick="goToAI()"
+        >
+            ← Back to My AI
+        </button>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="hero-badge">
+            🔐
+            My AI Account
+        </div>
+
+        <h1>
+            Your AI.
+            <span class="gradient">
+                Your workspace.
+            </span>
+        </h1>
+
+        <p>
+            Create your My AI account to keep your
+            profile, plan and future AI tools connected
+            to one workspace.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ACCOUNT
+    ========================== -->
+
+    <section class="account-grid">
+
+        <div class="card">
+
+            <div class="tabs">
+
+                <button
+                    class="tab active"
+                    id="loginTab"
+                    onclick="showLogin()"
+                >
+                    Log In
+                </button>
+
+                <button
+                    class="tab"
+                    id="signupTab"
+                    onclick="showSignup()"
+                >
+                    Sign Up
+                </button>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <div id="loginForm">
+
+                <h2 class="form-title">
+                    Welcome back
+                </h2>
+
+                <p class="form-subtitle">
+                    Log in to continue to your My AI workspace.
+                </p>
+
+
+                <div class="field">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        placeholder="Your password"
+                        autocomplete="current-password"
+                    >
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="loginButton"
+                    onclick="login()"
+                >
+                    Log In
+                </button>
+
+
+                <div
+                    class="message"
+                    id="loginMessage"
+                ></div>
+
+            </div>
+
+
+            <!-- SIGNUP -->
+
+            <div
+                id="signupForm"
+                class="hidden"
+            >
+
+                <h2 class="form-title">
+                    Create your account
+                </h2>
+
+                <p class="form-subtitle">
+                    Start your My AI workspace with a free account.
+                </p>
+
+
+                <div class="field">
+
+                    <label>
+                        Name
+                    </label>
+
+                    <input
+                        id="signupName"
+                        type="text"
+                        placeholder="Your name"
+                        autocomplete="name"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        id="signupEmail"
+                        type="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        id="signupPassword"
+                        type="password"
+                        placeholder="At least 8 characters"
+                        autocomplete="new-password"
+                    >
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="signupButton"
+                    onclick="signup()"
+                >
+                    Create account
+                </button>
+
+
+                <div
+                    class="message"
+                    id="signupMessage"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BENEFITS -->
+
+        <div class="card">
+
+            <h2 class="form-title">
+                One account. One workspace.
+            </h2>
+
+            <p class="form-subtitle">
+                Your account will become the foundation
+                for the rest of My AI.
+            </p>
+
+
+            <div class="benefits">
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Personal profile
+                        </strong>
+
+                        <span>
+                            Keep your name, email and
+                            account settings together.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        💾
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Personal AI workspace
+                        </strong>
+
+                        <span>
+                            Your account can later hold
+                            your conversations and tools.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        ✨
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Feature access
+                        </strong>
+
+                        <span>
+                            Plans will control access to
+                            future My AI tools.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        🔒
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Secure passwords
+                        </strong>
+
+                        <span>
+                            Passwords are stored as
+                            cryptographic hashes rather
+                            than plain text.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PLANS
+    ========================== -->
+
+    <section class="plans-section">
+
+        <div class="section-heading">
+
+            <h2>
+                Choose your My AI plan
+            </h2>
+
+            <p>
+                Plans are set up now. Payment will be
+                connected separately.
+            </p>
+
+        </div>
+
+
+        <div
+            class="plans"
+            id="plans"
+        >
+
+            <div class="plan">
+
+                <div class="plan-name">
+                    Free
+                </div>
+
+                <div class="plan-description">
+                    Start exploring My AI.
+                </div>
+
+                <div class="price">
+                    ₹0
+                    <span>/ month</span>
+                </div>
+
+                <ul class="feature-list">
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        AI chat
+                    </li>
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        Local memory
+                    </li>
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        Basic tools
+                    </li>
+
+                </ul>
+
+                <button
+                    class="plan-btn"
+                    onclick="choosePlan('free')"
+                >
+                    Continue with Free
+                </button>
+
+            </div>
+
+
+            <div class="plan featured">
+
+                <div class="popular">
+                    Popular
+                </div>
+
+                <div class="plan-name">
+                    Pro
+                </div>
+
+                <div class="plan-description">
+                    More power for regular AI use.
+                </div>
+
+                <div class="price">
+                    ₹499
+                    <span>/ month</span>
+                </div>
+
+                <ul class="feature-list">
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        Everything in Free
+                    </li>
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        Advanced AI tools
+                    </li>
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        More usage
+                    </li>
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        Priority features
+                    </li>
+
+                </ul>
+
+                <button
+                    class="plan-btn"
+                    onclick="choosePlan('pro')"
+                >
+                    Choose Pro
+                </button>
+
+            </div>
+
+
+            <div class="plan">
+
+                <div class="plan-name">
+                    Creator
+                </div>
+
+                <div class="plan-description">
+                    Built for bigger creative projects.
+                </div>
+
+                <div class="price">
+                    ₹999
+                    <span>/ month</span>
+                </div>
+
+                <ul class="feature-list">
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        Everything in Pro
+                    </li>
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        Creative tools
+                    </li>
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        PPT generation
+                    </li>
+
+                    <li>
+                        <span class="feature-check">✓</span>
+                        Design tools
+                    </li>
+
+                </ul>
+
+                <button
+                    class="plan-btn"
+                    onclick="choosePlan('creator')"
+                >
+                    Choose Creator
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+        My AI · Local AI workspace · Accounts and plans
+    </footer>
+
+</div>
+
+
+<script>
+
+    /* =====================================
+       CONFIG
+    ===================================== */
+
+    const AUTH_API =
+        "http://127.0.0.1:5002";
+
+
+    /* =====================================
+       TABS
+    ===================================== */
+
+    function showLogin() {
+
+        document
+            .getElementById("loginForm")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("signupForm")
+            .classList.add("hidden");
+
+
+        document
+            .getElementById("loginTab")
+            .classList.add("active");
+
+        document
+            .getElementById("signupTab")
+            .classList.remove("active");
+    }
+
+
+    function showSignup() {
+
+        document
+            .getElementById("signupForm")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("loginForm")
+            .classList.add("hidden");
+
+
+        document
+            .getElementById("signupTab")
+            .classList.add("active");
+
+        document
+            .getElementById("loginTab")
+            .classList.remove("active");
+    }
+
+
+    /* =====================================
+       MESSAGE
+    ===================================== */
+
+    function showMessage(
+        elementId,
+        text,
+        type
+    ) {
+
+        const element =
+            document.getElementById(elementId);
+
+        element.textContent = text;
+
+        element.className =
+            "message " + type;
+    }
+
+
+    /* =====================================
+       SIGNUP
+    ===================================== */
+
+    async function signup() {
+
+        const name =
+            document.getElementById(
+                "signupName"
+            ).value.trim();
+
+        const email =
+            document.getElementById(
+                "signupEmail"
+            ).value.trim();
+
+        const password =
+            document.getElementById(
+                "signupPassword"
+            ).value;
+
+
+        if (!name || !email || !password) {
+
+            showMessage(
+                "signupMessage",
+                "Please fill in all fields.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const button =
+            document.getElementById(
+                "signupButton"
+            );
+
+        button.disabled = true;
+
+        button.textContent =
+            "Creating account...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    AUTH_API + "/api/signup",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+                                name,
+                                email,
+                                password
+                            })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    "Could not create account."
+                );
+            }
+
+
+            localStorage.setItem(
+                "myai_token",
+                data.token
+            );
+
+            localStorage.setItem(
+                "myai_user",
+                JSON.stringify(
+                    data.user
+                )
+            );
+
+
+            showMessage(
+                "signupMessage",
+                "Account created successfully! Redirecting...",
+                "success"
+            );
+
+
+            setTimeout(
+                goToAI,
+                900
+            );
+
+
+        } catch (error) {
+
+            showMessage(
+                "signupMessage",
+                error.message,
+                "error"
+            );
+
+        } finally {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Create account";
+        }
+    }
+
+
+    /* =====================================
+       LOGIN
+    ===================================== */
+
+    async function login() {
+
+        const email =
+            document.getElementById(
+                "loginEmail"
+            ).value.trim();
+
+        const password =
+            document.getElementById(
+                "loginPassword"
+            ).value;
+
+
+        if (!email || !password) {
+
+            showMessage(
+                "loginMessage",
+                "Please enter your email and password.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const button =
+            document.getElementById(
+                "loginButton"
+            );
+
+        button.disabled = true;
+
+        button.textContent =
+            "Logging in...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    AUTH_API + "/api/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+                                email,
+                                password
+                            })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    "Could not log in."
+                );
+            }
+
+
+            localStorage.setItem(
+                "myai_token",
+                data.token
+            );
+
+            localStorage.setItem(
+                "myai_user",
+                JSON.stringify(
+                    data.user
+                )
+            );
+
+
+            showMessage(
+                "loginMessage",
+                "Login successful! Redirecting...",
+                "success"
+            );
+
+
+            setTimeout(
+                goToAI,
+                700
+            );
+
+
+        } catch (error) {
+
+            showMessage(
+                "loginMessage",
+                error.message,
+                "error"
+            );
+
+        } finally {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Log In";
+        }
+    }
+
+
+    /* =====================================
+       PLANS
+    ===================================== */
+
+    function choosePlan(plan) {
+
+        if (plan === "free") {
+
+            showSignup();
+
+            return;
+        }
+
+
+        const loggedIn =
+            localStorage.getItem(
+                "myai_token"
+            );
+
+
+        if (!loggedIn) {
+
+            alert(
+                "Create an account or log in first."
+            );
+
+            showSignup();
+
+            return;
+        }
+
+
+        alert(
+            "The " +
+            plan.charAt(0).toUpperCase() +
+            plan.slice(1) +
+            " plan is configured, but payment integration has not been connected yet."
+        );
+    }
+
+
+    /* =====================================
+       BACK TO AI
+    ===================================== */
+
+    function goToAI() {
+
+        window.location.href =
+            "index.html";
+    }
+
+
+    /* =====================================
+       CHECK EXISTING LOGIN
+    ===================================== */
+
+    async function checkExistingSession() {
+
+        const token =
+            localStorage.getItem(
+                "myai_token"
+            );
+
+
+        if (!token) {
+            return;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    AUTH_API + "/api/me",
+                    {
+                        headers: {
+                            "Authorization":
+                                "Bearer " +
+                                token
+                        }
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                localStorage.removeItem(
+                    "myai_token"
+                );
+
+                localStorage.removeItem(
+                    "myai_user"
+                );
+            }
+
+        } catch (error) {
+
+            console.log(
+                "Account server unavailable."
+            );
+        }
+    }
+
+
+    checkExistingSession();
+
+</script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Understand My Project — Prism AI</title>
+<title>Understand My Project — Pinaki Ethos</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -79,7 +79,7 @@ body.light .result{color:#342b49;background:#ffffffaa;border-color:#30205c18}
 
 <body>
 <nav>
-    <a class="logo" href="index.html"><span>✦</span> Prism AI</a>
+    <a class="logo" href="index.html"><span>✦</span> Pinaki Ethos</a>
     <div>
         <button onclick="location.href='features.html'">Features</button>
         <button id="themeButton" onclick="toggleTheme()">☀️ Light</button>
@@ -91,7 +91,7 @@ body.light .result{color:#342b49;background:#ffffffaa;border-color:#30205c18}
         <div class="badge">🧠 Prism Understanding Engine</div>
         <h1>Understand<br>your project.</h1>
         <p>
-            Explain your project idea and Prism AI will organize its goal,
+            Explain your project idea and Pinaki Ethos will organize its goal,
             important topics, research needs, structure and next steps.
         </p>
     </section>
@@ -153,11 +153,11 @@ async function understandProject(){
 
     button.disabled=true;
     button.textContent="✦ Prism is understanding...";
-    status.textContent="Connecting to Prism AI...";
+    status.textContent="Connecting to Pinaki Ethos...";
     result.classList.remove("show");
 
     const system=`
-You are Prism AI's project understanding assistant.
+You are Pinaki Ethos's project understanding assistant.
 Analyze the student's project and organize your answer under these headings:
 
 1. Project Overview
@@ -192,7 +192,7 @@ Be clear, practical and suitable for a student.
         const answer=data.response||data.answer||data.message||data.text;
 
         if(!answer){
-            throw new Error("No response received from Prism AI.");
+            throw new Error("No response received from Pinaki Ethos.");
         }
 
         result.textContent=answer;

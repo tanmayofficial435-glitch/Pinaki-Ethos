@@ -12,3 +12,11 @@ node_modules/
 __pycache__/
 .venv/
 venv/
+**/ai-env/
+**/node_modules/
+**/__pycache__/
+*.py[cod]
+**/ai/my_ai.db
+**/ai/my_ai_engine.log
+**/ai/memory.json
+**/*.app/
