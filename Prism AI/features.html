@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Features — Prism AI</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    min-height:100vh;
+    color:#fff;
+
+    background:
+        radial-gradient(circle at 12% 10%,rgba(124,92,255,.18),transparent 30%),
+        radial-gradient(circle at 88% 18%,rgba(0,210,255,.10),transparent 28%),
+        linear-gradient(135deg,#080812,#0d0b1c 55%,#080812);
+
+    transition:.3s ease;
+}
+
+body.light-theme{
+    color:#171528;
+
+    background:
+        radial-gradient(circle at 15% 10%,rgba(124,58,237,.12),transparent 32%),
+        radial-gradient(circle at 85% 20%,rgba(6,182,212,.10),transparent 30%),
+        linear-gradient(135deg,#f8f7ff,#eef2ff 52%,#f7fbff);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+    height:76px;
+    padding:0 7%;
+
+    display:flex;
+    align-items:center;
+    gap:30px;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:rgba(8,8,18,.72);
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+}
+
+.light-theme nav{
+    background:rgba(255,255,255,.72);
+    border-color:rgba(40,30,100,.08);
+}
+
+.logo{
+    margin-right:auto;
+
+    font-size:21px;
+    font-weight:800;
+}
+
+.logo span{
+    color:#a78bfa;
+}
+
+nav a{
+    color:inherit;
+    text-decoration:none;
+
+    font-size:14px;
+    opacity:.72;
+
+    transition:.2s;
+}
+
+nav a:hover{
+    opacity:1;
+}
+
+.theme-btn{
+    color:inherit;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.06);
+
+    cursor:pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+
+main{
+    width:min(1200px,92%);
+    margin:auto;
+
+    padding:80px 0 110px;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:65px;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:8px 15px;
+    margin-bottom:20px;
+
+    border-radius:999px;
+
+    color:#c7b7ff;
+
+    background:rgba(139,92,246,.12);
+    border:1px solid rgba(139,92,246,.25);
+
+    font-size:13px;
+}
+
+.light-theme .badge{
+    color:#6334c7;
+}
+
+h1{
+    font-size:clamp(42px,7vw,76px);
+
+    letter-spacing:-3px;
+
+    line-height:1.02;
+
+    margin-bottom:20px;
+}
+
+.gradient{
+    background:
+        linear-gradient(
+            90deg,
+            #a78bfa,
+            #67e8f9,
+            #c084fc
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+}
+
+.hero p{
+    max-width:720px;
+
+    margin:auto;
+
+    font-size:17px;
+    line-height:1.7;
+
+    opacity:.67;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    margin-bottom:65px;
+}
+
+.section-title{
+    margin-bottom:25px;
+}
+
+.section-title h2{
+    font-size:27px;
+    margin-bottom:7px;
+}
+
+.section-title p{
+    opacity:.58;
+    font-size:14px;
+}
+
+/* =========================
+   FEATURE GRID
+========================= */
+
+.feature-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:20px;
+}
+
+.feature-card{
+    position:relative;
+
+    min-height:235px;
+
+    padding:28px;
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.018)
+        );
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.feature-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    top:-100px;
+    right:-90px;
+
+    border-radius:50%;
+
+    background:rgba(139,92,246,.12);
+
+    filter:blur(35px);
+
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-7px);
+
+    border-color:rgba(167,139,250,.35);
+
+    box-shadow:
+        0 20px 55px rgba(0,0,0,.22),
+        0 0 35px rgba(139,92,246,.08);
+}
+
+.feature-card:hover::before{
+    transform:scale(1.4);
+}
+
+.light-theme .feature-card{
+    background:rgba(255,255,255,.65);
+
+    border-color:rgba(40,30,100,.09);
+
+    box-shadow:0 12px 35px rgba(70,60,130,.07);
+}
+
+.light-theme .feature-card:hover{
+    border-color:rgba(124,58,237,.28);
+
+    box-shadow:
+        0 18px 45px rgba(70,60,130,.12);
+}
+
+.feature-icon{
+    width:54px;
+    height:54px;
+
+    display:grid;
+    place-items:center;
+
+    margin-bottom:20px;
+
+    border-radius:16px;
+
+    font-size:25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.22),
+            rgba(6,182,212,.10)
+        );
+
+    border:1px solid rgba(167,139,250,.16);
+}
+
+.feature-card h3{
+    font-size:19px;
+
+    margin-bottom:10px;
+}
+
+.feature-card p{
+    font-size:14px;
+
+    line-height:1.65;
+
+    opacity:.61;
+
+    margin-bottom:18px;
+}
+
+.feature-link{
+    font-size:13px;
+
+    color:#b8a5ff;
+
+    font-weight:650;
+}
+
+.light-theme .feature-link{
+    color:#6334c7;
+}
+
+/* =========================
+   SPECIAL MAGIC CARD
+========================= */
+
+.magic-card{
+    grid-column:span 3;
+
+    min-height:210px;
+
+    display:flex;
+    align-items:center;
+    gap:28px;
+
+    background:
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(34,211,238,.09),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.13),
+            rgba(255,255,255,.025)
+        );
+}
+
+.magic-card .feature-icon{
+    width:70px;
+    height:70px;
+
+    min-width:70px;
+
+    font-size:32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+    border:0;
+
+    box-shadow:
+        0 0 40px rgba(124,58,237,.25);
+}
+
+.magic-content{
+    flex:1;
+}
+
+.magic-card h3{
+    font-size:25px;
+    margin-bottom:9px;
+}
+
+.magic-card p{
+    max-width:720px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:30px 7%;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.07);
+
+    opacity:.55;
+
+    font-size:13px;
+}
+
+.light-theme footer{
+    border-color:rgba(40,30,100,.08);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .feature-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .magic-card{
+        grid-column:span 2;
+    }
+}
+
+@media(max-width:650px){
+
+    nav{
+        padding:0 20px;
+        gap:15px;
+    }
+
+    nav a{
+        display:none;
+    }
+
+    main{
+        padding-top:55px;
+    }
+
+    .feature-grid{
+        grid-template-columns:1fr;
+    }
+
+    .magic-card{
+        grid-column:span 1;
+
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        ✦ <span>Prism AI</span>
+    </div>
+
+    <a href="index.html">Home</a>
+
+    <a href="features.html">Features</a>
+
+    <a href="workspace.html">Workspace</a>
+
+    <a href="pricing.html">Pricing</a>
+
+    <button
+        class="theme-btn"
+        id="themeButton"
+        onclick="toggleTheme()"
+    >
+        ☀️ Light
+    </button>
+
+</nav>
+
+
+<main>
+
+<section class="hero">
+
+    <div class="badge">
+        ✦ Everything in one Prism
+    </div>
+
+    <h1>
+        Create without <span class="gradient">limits.</span>
+    </h1>
+
+    <p>
+        From your first idea to the final project,
+        Prism AI gives you the tools to research,
+        understand, create, improve and present your work.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     CORE AI
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+    <h2>Core AI</h2>
+
+    <p>
+        The essential Prism AI creation tools.
+    </p>
+
+</div>
+
+
+<div class="feature-grid">
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='editor.html'"
+>
+
+    <div class="feature-icon">✍️</div>
+
+    <h3>AI Editor</h3>
+
+    <p>
+        Write, edit and improve your content
+        with Prism AI.
+    </p>
+
+    <span class="feature-link">
+        Open AI Editor →
+    </span>
+
+</div>
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='code.html'"
+>
+
+    <div class="feature-icon">💻</div>
+
+    <h3>Code Generator</h3>
+
+    <p>
+        Turn ideas into code and build
+        websites or projects.
+    </p>
+
+    <span class="feature-link">
+        Open Code Generator →
+    </span>
+
+</div>
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='ai.html'"
+>
+
+    <div class="feature-icon">🧠</div>
+
+    <h3>Prism AI Assistant</h3>
+
+    <p>
+        Ask questions, brainstorm and work
+        with your personal AI assistant.
+    </p>
+
+    <span class="feature-link">
+        Open Assistant →
+    </span>
+
+</div>
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='translator.html'"
+>
+
+    <div class="feature-icon">🌐</div>
+
+    <h3>Translator</h3>
+
+    <p>
+        Translate your content between
+        different languages.
+    </p>
+
+    <span class="feature-link">
+        Open Translator →
+    </span>
+
+</div>
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='ppt.html'"
+>
+
+    <div class="feature-icon">📊</div>
+
+    <h3>PPT Maker</h3>
+
+    <p>
+        Turn an idea or topic into a
+        structured presentation.
+    </p>
+
+    <span class="feature-link">
+        Open PPT Maker →
+    </span>
+
+</div>
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='ideas.html'"
+>
+
+    <div class="feature-icon">💡</div>
+
+    <h3>Idea Generator</h3>
+
+    <p>
+        Generate creative ideas for
+        school projects and activities.
+    </p>
+
+    <span class="feature-link">
+        Generate Ideas →
+    </span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     UNDERSTAND
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+    <h2>Understand</h2>
+
+    <p>
+        Turn confusing information into something clear.
+    </p>
+
+</div>
+
+
+<div class="feature-grid">
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='understand.html'"
+>
+
+    <div class="feature-icon">🧠</div>
+
+    <h3>Understand My Project</h3>
+
+    <p>
+        Give Prism your project and let it
+        organize the important information.
+    </p>
+
+    <span class="feature-link">
+        Understand Project →
+    </span>
+
+</div>
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='mindmap.html'"
+>
+
+    <div class="feature-icon">🗺️</div>
+
+    <h3>AI Mind Map</h3>
+
+    <p>
+        Transform a topic into connected
+        ideas and branches.
+    </p>
+
+    <span class="feature-link">
+        Create Mind Map →
+    </span>
+
+</div>
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='research.html'"
+>
+
+    <div class="feature-icon">🔬</div>
+
+    <h3>Research Lab</h3>
+
+    <p>
+        Research topics and gather useful
+        information for your projects.
+    </p>
+
+    <span class="feature-link">
+        Open Research Lab →
+    </span>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CREATE
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+    <h2>Create</h2>
+
+    <p>
+        Build presentations, designs and creative content.
+    </p>
+
+</div>
+
+
+<div class="feature-grid">
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='coach.html'"
+>
+
+    <div class="feature-icon">🎤</div>
+
+    <h3>Presentation Coach</h3>
+
+    <p>
+        Improve your presentation structure,
+        delivery and confidence.
+    </p>
+
+    <span class="feature-link">
+        Open Presentation Coach →
+    </span>
+
+</div>
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='design.html'"
+>
+
+    <div class="feature-icon">🎨</div>
+
+    <h3>AI Design Generator</h3>
+
+    <p>
+        Turn your idea into a detailed
+        visual design direction.
+    </p>
+
+    <span class="feature-link">
+        Open Design Generator →
+    </span>
+
+</div>
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='import.html'"
+>
+
+    <div class="feature-icon">📥</div>
+
+    <h3>Import Anything</h3>
+
+    <p>
+        Bring documents, images and files
+        into your Prism workflow.
+    </p>
+
+    <span class="feature-link">
+        Import a File →
+    </span>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     IMPROVE
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+    <h2>Improve</h2>
+
+    <p>
+        Take your existing work further.
+    </p>
+
+</div>
+
+
+<div class="feature-grid">
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='improve.html'"
+>
+
+    <div class="feature-icon">✨</div>
+
+    <h3>Make It Better</h3>
+
+    <p>
+        Improve writing, ideas, projects
+        and overall clarity.
+    </p>
+
+    <span class="feature-link">
+        Improve My Work →
+    </span>
+
+</div>
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='social.html'"
+>
+
+    <div class="feature-icon">📱</div>
+
+    <h3>Social Media Studio</h3>
+
+    <p>
+        Create captions, hooks and
+        social content from your ideas.
+    </p>
+
+    <span class="feature-link">
+        Open Social Studio →
+    </span>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     WORKSPACE
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+    <h2>Workspace</h2>
+
+    <p>
+        Keep your projects and creations connected.
+    </p>
+
+</div>
+
+
+<div class="feature-grid">
+
+
+<div
+    class="feature-card"
+    onclick="window.location.href='workspace.html'"
+>
+
+    <div class="feature-icon">🗂️</div>
+
+    <h3>Prism Workspace</h3>
+
+    <p>
+        Organize projects, research,
+        creations and ideas in one place.
+    </p>
+
+    <span class="feature-link">
+        Open Workspace →
+    </span>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     MAGIC
+========================= -->
+
+<section class="section">
+
+<div class="feature-grid">
+
+
+<div
+    class="feature-card magic-card"
+    onclick="window.location.href='magic.html'"
+>
+
+    <div class="feature-icon">
+        ✦
+    </div>
+
+    <div class="magic-content">
+
+        <h3>
+            Prism Magic
+        </h3>
+
+        <p>
+            Start with a goal instead of choosing
+            a tool. Tell Prism what you are trying
+            to accomplish and let Prism work out
+            the right direction.
+        </p>
+
+        <span class="feature-link">
+            Enter Prism Magic →
+        </span>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+    ✦ Prism AI — Create. Edit. Imagine.
+</footer>
+
+
+<script>
+
+function applyTheme(){
+
+    const theme =
+        localStorage.getItem("prismTheme") || "dark";
+
+    document.body.classList.toggle(
+        "light-theme",
+        theme === "light"
+    );
+
+    const button =
+        document.getElementById("themeButton");
+
+    if(button){
+
+        button.textContent =
+            theme === "light"
+                ? "🌙 Dark"
+                : "☀️ Light";
+
+    }
+
+}
+
+
+function toggleTheme(){
+
+    const isLight =
+        document.body.classList.toggle(
+            "light-theme"
+        );
+
+    localStorage.setItem(
+        "prismTheme",
+        isLight ? "light" : "dark"
+    );
+
+    const button =
+        document.getElementById("themeButton");
+
+    if(button){
+
+        button.textContent =
+            isLight
+                ? "🌙 Dark"
+                : "☀️ Light";
+
+    }
+
+}
+
+
+applyTheme();
+
+</script>
+
+</body>
+</html>

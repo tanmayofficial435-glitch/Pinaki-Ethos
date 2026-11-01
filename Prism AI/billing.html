@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prism AI — Billing Summary</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            color: #ffffff;
+
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(140, 108, 255, 0.18),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(40, 180, 255, 0.10),
+                    transparent 32%
+                ),
+                #080812;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(8, 8, 18, 0.78);
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            backdrop-filter: blur(18px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .logo-orb {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8c6cff,
+                    #d85cff
+                );
+
+            box-shadow:
+                0 0 25px rgba(140, 108, 255, 0.45);
+        }
+
+        .logo span:last-child {
+            background:
+                linear-gradient(
+                    90deg,
+                    #9c7cff,
+                    #e68cff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            color: #c9c5d8;
+            text-decoration: none;
+
+            padding: 9px 12px;
+
+            border-radius: 10px;
+
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .theme-btn {
+            border: 1px solid rgba(156, 124, 255, 0.35);
+
+            background: rgba(156, 124, 255, 0.10);
+
+            color: white;
+
+            padding: 9px 14px;
+
+            border-radius: 11px;
+
+            cursor: pointer;
+
+            font-weight: 700;
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .billing-page {
+            width: min(900px, 92%);
+
+            margin: 65px auto 100px;
+        }
+
+        .hero {
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+
+            padding: 8px 14px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(156, 124, 255, 0.09);
+
+            border:
+                1px solid rgba(156, 124, 255, 0.25);
+
+            color: #c5b7ff;
+
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .hero h1 {
+            margin: 18px 0 10px;
+
+            font-size:
+                clamp(38px, 6vw, 58px);
+
+            line-height: 1.05;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #bdaeff,
+                    #e68cff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            margin: 0;
+
+            color: #aaa8bd;
+
+            font-size: 17px;
+        }
+
+        /* =========================
+           SUMMARY CARD
+        ========================= */
+
+        .summary-card {
+            position: relative;
+
+            padding: 38px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(18, 18, 34, 0.97),
+                    rgba(10, 10, 21, 0.97)
+                );
+
+            border:
+                1px solid rgba(156, 124, 255, 0.20);
+
+            box-shadow:
+                0 30px 90px rgba(0, 0, 0, 0.38);
+
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            top: -150px;
+            right: -120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(140, 108, 255, 0.15);
+
+            filter: blur(50px);
+
+            pointer-events: none;
+        }
+
+        .selected-plan {
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding-bottom: 28px;
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .plan-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .plan-icon {
+            width: 62px;
+            height: 62px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 18px;
+
+            font-size: 27px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8c6cff,
+                    #d85cff
+                );
+
+            box-shadow:
+                0 0 30px rgba(140, 108, 255, 0.28);
+        }
+
+        .plan-name {
+            margin: 0;
+
+            font-size: 29px;
+            font-weight: 900;
+        }
+
+        .plan-description {
+            margin-top: 5px;
+
+            color: #9994aa;
+
+            font-size: 14px;
+        }
+
+        .plan-price {
+            text-align: right;
+        }
+
+        .plan-price strong {
+            font-size: 30px;
+        }
+
+        .plan-price span {
+            display: block;
+
+            color: #8f899f;
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           DETAILS
+        ========================= */
+
+        .details {
+            margin-top: 30px;
+        }
+
+        .details-title {
+            margin-bottom: 15px;
+
+            font-size: 15px;
+            font-weight: 900;
+        }
+
+        .detail-row {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 15px 0;
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .detail-row span:first-child {
+            color: #9994aa;
+        }
+
+        .detail-row span:last-child {
+            font-weight: 800;
+        }
+
+        /* =========================
+           TEAM MEMBERS
+        ========================= */
+
+        .team-members {
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(70, 150, 255, 0.06);
+
+            border:
+                1px solid rgba(70, 150, 255, 0.15);
+        }
+
+        .team-members label {
+            display: block;
+
+            margin-bottom: 10px;
+
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .team-members input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border-radius: 11px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            background:
+                rgba(0, 0, 0, 0.20);
+
+            color: white;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        /* =========================
+           TOTAL
+        ========================= */
+
+        .total-box {
+            margin-top: 30px;
+
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(140, 108, 255, 0.12),
+                    rgba(216, 92, 255, 0.07)
+                );
+
+            border:
+                1px solid rgba(156, 124, 255, 0.20);
+        }
+
+        .total-row {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .total-label {
+            color: #aaa5b9;
+
+            font-size: 14px;
+        }
+
+        .total-amount {
+            font-size: 34px;
+
+            font-weight: 950;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #c5b5ff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* =========================
+           CONFIRM
+        ========================= */
+
+        .confirm-button {
+            width: 100%;
+
+            margin-top: 28px;
+
+            padding: 17px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8c6cff,
+                    #c45cff
+                );
+
+            box-shadow:
+                0 15px 40px rgba(140, 108, 255, 0.25);
+
+            transition: 0.2s ease;
+        }
+
+        .confirm-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 20px 50px rgba(140, 108, 255, 0.35);
+        }
+
+        .back-button {
+            width: 100%;
+
+            margin-top: 12px;
+
+            padding: 14px;
+
+            border-radius: 13px;
+
+            cursor: pointer;
+
+            color: #aaa5b9;
+
+            background: transparent;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.10);
+
+            font-weight: 800;
+        }
+
+        .back-button:hover {
+            color: white;
+
+            background:
+                rgba(255, 255, 255, 0.04);
+        }
+
+        .security {
+            margin-top: 20px;
+
+            text-align: center;
+
+            color: #777286;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+        /* =========================
+           LIGHT THEME
+        ========================= */
+
+        body.light-theme {
+            color: #171528;
+
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(124, 58, 237, 0.12),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(6, 182, 212, 0.10),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f8f7ff,
+                    #eef2ff 52%,
+                    #f7fbff
+                );
+        }
+
+        body.light-theme .navbar {
+            background:
+                rgba(255, 255, 255, 0.78);
+
+            border-bottom-color:
+                rgba(40, 30, 80, 0.10);
+        }
+
+        body.light-theme .nav-links a {
+            color: #5f596f;
+        }
+
+        body.light-theme .nav-links a:hover {
+            color: #29223f;
+
+            background:
+                rgba(124, 58, 237, 0.06);
+        }
+
+        body.light-theme .theme-btn {
+            color: #30265c;
+
+            background:
+                rgba(124, 58, 237, 0.08);
+        }
+
+        body.light-theme .hero p {
+            color: #68647b;
+        }
+
+        body.light-theme .summary-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.95),
+                    rgba(247, 244, 255, 0.92)
+                );
+
+            border-color:
+                rgba(124, 58, 237, 0.16);
+
+            box-shadow:
+                0 30px 80px rgba(70, 50, 120, 0.12);
+        }
+
+        body.light-theme .selected-plan {
+            border-bottom-color:
+                rgba(40, 30, 80, 0.08);
+        }
+
+        body.light-theme .plan-description,
+        body.light-theme .plan-price span,
+        body.light-theme .detail-row span:first-child {
+            color: #716d82;
+        }
+
+        body.light-theme .detail-row {
+            border-bottom-color:
+                rgba(40, 30, 80, 0.07);
+        }
+
+        body.light-theme .team-members {
+            background:
+                rgba(70, 150, 255, 0.06);
+
+            border-color:
+                rgba(70, 150, 255, 0.16);
+        }
+
+        body.light-theme .team-members input {
+            color: #211b35;
+
+            background: white;
+
+            border-color:
+                rgba(40, 30, 80, 0.12);
+        }
+
+        body.light-theme .back-button {
+            color: #625e72;
+
+            border-color:
+                rgba(40, 30, 80, 0.10);
+        }
+
+        body.light-theme .back-button:hover {
+            color: #30265c;
+
+            background:
+                rgba(124, 58, 237, 0.05);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                height: auto;
+
+                min-height: 76px;
+
+                padding: 14px 4%;
+
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+            .nav-links {
+                width: 100%;
+
+                justify-content: center;
+
+                flex-wrap: wrap;
+            }
+
+            .billing-page {
+                margin-top: 40px;
+            }
+
+            .summary-card {
+                padding: 25px 20px;
+            }
+
+            .selected-plan {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .plan-price {
+                text-align: left;
+            }
+
+            .plan-name {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-orb">
+                ✦
+            </div>
+
+            <span>
+                Prism AI
+            </span>
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="features.html">
+                Features
+            </a>
+
+            <a href="pricing.html">
+                Pricing
+            </a>
+
+            <a href="profile.html">
+                Profile
+            </a>
+
+            <button
+                id="themeToggle"
+                class="theme-btn"
+                type="button"
+                onclick="toggleBillingTheme()"
+            >
+                ☀️ Light
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         BILLING SUMMARY
+    ========================= -->
+
+    <main class="billing-page">
+
+        <section class="hero">
+
+            <div class="eyebrow">
+                ✦ BILLING SUMMARY
+            </div>
+
+            <h1>
+                Review your order.
+            </h1>
+
+            <p>
+                Check your plan and total before continuing to secure checkout.
+            </p>
+
+        </section>
+
+
+        <section class="summary-card">
+
+            <div class="selected-plan">
+
+                <div class="plan-left">
+
+                    <div
+                        class="plan-icon"
+                        id="planIcon"
+                    >
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <h2
+                            class="plan-name"
+                            id="planName"
+                        >
+                            Loading...
+                        </h2>
+
+                        <div
+                            class="plan-description"
+                            id="planDescription"
+                        >
+                            Preparing your billing summary...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="plan-price">
+
+                    <strong id="priceDisplay">
+                        ₹0
+                    </strong>
+
+                    <span id="priceLabel">
+                        monthly
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="details">
+
+                <div class="details-title">
+                    Order details
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Plan
+                    </span>
+
+                    <span id="detailPlan">
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Billing cycle
+                    </span>
+
+                    <span id="detailBilling">
+                        —
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="detail-row"
+                    id="memberRow"
+                >
+
+                    <span>
+                        Users / members
+                    </span>
+
+                    <span id="detailMembers">
+                        1
+                    </span>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Price
+                    </span>
+
+                    <span id="detailPrice">
+                        ₹0
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- TEAM MEMBER CONTROL -->
+
+            <div
+                class="team-members"
+                id="teamMembersBox"
+            >
+
+                <label for="teamMembers">
+                    How many people are in your team?
+                </label>
+
+                <input
+                    id="teamMembers"
+                    type="number"
+                    min="1"
+                    max="1000"
+                    value="1"
+                    oninput="updateTeamTotal()"
+                >
+
+            </div>
+
+
+            <!-- TOTAL -->
+
+            <div class="total-box">
+
+                <div class="total-row">
+
+                    <span class="total-label">
+                        Total to pay
+                    </span>
+
+                    <span
+                        class="total-amount"
+                        id="totalAmount"
+                    >
+                        ₹0
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="confirm-button"
+                type="button"
+                onclick="confirmOrder()"
+            >
+                Confirm Order & Continue to Checkout →
+            </button>
+
+
+            <button
+                class="back-button"
+                type="button"
+                onclick="goBackToPricing()"
+            >
+                ← Back to Pricing
+            </button>
+
+
+            <div class="security">
+                🔐 Your payment will be processed securely through the payment gateway.
+                <br>
+                Prism AI will activate your subscription only after successful payment verification.
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* =========================================
+           BILLING DATA
+        ========================================== */
+
+        const planPrices = {
+
+            Infinity: {
+                monthly: 199,
+                yearly: 159
+            },
+
+            "Team / Collab": {
+                monthly: 499,
+                yearly: 399
+            },
+
+            Luxury: {
+                monthly: 999,
+                yearly: 799
+            }
+
+        };
+
+
+        const planDescriptions = {
+
+            Infinity:
+                "Advanced Prism AI tools and higher usage limits.",
+
+            "Team / Collab":
+                "Collaboration tools for teams and shared projects.",
+
+            Luxury:
+                "Everything in Prism AI with unlimited users and usage."
+
+        };
+
+
+        const planIcons = {
+
+            Infinity: "⚡",
+
+            "Team / Collab": "👥",
+
+            Luxury: "👑"
+
+        };
+
+
+        let selectedPlan =
+            localStorage.getItem("prismSelectedPlan") ||
+            localStorage.getItem("prismCheckoutPlan") ||
+            "Infinity";
+
+
+        let billingMode =
+            localStorage.getItem("prismBillingMode") ||
+            localStorage.getItem("prismCheckoutBillingMode") ||
+            "monthly";
+
+
+        /* =========================================
+           LOAD SUMMARY
+        ========================================== */
+
+        function loadBillingSummary() {
+
+            if (!planPrices[selectedPlan]) {
+                selectedPlan = "Infinity";
+            }
+
+
+            const price =
+                planPrices[selectedPlan][billingMode];
+
+
+            document.getElementById("planName").textContent =
+                selectedPlan;
+
+
+            document.getElementById("planDescription").textContent =
+                planDescriptions[selectedPlan];
+
+
+            document.getElementById("planIcon").textContent =
+                planIcons[selectedPlan];
+
+
+            document.getElementById("detailPlan").textContent =
+                selectedPlan;
+
+
+            document.getElementById("detailBilling").textContent =
+                billingMode === "yearly"
+                    ? "Yearly"
+                    : "Monthly";
+
+
+            document.getElementById("detailPrice").textContent =
+                "₹" + price;
+
+
+            document.getElementById("priceDisplay").textContent =
+                "₹" + price;
+
+
+            document.getElementById("priceLabel").textContent =
+                billingMode === "yearly"
+                    ? "per month equivalent"
+                    : "per month";
+
+
+            const teamBox =
+                document.getElementById("teamMembersBox");
+
+
+            const memberRow =
+                document.getElementById("memberRow");
+
+
+            if (selectedPlan === "Team / Collab") {
+
+                teamBox.style.display = "block";
+
+                memberRow.style.display = "flex";
+
+                updateTeamTotal();
+
+            } else {
+
+                teamBox.style.display = "none";
+
+                if (selectedPlan === "Luxury") {
+
+                    memberRow.style.display = "flex";
+
+                    document.getElementById("detailMembers")
+                        .textContent = "Unlimited";
+
+                } else {
+
+                    memberRow.style.display = "none";
+
+                }
+
+
+                document.getElementById("totalAmount")
+                    .textContent = "₹" + price;
+
+            }
+
+        }
+
+
+        /* =========================================
+           TEAM TOTAL
+        ========================================== */
+
+        function updateTeamTotal() {
+
+            if (selectedPlan !== "Team / Collab") {
+                return;
+            }
+
+
+            const membersInput =
+                document.getElementById("teamMembers");
+
+
+            let members =
+                parseInt(
+                    membersInput.value,
+                    10
+                );
+
+
+            if (!Number.isFinite(members) || members < 1) {
+                members = 1;
+                membersInput.value = 1;
+            }
+
+
+            if (members > 1000) {
+                members = 1000;
+                membersInput.value = 1000;
+            }
+
+
+            const price =
+                planPrices[selectedPlan][billingMode];
+
+
+            const total =
+                price * members;
+
+
+            document.getElementById("detailMembers")
+                .textContent = members;
+
+
+            document.getElementById("detailPrice")
+                .textContent =
+                "₹" + price + " × " + members;
+
+
+            document.getElementById("totalAmount")
+                .textContent =
+                "₹" + total;
+
+        }
+
+
+        /* =========================================
+           CONFIRM ORDER
+        ========================================== */
+
+        function confirmOrder() {
+
+            let members = 1;
+
+            let total =
+                planPrices[selectedPlan][billingMode];
+
+
+            if (selectedPlan === "Team / Collab") {
+
+                members =
+                    parseInt(
+                        document.getElementById("teamMembers").value,
+                        10
+                    );
+
+
+                if (!Number.isFinite(members) || members < 1) {
+
+                    alert(
+                        "Please enter a valid number of team members."
+                    );
+
+                    return;
+
+                }
+
+
+                total =
+                    planPrices[selectedPlan][billingMode]
+                    * members;
+
+            }
+
+
+            if (selectedPlan === "Luxury") {
+
+                members = "Unlimited";
+
+                total =
+                    planPrices.Luxury[billingMode];
+
+            }
+
+
+            /* =========================
+               SAVE CHECKOUT DATA
+            ========================= */
+
+            localStorage.setItem(
+                "prismCheckoutPlan",
+                selectedPlan
+            );
+
+
+            localStorage.setItem(
+                "prismCheckoutBillingMode",
+                billingMode
+            );
+
+
+            localStorage.setItem(
+                "prismCheckoutMembers",
+                members
+            );
+
+
+            localStorage.setItem(
+                "prismCheckoutPricePerPerson",
+                planPrices[selectedPlan][billingMode]
+            );
+
+
+            localStorage.setItem(
+                "prismCheckoutTotal",
+                total
+            );
+
+
+            /*
+             * Checkout page is the actual
+             * payment stage.
+             */
+
+            window.location.href =
+                "checkout.html";
+
+        }
+
+
+        /* =========================================
+           BACK TO PRICING
+        ========================================== */
+
+        function goBackToPricing() {
+
+            window.location.href =
+                "pricing.html";
+
+        }
+
+
+        /* =========================================
+           THEME
+        ========================================== */
+
+        function toggleBillingTheme() {
+
+            document.body.classList.toggle(
+                "light-theme"
+            );
+
+
+            const isLight =
+                document.body.classList.contains(
+                    "light-theme"
+                );
+
+
+            localStorage.setItem(
+                "prismTheme",
+                isLight
+                    ? "light"
+                    : "dark"
+            );
+
+
+            updateThemeButton();
+
+        }
+
+
+        function updateThemeButton() {
+
+            const button =
+                document.getElementById(
+                    "themeToggle"
+                );
+
+
+            if (!button) {
+                return;
+            }
+
+
+            button.textContent =
+                document.body.classList.contains(
+                    "light-theme"
+                )
+                    ? "🌙 Dark"
+                    : "☀️ Light";
+
+        }
+
+
+        function applyTheme() {
+
+            const savedTheme =
+                localStorage.getItem(
+                    "prismTheme"
+                );
+
+
+            if (savedTheme === "light") {
+
+                document.body.classList.add(
+                    "light-theme"
+                );
+
+            } else {
+
+                document.body.classList.remove(
+                    "light-theme"
+                );
+
+            }
+
+
+            updateThemeButton();
+
+        }
+
+
+        /* =========================================
+           PAGE LOAD
+        ========================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                applyTheme();
+
+                loadBillingSummary();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

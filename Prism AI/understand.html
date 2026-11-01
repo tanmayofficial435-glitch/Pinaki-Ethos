@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understand My Project — Prism AI</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    min-height:100vh;
+    color:#fff;
+    background:
+      radial-gradient(circle at 15% 10%,#30206b55,transparent 35%),
+      radial-gradient(circle at 85% 20%,#00cfff18,transparent 30%),
+      #080812;
+}
+nav{
+    height:75px;padding:0 6%;display:flex;align-items:center;
+    justify-content:space-between;border-bottom:1px solid #ffffff12;
+    background:#090914dd;backdrop-filter:blur(20px);
+}
+.logo{color:white;text-decoration:none;font-size:21px;font-weight:800}
+.logo span{color:#a78bfa;font-size:28px}
+nav button,.back{
+    padding:10px 15px;border:1px solid #ffffff18;border-radius:12px;
+    background:#ffffff0b;color:white;cursor:pointer
+}
+main{width:min(1000px,90%);margin:auto;padding:70px 0}
+.badge{
+    display:inline-block;padding:8px 14px;border-radius:30px;
+    color:#c4b5fd;background:#8b5cf622;border:1px solid #a78bfa33;
+    margin-bottom:22px;font-size:13px;font-weight:700
+}
+h1{font-size:clamp(38px,6vw,68px);letter-spacing:-2px;margin-bottom:20px}
+.hero p{color:#aaa6bd;line-height:1.7;max-width:700px;font-size:17px}
+.panel{
+    margin-top:42px;padding:28px;border:1px solid #ffffff12;
+    border-radius:25px;background:#ffffff06
+}
+label{display:block;color:#c8c3d8;font-size:13px;font-weight:700;margin-bottom:10px}
+textarea{
+    width:100%;min-height:190px;resize:vertical;padding:17px;
+    border-radius:17px;border:1px solid #ffffff18;
+    background:#080812;color:white;font:inherit;line-height:1.6;
+    outline:none
+}
+textarea:focus{border-color:#a78bfa}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+button.primary{
+    background:linear-gradient(135deg,#7655ff,#b18cff);
+    color:white;border:0;border-radius:14px;padding:14px 20px;
+    font-weight:800;cursor:pointer
+}
+button.secondary{border:1px solid #ffffff18;border-radius:14px;padding:14px 20px;background:#ffffff09;color:white;cursor:pointer}
+.status{margin-top:15px;color:#aaa6bd;font-size:14px}
+.result{
+    margin-top:22px;padding:22px;border-radius:18px;
+    background:#ffffff08;border:1px solid #ffffff12;
+    white-space:pre-wrap;line-height:1.7;color:#e1ddef;display:none
+}
+.result.show{display:block}
+body.light{
+    color:#171528;
+    background:linear-gradient(135deg,#f8f7ff,#eef2ff,#f7fbff)
+}
+body.light nav{background:#ffffffcc;border-color:#30205c18}
+body.light .logo,body.light nav button,body.light .back{color:#211936}
+body.light .panel{background:#ffffffaa;border-color:#30205c18}
+body.light textarea{background:#fff;color:#211936;border-color:#30205c22}
+body.light label,body.light .status{color:#655d78}
+body.light .hero p{color:#655d78}
+body.light .result{color:#342b49;background:#ffffffaa;border-color:#30205c18}
+@media(max-width:600px){nav{padding:0 18px}main{padding:45px 0}.panel{padding:20px}}
+</style>
+</head>
+
+<body>
+<nav>
+    <a class="logo" href="index.html"><span>✦</span> Prism AI</a>
+    <div>
+        <button onclick="location.href='features.html'">Features</button>
+        <button id="themeButton" onclick="toggleTheme()">☀️ Light</button>
+    </div>
+</nav>
+
+<main>
+    <section class="hero">
+        <div class="badge">🧠 Prism Understanding Engine</div>
+        <h1>Understand<br>your project.</h1>
+        <p>
+            Explain your project idea and Prism AI will organize its goal,
+            important topics, research needs, structure and next steps.
+        </p>
+    </section>
+
+    <section class="panel">
+        <label for="projectInput">Describe your project</label>
+
+        <textarea id="projectInput"
+        placeholder="Example: I want to create a school project about renewable energy in India..."></textarea>
+
+        <div class="actions">
+            <button class="primary" id="runButton" onclick="understandProject()">
+                ✦ Understand My Project
+            </button>
+
+            <button class="secondary" onclick="clearProject()">
+                Clear
+            </button>
+        </div>
+
+        <div class="status" id="status"></div>
+        <div class="result" id="result"></div>
+    </section>
+</main>
+
+<script>
+function applyTheme(){
+    const theme=localStorage.getItem("prismTheme")||"dark";
+    document.body.classList.toggle("light",theme==="light");
+    document.getElementById("themeButton").textContent=
+        theme==="light"?"🌙 Dark":"☀️ Light";
+}
+
+function toggleTheme(){
+    const current=localStorage.getItem("prismTheme")||"dark";
+    localStorage.setItem("prismTheme",current==="dark"?"light":"dark");
+    applyTheme();
+}
+
+function clearProject(){
+    document.getElementById("projectInput").value="";
+    document.getElementById("status").textContent="";
+    document.getElementById("result").textContent="";
+    document.getElementById("result").classList.remove("show");
+}
+
+async function understandProject(){
+    const input=document.getElementById("projectInput");
+    const button=document.getElementById("runButton");
+    const status=document.getElementById("status");
+    const result=document.getElementById("result");
+    const text=input.value.trim();
+
+    if(!text){
+        status.textContent="Please describe your project first.";
+        input.focus();
+        return;
+    }
+
+    button.disabled=true;
+    button.textContent="✦ Prism is understanding...";
+    status.textContent="Connecting to Prism AI...";
+    result.classList.remove("show");
+
+    const system=`
+You are Prism AI's project understanding assistant.
+Analyze the student's project and organize your answer under these headings:
+
+1. Project Overview
+2. Main Goal
+3. Important Topics
+4. Research Needed
+5. Suggested Project Structure
+6. Possible Deliverables
+7. Missing Information
+8. Recommended Next Steps
+
+Be clear, practical and suitable for a student.
+`;
+
+    try{
+        const response=await fetch("/api/ai",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                prompt:text,
+                system:system,
+                tool:"understand-project"
+            })
+        });
+
+        const data=await response.json();
+
+        if(!response.ok){
+            throw new Error(data.error||"AI request failed.");
+        }
+
+        const answer=data.response||data.answer||data.message||data.text;
+
+        if(!answer){
+            throw new Error("No response received from Prism AI.");
+        }
+
+        result.textContent=answer;
+        result.classList.add("show");
+        status.textContent="✨ Your project has been organized.";
+
+    }catch(error){
+        status.textContent="❌ "+error.message;
+    }finally{
+        button.disabled=false;
+        button.textContent="✦ Understand My Project";
+    }
+}
+
+applyTheme();
+</script>
+</body>
+</html>

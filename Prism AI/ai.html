@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prism AI Assistant</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            color: #f8fafc;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(124,58,237,.20), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(6,182,212,.16), transparent 30%),
+                #070712;
+            transition: .3s;
+        }
+
+        body.light-theme {
+            color: #111827;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(124,58,237,.10), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(6,182,212,.08), transparent 30%),
+                #f7f8fc;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        textarea {
+            font: inherit;
+        }
+
+        /* NAV */
+
+        nav {
+            height: 74px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(7,7,18,.78);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme nav {
+            background: rgba(255,255,255,.84);
+            border-bottom-color: rgba(15,23,42,.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo-orb {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#7c3aed,#06b6d4);
+            box-shadow: 0 0 25px rgba(124,58,237,.45);
+            position: relative;
+        }
+
+        .logo-orb::after {
+            content: "";
+            position: absolute;
+            inset: 7px;
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 26px;
+        }
+
+        .nav-links a {
+            color: #aab2c4;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        body.light-theme .nav-links a {
+            color: #596273;
+        }
+
+        body.light-theme .nav-links a:hover {
+            color: #111827;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .nav-btn {
+            padding: 9px 13px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(255,255,255,.05);
+            color: white;
+            cursor: pointer;
+        }
+
+        body.light-theme .nav-btn {
+            color: #111827;
+            background: white;
+            border-color: rgba(15,23,42,.1);
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px 35px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(124,58,237,.3);
+            background: rgba(124,58,237,.10);
+            color: #c4b5fd;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        body.light-theme .badge {
+            color: #6d28d9;
+        }
+
+        h1 {
+            font-size: clamp(42px,7vw,72px);
+            line-height: 1;
+            letter-spacing: -4px;
+            margin-bottom: 18px;
+        }
+
+        .gradient {
+            background: linear-gradient(90deg,#a78bfa,#22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #98a1b4;
+            line-height: 1.7;
+        }
+
+        body.light-theme .hero p {
+            color: #667085;
+        }
+
+        /* MAIN */
+
+        .chat-container {
+            width: 92%;
+            max-width: 1050px;
+            min-height: 650px;
+            margin: 20px auto 70px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,.10);
+            background: rgba(255,255,255,.045);
+            box-shadow: 0 25px 80px rgba(0,0,0,.30);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.light-theme .chat-container {
+            background: rgba(255,255,255,.90);
+            border-color: rgba(15,23,42,.08);
+            box-shadow: 0 25px 70px rgba(15,23,42,.10);
+        }
+
+        .chat-header {
+            min-height: 78px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme .chat-header {
+            border-bottom-color: rgba(15,23,42,.08);
+        }
+
+        .assistant-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .assistant-orb {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#7c3aed,#06b6d4);
+            box-shadow: 0 0 30px rgba(124,58,237,.4);
+            font-size: 20px;
+        }
+
+        .assistant-name {
+            font-weight: 800;
+        }
+
+        .online {
+            color: #34d399;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .clear-btn {
+            padding: 8px 12px;
+            border-radius: 9px;
+            border: 1px solid rgba(255,255,255,.10);
+            background: rgba(255,255,255,.04);
+            color: #aab2c4;
+            cursor: pointer;
+        }
+
+        body.light-theme .clear-btn {
+            color: #596273;
+            background: white;
+        }
+
+        /* MESSAGES */
+
+        .messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            min-height: 430px;
+            max-height: 520px;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 18px;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .bubble {
+            max-width: 78%;
+            padding: 13px 16px;
+            border-radius: 16px;
+            line-height: 1.65;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+
+        .message.ai .bubble {
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.08);
+            color: #d6dce7;
+            border-bottom-left-radius: 5px;
+        }
+
+        body.light-theme .message.ai .bubble {
+            background: #f2f4f8;
+            color: #344054;
+            border-color: rgba(15,23,42,.07);
+        }
+
+        .message.user .bubble {
+            background: linear-gradient(135deg,#7c3aed,#06b6d4);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .typing {
+            opacity: .7;
+        }
+
+        .typing::after {
+            content: "...";
+            animation: dots 1.2s infinite;
+        }
+
+        @keyframes dots {
+            0% { content: "."; }
+            33% { content: ".."; }
+            66% { content: "..."; }
+        }
+
+        /* SUGGESTIONS */
+
+        .suggestions {
+            padding: 0 24px 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .suggestion {
+            border: 1px solid rgba(124,58,237,.25);
+            background: rgba(124,58,237,.08);
+            color: #bca9ff;
+            padding: 9px 12px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        body.light-theme .suggestion {
+            color: #5b21b6;
+        }
+
+        .suggestion:hover {
+            background: rgba(124,58,237,.16);
+        }
+
+        /* INPUT */
+
+        .input-area {
+            padding: 16px;
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme .input-area {
+            border-top-color: rgba(15,23,42,.08);
+        }
+
+        .input-box {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(0,0,0,.12);
+            border-radius: 16px;
+            padding: 8px;
+        }
+
+        body.light-theme .input-box {
+            background: white;
+            border-color: rgba(15,23,42,.10);
+        }
+
+        textarea {
+            flex: 1;
+            min-height: 60px;
+            max-height: 170px;
+            resize: vertical;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: inherit;
+            padding: 10px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        textarea::placeholder {
+            color: #687184;
+        }
+
+        .send-btn {
+            min-width: 105px;
+            padding: 12px 16px;
+            border: 0;
+            border-radius: 11px;
+            background: linear-gradient(135deg,#7c3aed,#06b6d4);
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .send-btn:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+        .input-note {
+            color: #687184;
+            font-size: 10px;
+            padding: 8px 4px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 20px 45px;
+            color: #687184;
+            font-size: 13px;
+        }
+
+        @media(max-width:700px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            nav {
+                padding: 0 18px;
+            }
+
+            .chat-container {
+                width: 96%;
+            }
+
+            .messages {
+                padding: 16px;
+            }
+
+            .bubble {
+                max-width: 88%;
+            }
+
+            .suggestions {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .input-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .send-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <a href="index.html" class="logo">
+        <span class="logo-orb"></span>
+        Prism AI
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="editor.html">AI Editor</a>
+    </div>
+
+    <div class="nav-actions">
+
+        <a
+            href="login.html"
+            class="nav-btn"
+            id="loginButton"
+        >
+            Sign In / Log In
+        </a>
+
+        <button
+            class="nav-btn"
+            id="themeButton"
+        >
+            ☀️ Light
+        </button>
+
+    </div>
+
+</nav>
+
+
+<section class="hero">
+
+    <div class="badge">
+        ✦ Real AI Assistant
+    </div>
+
+    <h1>
+        Ask.
+        <span class="gradient">Imagine. Create.</span>
+    </h1>
+
+    <p>
+        Meet your intelligent Prism AI assistant.
+        Ask questions, brainstorm ideas, learn concepts,
+        write content and explore possibilities.
+    </p>
+
+</section>
+
+
+<main class="chat-container">
+
+    <div class="chat-header">
+
+        <div class="assistant-info">
+
+            <div class="assistant-orb">
+                ✦
+            </div>
+
+            <div>
+
+                <div class="assistant-name">
+                    Prism AI Assistant
+                </div>
+
+                <div class="online">
+                    ● AI Online
+                </div>
+
+            </div>
+
+        </div>
+
+        <button
+            class="clear-btn"
+            onclick="clearChat()"
+        >
+            Clear Chat
+        </button>
+
+    </div>
+
+
+    <div
+        class="messages"
+        id="messages"
+    >
+
+        <div class="message ai">
+
+            <div class="bubble">
+                Hello! I'm Prism AI. ✦
+
+                Ask me anything — school questions,
+                technology, writing, coding, ideas,
+                explanations or just something you're curious about.
+
+                How can I help you?
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="suggestions">
+
+        <button
+            class="suggestion"
+            onclick="askSuggestion('Explain artificial intelligence in simple words')"
+        >
+            🧠 Explain AI simply
+        </button>
+
+        <button
+            class="suggestion"
+            onclick="askSuggestion('Give me 5 creative project ideas for school')"
+        >
+            💡 Give me project ideas
+        </button>
+
+        <button
+            class="suggestion"
+            onclick="askSuggestion('Help me write a professional introduction about myself')"
+        >
+            ✍️ Help me write
+        </button>
+
+        <button
+            class="suggestion"
+            onclick="askSuggestion('Teach me something interesting about space')"
+        >
+            🚀 Teach me something
+        </button>
+
+    </div>
+
+
+    <div class="input-area">
+
+        <div class="input-box">
+
+            <textarea
+                id="userInput"
+                placeholder="Message Prism AI..."
+            ></textarea>
+
+            <button
+                id="sendButton"
+                class="send-btn"
+                onclick="sendMessage()"
+            >
+                Send ➤
+            </button>
+
+        </div>
+
+        <div class="input-note">
+            Enter to send · Shift + Enter for a new line
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+    © 2026 Prism AI · Powered by OpenRouter AI.
+</footer>
+
+
+<script>
+
+    /* =========================
+       THEME
+    ========================= */
+
+    function applyTheme() {
+
+        const savedTheme =
+            localStorage.getItem("prismTheme");
+
+        const button =
+            document.getElementById("themeButton");
+
+        if (savedTheme === "light") {
+
+            document.body.classList.add(
+                "light-theme"
+            );
+
+            button.textContent =
+                "🌙 Dark";
+
+        } else {
+
+            document.body.classList.remove(
+                "light-theme"
+            );
+
+            button.textContent =
+                "☀️ Light";
+        }
+    }
+
+
+    function toggleTheme() {
+
+        const button =
+            document.getElementById("themeButton");
+
+        document.body.classList.toggle(
+            "light-theme"
+        );
+
+        if (
+            document.body.classList.contains(
+                "light-theme"
+            )
+        ) {
+
+            localStorage.setItem(
+                "prismTheme",
+                "light"
+            );
+
+            button.textContent =
+                "🌙 Dark";
+
+        } else {
+
+            localStorage.setItem(
+                "prismTheme",
+                "dark"
+            );
+
+            button.textContent =
+                "☀️ Light";
+        }
+    }
+
+
+    document
+        .getElementById("themeButton")
+        .addEventListener(
+            "click",
+            toggleTheme
+        );
+
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    function updateLogin() {
+
+        const button =
+            document.getElementById(
+                "loginButton"
+            );
+
+        const loggedIn =
+            localStorage.getItem(
+                "prismLoggedIn"
+            ) === "true";
+
+        const name =
+            localStorage.getItem(
+                "prismUserName"
+            );
+
+        if (loggedIn && name) {
+
+            button.textContent =
+                "👤 " + name;
+
+            button.href = "#";
+
+            button.onclick =
+                function(event) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Welcome back, " +
+                        name +
+                        "!"
+                    );
+
+                };
+
+        } else {
+
+            button.textContent =
+                "Sign In / Log In";
+
+            button.href =
+                "login.html";
+
+            button.onclick = null;
+        }
+    }
+
+
+    /* =========================
+       ADD MESSAGE
+    ========================= */
+
+    function addMessage(
+        text,
+        type
+    ) {
+
+        const messages =
+            document.getElementById(
+                "messages"
+            );
+
+        const message =
+            document.createElement(
+                "div"
+            );
+
+        message.className =
+            "message " + type;
+
+
+        const bubble =
+            document.createElement(
+                "div"
+            );
+
+        bubble.className =
+            "bubble";
+
+        bubble.textContent =
+            text;
+
+
+        message.appendChild(
+            bubble
+        );
+
+        messages.appendChild(
+            message
+        );
+
+
+        messages.scrollTop =
+            messages.scrollHeight;
+
+        return message;
+    }
+
+
+    /* =========================
+       SUGGESTION
+    ========================= */
+
+    function askSuggestion(text) {
+
+        const input =
+            document.getElementById(
+                "userInput"
+            );
+
+        input.value = text;
+
+        input.focus();
+    }
+
+
+    /* =========================
+       SEND REAL AI MESSAGE
+    ========================= */
+
+    async function sendMessage() {
+
+        const input =
+            document.getElementById(
+                "userInput"
+            );
+
+        const sendButton =
+            document.getElementById(
+                "sendButton"
+            );
+
+        const prompt =
+            input.value.trim();
+
+
+        if (!prompt) {
+
+            input.focus();
+
+            return;
+        }
+
+
+        /*
+        Show user's message
+        */
+
+        addMessage(
+            prompt,
+            "user"
+        );
+
+
+        input.value = "";
+
+        sendButton.disabled =
+            true;
+
+        sendButton.textContent =
+            "Thinking...";
+
+
+        /*
+        Temporary AI message
+        */
+
+        const typingMessage =
+            addMessage(
+                "Prism AI is thinking",
+                "ai"
+            );
+
+        typingMessage
+            .querySelector(".bubble")
+            .classList.add(
+                "typing"
+            );
+
+
+        try {
+
+            /*
+            ------------------------------------
+            CONNECT TO OUR BACKEND
+            ------------------------------------
+            */
+
+            const response =
+                await fetch(
+                    "/api/ai",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                prompt: prompt,
+
+                                tool: "chat"
+
+                            })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    "AI request failed."
+                );
+            }
+
+
+            /*
+            Replace typing message
+            */
+
+            typingMessage
+                .querySelector(".bubble")
+                .classList.remove(
+                    "typing"
+                );
+
+
+            typingMessage
+                .querySelector(".bubble")
+                .textContent =
+                    data.response ||
+                    "Prism AI returned an empty response.";
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Prism AI error:",
+                error
+            );
+
+
+            typingMessage
+                .querySelector(".bubble")
+                .classList.remove(
+                    "typing"
+                );
+
+
+            typingMessage
+                .querySelector(".bubble")
+                .textContent =
+                    "Unable to connect to Prism AI.\n\n" +
+                    error.message +
+                    "\n\n" +
+                    "Make sure your Prism AI backend is running.";
+
+        }
+
+
+        sendButton.disabled =
+            false;
+
+        sendButton.textContent =
+            "Send ➤";
+
+    }
+
+
+    /* =========================
+       ENTER TO SEND
+    ========================= */
+
+    document
+        .getElementById("userInput")
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter" &&
+                    !event.shiftKey
+                ) {
+
+                    event.preventDefault();
+
+                    sendMessage();
+
+                }
+
+            }
+        );
+
+
+    /* =========================
+       CLEAR CHAT
+    ========================= */
+
+    function clearChat() {
+
+        const messages =
+            document.getElementById(
+                "messages"
+            );
+
+        messages.innerHTML = "";
+
+
+        addMessage(
+            "Chat cleared. ✦\n\nWhat would you like to explore?",
+            "ai"
+        );
+    }
+
+
+    /* =========================
+       START
+    ========================= */
+
+    applyTheme();
+
+    updateLogin();
+
+</script>
+
+</body>
+</html>

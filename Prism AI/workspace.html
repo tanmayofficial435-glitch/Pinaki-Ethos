@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prism AI — Workspace</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #080812;
+            --panel: rgba(19, 18, 38, 0.82);
+            --panel-solid: #121126;
+            --border: rgba(168, 139, 255, 0.18);
+            --text: #f8f7ff;
+            --muted: #a7a3c4;
+            --primary: #9b7cff;
+            --secondary: #68d8ff;
+            --pink: #ed8cff;
+            --shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+        }
+
+        body.light-theme {
+            --bg: #f5f3ff;
+            --panel: rgba(255, 255, 255, 0.86);
+            --panel-solid: #ffffff;
+            --border: rgba(104, 75, 180, 0.16);
+            --text: #18142d;
+            --muted: #6d6787;
+            --primary: #7352e8;
+            --secondary: #089ac5;
+            --pink: #c34edb;
+            --shadow: 0 25px 70px rgba(75, 53, 150, 0.12);
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 10% 0%, rgba(133, 91, 255, 0.18), transparent 32%),
+                radial-gradient(circle at 90% 15%, rgba(0, 202, 255, 0.10), transparent 28%),
+                var(--bg);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-theme {
+            background:
+                radial-gradient(circle at 10% 0%, rgba(139, 92, 246, 0.14), transparent 30%),
+                radial-gradient(circle at 90% 15%, rgba(6, 182, 212, 0.12), transparent 28%),
+                linear-gradient(135deg, #f8f7ff, #eef2ff);
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .topbar {
+            height: 76px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(8, 8, 18, 0.58);
+            backdrop-filter: blur(22px);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .light-theme .topbar {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            white-space: nowrap;
+        }
+
+        .brand-symbol {
+            color: var(--primary);
+            font-size: 29px;
+            text-shadow: 0 0 25px rgba(155, 124, 255, 0.7);
+        }
+
+        .navlinks {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .navlinks a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .navlinks a:hover,
+        .navlinks a.active {
+            color: var(--text);
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-button,
+        .account-button {
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: var(--text);
+            border-radius: 13px;
+            padding: 10px 13px;
+            transition: 0.2s ease;
+        }
+
+        .icon-button:hover,
+        .account-button:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .page {
+            width: min(1400px, 90%);
+            margin: 0 auto;
+            padding: 52px 0 80px;
+        }
+
+        .welcome-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 34px;
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: clamp(32px, 5vw, 58px);
+            line-height: 1.02;
+            letter-spacing: -2.6px;
+            max-width: 720px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(100deg, var(--primary), var(--pink), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            max-width: 650px;
+            line-height: 1.7;
+            margin-top: 17px;
+            font-size: 15px;
+        }
+
+        .new-project-button {
+            border: none;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), #7046e8);
+            border-radius: 17px;
+            padding: 15px 20px;
+            font-weight: 800;
+            box-shadow: 0 12px 35px rgba(125, 82, 232, 0.3);
+            transition: 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .new-project-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 45px rgba(125, 82, 232, 0.45);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 23px;
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(155, 124, 255, 0.13);
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+
+        .stat-number {
+            font-size: 30px;
+            font-weight: 850;
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .section-heading h2 {
+            font-size: 23px;
+            letter-spacing: -0.8px;
+        }
+
+        .section-heading span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 270px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            transition: 0.28s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(155, 124, 255, 0.6);
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.25),
+                0 0 45px rgba(155, 124, 255, 0.1);
+        }
+
+        .project-card::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            right: -85px;
+            top: -85px;
+            border-radius: 50%;
+            background: rgba(155, 124, 255, 0.13);
+            filter: blur(12px);
+            pointer-events: none;
+        }
+
+        .project-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .project-emoji {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border-radius: 17px;
+            background: linear-gradient(
+                135deg,
+                rgba(155, 124, 255, 0.2),
+                rgba(104, 216, 255, 0.12)
+            );
+            font-size: 26px;
+        }
+
+        .project-menu {
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-size: 21px;
+        }
+
+        .project-card h3 {
+            margin-top: 23px;
+            font-size: 21px;
+            letter-spacing: -0.6px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 9px;
+            min-height: 42px;
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 27px;
+        }
+
+        .project-status {
+            color: var(--secondary);
+            font-size: 12px;
+            font-weight: 750;
+        }
+
+        .open-project {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 9px 12px;
+            color: var(--text);
+            background: rgba(155, 124, 255, 0.08);
+            font-size: 12px;
+            font-weight: 750;
+        }
+
+        .open-project:hover {
+            border-color: var(--primary);
+        }
+
+        .empty-card {
+            min-height: 270px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px;
+            border: 1px dashed rgba(155, 124, 255, 0.45);
+            border-radius: 25px;
+            background: rgba(155, 124, 255, 0.035);
+        }
+
+        .empty-card .plus {
+            font-size: 45px;
+            color: var(--primary);
+            margin-bottom: 14px;
+        }
+
+        .empty-card h3 {
+            font-size: 18px;
+        }
+
+        .empty-card p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 9px 0 20px;
+        }
+
+        .empty-card button {
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: var(--text);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-weight: 750;
+        }
+
+        .magic-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            margin-top: 38px;
+            padding: 30px;
+            border: 1px solid rgba(155, 124, 255, 0.3);
+            border-radius: 27px;
+            background:
+                linear-gradient(
+                    110deg,
+                    rgba(155, 124, 255, 0.15),
+                    rgba(104, 216, 255, 0.06)
+                ),
+                var(--panel);
+            box-shadow: var(--shadow);
+        }
+
+        .magic-banner h2 {
+            font-size: 25px;
+            letter-spacing: -0.8px;
+        }
+
+        .magic-banner p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 8px;
+            max-width: 680px;
+        }
+
+        .magic-button {
+            border: none;
+            color: white;
+            background: linear-gradient(135deg, #9b7cff, #d56cff);
+            border-radius: 15px;
+            padding: 14px 19px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            width: min(500px, 100%);
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            background: var(--panel-solid);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .modal-header h2 {
+            font-size: 24px;
+        }
+
+        .close-modal {
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-size: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 13px;
+            outline: none;
+            color: var(--text);
+            background: rgba(155, 124, 255, 0.06);
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+        }
+
+        .submit-project {
+            width: 100%;
+            border: none;
+            border-radius: 13px;
+            padding: 14px;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), #7046e8);
+            font-weight: 800;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 1050px) {
+            .overview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .navlinks {
+                display: none;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .topbar {
+                padding: 0 5%;
+            }
+
+            .account-button {
+                display: none;
+            }
+
+            .page {
+                width: 92%;
+                padding-top: 35px;
+            }
+
+            .welcome-row,
+            .magic-banner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .overview-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .new-project-button,
+            .magic-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <a href="index.html" class="brand" style="text-decoration:none;color:var(--text);">
+            <span class="brand-symbol">✦</span>
+            <span>Prism AI</span>
+        </a>
+
+        <nav class="navlinks">
+            <a href="index.html">Home</a>
+            <a href="workspace.html" class="active">Workspace</a>
+            <a href="features.html">Features</a>
+            <a href="pricing.html">Pricing</a>
+        </nav>
+
+        <div class="top-actions">
+            <button class="icon-button" id="themeButton" onclick="toggleTheme()">☀️</button>
+            <button class="account-button" onclick="window.location.href='profile.html'">
+                Account ↗
+            </button>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="welcome-row">
+            <div>
+                <div class="eyebrow">Your creative command center</div>
+
+                <h1>
+                    Turn every idea into a
+                    <span class="gradient-text">complete project.</span>
+                </h1>
+
+                <p class="subtitle">
+                    Research, write, design, code, create presentations and publish
+                    everything from one connected Prism AI workspace.
+                </p>
+            </div>
+
+            <button class="new-project-button" onclick="openProjectModal()">
+                ＋ New Project
+            </button>
+        </section>
+
+        <section class="overview-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📁</div>
+                <div class="stat-number" id="projectCount">3</div>
+                <div class="stat-label">Active projects</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🧠</div>
+                <div class="stat-number">12</div>
+                <div class="stat-label">AI creations</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div class="stat-number">28</div>
+                <div class="stat-label">Saved resources</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Creative possibilities</div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-heading">
+                <h2>Your projects</h2>
+                <span id="projectHint">Everything in one place</span>
+            </div>
+
+            <div class="project-grid" id="projectGrid">
+                <article class="project-card">
+                    <div class="project-top">
+                        <div class="project-emoji">🌱</div>
+                        <button class="project-menu">⋯</button>
+                    </div>
+
+                    <h3>Renewable Energy</h3>
+
+                    <p>
+                        Research, presentation, report and poster for a school science project.
+                    </p>
+
+                    <div class="project-footer">
+                        <span class="project-status">● In progress</span>
+                        <button class="open-project" onclick="openProject('Renewable Energy')">
+                            Open →
+                        </button>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-top">
+                        <div class="project-emoji">🚀</div>
+                        <button class="project-menu">⋯</button>
+                    </div>
+
+                    <h3>India’s Space Programme</h3>
+
+                    <p>
+                        A research-based presentation with timeline, facts and visual content.
+                    </p>
+
+                    <div class="project-footer">
+                        <span class="project-status">● In progress</span>
+                        <button class="open-project" onclick="openProject('India’s Space Programme')">
+                            Open →
+                        </button>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-top">
+                        <div class="project-emoji">💻</div>
+                        <button class="project-menu">⋯</button>
+                    </div>
+
+                    <h3>My First Website</h3>
+
+                    <p>
+                        A responsive website project with design, code and AI-powered improvements.
+                    </p>
+
+                    <div class="project-footer">
+                        <span class="project-status">● In progress</span>
+                        <button class="open-project" onclick="openProject('My First Website')">
+                            Open →
+                        </button>
+                    </div>
+                </article>
+
+                <div class="empty-card">
+                    <div class="plus">＋</div>
+                    <h3>Start something new</h3>
+                    <p>
+                        Create a project and let Prism organize the entire workflow for you.
+                    </p>
+                    <button onclick="openProjectModal()">Create project</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="magic-banner">
+            <div>
+                <h2>🌟 Let Prism Magic build the workflow</h2>
+                <p>
+                    Tell Prism what you want to make. It can help organize research,
+                    create content, generate designs, build presentations and prepare
+                    everything for publishing.
+                </p>
+            </div>
+
+            <button class="magic-button" onclick="window.location.href='ai.html?mode=magic'">
+                Try Prism Magic →
+            </button>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Create a project</h2>
+                <button class="close-modal" onclick="closeProjectModal()">×</button>
+            </div>
+
+            <form onsubmit="createProject(event)">
+                <div class="form-group">
+                    <label for="projectName">Project name</label>
+                    <input
+                        id="projectName"
+                        type="text"
+                        placeholder="e.g. Climate Change Project"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="projectDescription">What is this project about?</label>
+                    <input
+                        id="projectDescription"
+                        type="text"
+                        placeholder="Describe your idea"
+                        required
+                    >
+                </div>
+
+                <button class="submit-project" type="submit">
+                    Create Project →
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const projectModal = document.getElementById("projectModal");
+        const projectGrid = document.getElementById("projectGrid");
+        const projectCount = document.getElementById("projectCount");
+
+        function toggleTheme() {
+            document.body.classList.toggle("light-theme");
+
+            const isLight = document.body.classList.contains("light-theme");
+
+            localStorage.setItem("prismTheme", isLight ? "light" : "dark");
+
+            document.getElementById("themeButton").textContent =
+                isLight ? "🌙" : "☀️";
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem("prismTheme");
+
+            if (savedTheme === "light") {
+                document.body.classList.add("light-theme");
+                document.getElementById("themeButton").textContent = "🌙";
+            }
+        }
+
+        function openProjectModal() {
+            projectModal.classList.add("show");
+            document.getElementById("projectName").focus();
+        }
+
+        function closeProjectModal() {
+            projectModal.classList.remove("show");
+        }
+
+        function createProject(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("projectName").value.trim();
+            const description = document.getElementById("projectDescription").value.trim();
+
+            if (!name || !description) {
+                return;
+            }
+
+            const projects = JSON.parse(
+                localStorage.getItem("prismProjects") || "[]"
+            );
+
+            const newProject = {
+                id: Date.now(),
+                name,
+                description,
+                createdAt: new Date().toISOString()
+            };
+
+            projects.push(newProject);
+
+            localStorage.setItem("prismProjects", JSON.stringify(projects));
+
+            closeProjectModal();
+
+            document.getElementById("projectName").value = "";
+            document.getElementById("projectDescription").value = "";
+
+            renderUserProjects();
+        }
+
+        function renderUserProjects() {
+            const projects = JSON.parse(
+                localStorage.getItem("prismProjects") || "[]"
+            );
+
+            projects.forEach(project => {
+                const card = document.createElement("article");
+
+                card.className = "project-card";
+
+                card.innerHTML = `
+                    <div class="project-top">
+                        <div class="project-emoji">✨</div>
+                        <button class="project-menu">⋯</button>
+                    </div>
+
+                    <h3>${escapeHTML(project.name)}</h3>
+
+                    <p>${escapeHTML(project.description)}</p>
+
+                    <div class="project-footer">
+                        <span class="project-status">● New project</span>
+                        <button class="open-project">
+                            Open →
+                        </button>
+                    </div>
+                `;
+
+                card.querySelector(".open-project").addEventListener("click", () => {
+                    openProject(project.name);
+                });
+
+                projectGrid.insertBefore(card, projectGrid.lastElementChild);
+            });
+
+            projectCount.textContent = 3 + projects.length;
+        }
+
+        function openProject(name) {
+            localStorage.setItem("prismActiveProject", name);
+            window.location.href = "project.html";
+        }
+
+        function escapeHTML(value) {
+            return String(value)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        projectModal.addEventListener("click", event => {
+            if (event.target === projectModal) {
+                closeProjectModal();
+            }
+        });
+
+        loadTheme();
+        renderUserProjects();
+    </script>
+</body>
+</html>

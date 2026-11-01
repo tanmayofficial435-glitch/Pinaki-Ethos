@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Editor — Prism AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            color: #f8fafc;
+            background:
+                radial-gradient(circle at 10% 15%, rgba(124, 58, 237, .18), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, .14), transparent 30%),
+                #070712;
+            transition: .3s;
+        }
+
+        body.light-theme {
+            color: #111827;
+            background:
+                radial-gradient(circle at 10% 15%, rgba(124, 58, 237, .09), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, .08), transparent 30%),
+                #f7f8fc;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        textarea,
+        input {
+            font: inherit;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 74px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(7, 7, 18, .78);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme nav {
+            background: rgba(255,255,255,.82);
+            border-bottom-color: rgba(15,23,42,.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo-orb {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            box-shadow: 0 0 25px rgba(124,58,237,.45);
+            position: relative;
+        }
+
+        .logo-orb::after {
+            content: "";
+            position: absolute;
+            inset: 7px;
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 26px;
+        }
+
+        .nav-links a {
+            color: #aab2c4;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        body.light-theme .nav-links a {
+            color: #596273;
+        }
+
+        body.light-theme .nav-links a:hover {
+            color: #111827;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 9px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 9px 13px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(255,255,255,.05);
+            color: white;
+            cursor: pointer;
+        }
+
+        body.light-theme .nav-btn {
+            color: #111827;
+            background: white;
+            border-color: rgba(15,23,42,.1);
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 65px 20px 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(124,58,237,.1);
+            border: 1px solid rgba(124,58,237,.3);
+            color: #c4b5fd;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        body.light-theme .badge {
+            color: #6d28d9;
+        }
+
+        h1 {
+            font-size: clamp(42px, 7vw, 72px);
+            letter-spacing: -4px;
+            line-height: 1;
+            margin-bottom: 18px;
+        }
+
+        .gradient {
+            background: linear-gradient(90deg, #a78bfa, #22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #98a1b4;
+            line-height: 1.7;
+        }
+
+        body.light-theme .hero p {
+            color: #667085;
+        }
+
+        /* WORKSPACE */
+
+        .workspace {
+            width: 92%;
+            max-width: 1400px;
+            margin: 20px auto 70px;
+            display: grid;
+            grid-template-columns: 210px minmax(0,1fr) 330px;
+            gap: 18px;
+        }
+
+        .panel {
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,.09);
+            background: rgba(255,255,255,.045);
+            box-shadow: 0 20px 60px rgba(0,0,0,.25);
+            overflow: hidden;
+        }
+
+        body.light-theme .panel {
+            background: rgba(255,255,255,.88);
+            border-color: rgba(15,23,42,.08);
+            box-shadow: 0 20px 50px rgba(15,23,42,.08);
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            padding: 16px;
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            color: #7e8799;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 7px 9px 14px;
+        }
+
+        .tool {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            color: #aab2c4;
+            text-align: left;
+            padding: 13px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .tool:hover,
+        .tool.active {
+            color: white;
+            background: rgba(124,58,237,.15);
+        }
+
+        body.light-theme .tool {
+            color: #596273;
+        }
+
+        body.light-theme .tool:hover,
+        body.light-theme .tool.active {
+            color: #4c1d95;
+            background: rgba(124,58,237,.09);
+        }
+
+        /* EDITOR */
+
+        .editor-panel {
+            min-height: 650px;
+        }
+
+        .editor-top {
+            height: 58px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 18px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme .editor-top {
+            border-bottom-color: rgba(15,23,42,.08);
+        }
+
+        .status {
+            color: #80899b;
+            font-size: 12px;
+        }
+
+        .format-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .format-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.04);
+            color: white;
+            cursor: pointer;
+        }
+
+        body.light-theme .format-btn {
+            color: #111827;
+            background: white;
+        }
+
+        .document {
+            padding: 32px;
+        }
+
+        .title {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: inherit;
+            font-size: 33px;
+            font-weight: 750;
+            margin-bottom: 20px;
+        }
+
+        .title::placeholder {
+            color: #545d6e;
+        }
+
+        .editor {
+            width: 100%;
+            min-height: 430px;
+            resize: vertical;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: #dce2ed;
+            font-size: 16px;
+            line-height: 1.85;
+        }
+
+        body.light-theme .editor {
+            color: #273142;
+        }
+
+        .editor::placeholder {
+            color: #687184;
+        }
+
+        .editor-bottom {
+            padding: 13px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255,255,255,.08);
+            color: #7e8799;
+            font-size: 12px;
+        }
+
+        body.light-theme .editor-bottom {
+            border-top-color: rgba(15,23,42,.08);
+        }
+
+        .save-btn {
+            border: 0;
+            padding: 8px 14px;
+            border-radius: 9px;
+            color: white;
+            background: linear-gradient(135deg,#7c3aed,#06b6d4);
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* AI PANEL */
+
+        .ai-panel {
+            min-height: 650px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ai-header {
+            display: flex;
+            gap: 11px;
+            align-items: center;
+            padding: 17px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme .ai-header {
+            border-bottom-color: rgba(15,23,42,.08);
+        }
+
+        .ai-orb {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg,#7c3aed,#06b6d4);
+            box-shadow: 0 0 25px rgba(124,58,237,.35);
+        }
+
+        .ai-name {
+            font-weight: 750;
+        }
+
+        .online {
+            color: #34d399;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .ai-content {
+            padding: 17px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .welcome {
+            padding: 13px;
+            border-radius: 13px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.07);
+            color: #c7cedc;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        body.light-theme .welcome {
+            color: #465064;
+            background: #f4f5f9;
+        }
+
+        .suggestions {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 14px;
+        }
+
+        .suggestion {
+            border: 1px solid rgba(124,58,237,.2);
+            background: rgba(124,58,237,.07);
+            color: #bca9ff;
+            padding: 9px 10px;
+            border-radius: 9px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        body.light-theme .suggestion {
+            color: #5b21b6;
+        }
+
+        /* CHAT */
+
+        .chat-area {
+            margin-top: auto;
+        }
+
+        .chat-box {
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 14px;
+            overflow: hidden;
+            background: rgba(0,0,0,.13);
+        }
+
+        body.light-theme .chat-box {
+            background: white;
+            border-color: rgba(15,23,42,.1);
+        }
+
+        .chat-input {
+            width: 100%;
+            min-height: 100px;
+            resize: vertical;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: inherit;
+            padding: 13px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .chat-input::placeholder {
+            color: #687184;
+        }
+
+        .chat-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px;
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+
+        body.light-theme .chat-footer {
+            border-top-color: rgba(15,23,42,.08);
+        }
+
+        .enter-note {
+            color: #70798b;
+            font-size: 10px;
+            padding-left: 4px;
+        }
+
+        .send-btn {
+            min-width: 92px;
+            padding: 10px 15px;
+            border: 0;
+            border-radius: 10px;
+            background: linear-gradient(135deg,#7c3aed,#06b6d4);
+            color: white;
+            font-weight: 750;
+            cursor: pointer;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .send-btn:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* RESPONSE */
+
+        .response {
+            display: none;
+            margin-top: 12px;
+            padding: 13px;
+            border-radius: 12px;
+            border: 1px solid rgba(6,182,212,.22);
+            background: rgba(6,182,212,.06);
+            color: #c4cedd;
+            font-size: 12px;
+            line-height: 1.65;
+            max-height: 250px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        body.light-theme .response {
+            color: #425066;
+        }
+
+        .response-title {
+            color: #22d3ee;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 20px 20px 45px;
+            color: #687184;
+            font-size: 13px;
+        }
+
+        @media(max-width:1100px) {
+            .workspace {
+                grid-template-columns: 190px 1fr;
+            }
+
+            .ai-panel {
+                grid-column: 1 / -1;
+                min-height: 450px;
+            }
+        }
+
+        @media(max-width:760px) {
+            nav {
+                padding: 0 18px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .document {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <a href="index.html" class="logo">
+        <span class="logo-orb"></span>
+        Prism AI
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="editor.html">AI Editor</a>
+    </div>
+
+    <div class="nav-actions">
+        <a href="login.html" class="nav-btn" id="loginButton">
+            Sign In / Log In
+        </a>
+
+        <button class="nav-btn" id="themeButton">
+            ☀️ Light
+        </button>
+    </div>
+
+</nav>
+
+
+<section class="hero">
+
+    <div class="badge">
+        ✦ Real AI Writing Workspace
+    </div>
+
+    <h1>
+        Write with
+        <span class="gradient">intelligence.</span>
+    </h1>
+
+    <p>
+        Write, rewrite, improve, summarize and brainstorm
+        with your connected Prism AI assistant.
+    </p>
+
+</section>
+
+
+<main class="workspace">
+
+    <!-- SIDEBAR -->
+
+    <aside class="panel sidebar">
+
+        <div class="sidebar-title">
+            Editor Tools
+        </div>
+
+        <button class="tool active"
+                onclick="chooseTool(this, 'Improve my writing')">
+            ✨ Improve
+        </button>
+
+        <button class="tool"
+                onclick="chooseTool(this, 'Rewrite this text')">
+            🔄 Rewrite
+        </button>
+
+        <button class="tool"
+                onclick="chooseTool(this, 'Summarize this text')">
+            📄 Summarize
+        </button>
+
+        <button class="tool"
+                onclick="chooseTool(this, 'Explain this text simply')">
+            💡 Explain
+        </button>
+
+        <button class="tool"
+                onclick="chooseTool(this, 'Continue this idea')">
+            💭 Continue
+        </button>
+
+    </aside>
+
+
+    <!-- EDITOR -->
+
+    <section class="panel editor-panel">
+
+        <div class="editor-top">
+
+            <div class="status" id="status">
+                Ready
+            </div>
+
+            <div class="format-buttons">
+
+                <button class="format-btn"
+                        onclick="formatText('bold')">
+                    <b>B</b>
+                </button>
+
+                <button class="format-btn"
+                        onclick="formatText('italic')">
+                    <i>I</i>
+                </button>
+
+                <button class="format-btn"
+                        onclick="clearDocument()">
+                    ×
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="document">
+
+            <input
+                id="documentTitle"
+                class="title"
+                type="text"
+                placeholder="Untitled document"
+                value="My Prism AI Document"
+            >
+
+            <textarea
+                id="editorText"
+                class="editor"
+                placeholder="Write your content here...
+
+Then ask Prism AI to improve, rewrite,
+summarize, explain or continue it."
+            ></textarea>
+
+        </div>
+
+
+        <div class="editor-bottom">
+
+            <span id="wordCount">
+                0 words · 0 characters
+            </span>
+
+            <button class="save-btn"
+                    onclick="saveDocument()">
+                Save
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- AI -->
+
+    <aside class="panel ai-panel">
+
+        <div class="ai-header">
+
+            <div class="ai-orb">
+                ✦
+            </div>
+
+            <div>
+                <div class="ai-name">
+                    Prism AI
+                </div>
+
+                <div class="online">
+                    ● AI Online
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="ai-content">
+
+            <div class="welcome">
+                I'm ready to help with your writing.
+                Tell me what you want me to do.
+            </div>
+
+
+            <div class="suggestions">
+
+                <button class="suggestion"
+                        onclick="useSuggestion('Improve my writing')">
+                    ✨ Improve my writing
+                </button>
+
+                <button class="suggestion"
+                        onclick="useSuggestion('Summarize this text')">
+                    📄 Summarize this text
+                </button>
+
+                <button class="suggestion"
+                        onclick="useSuggestion('Rewrite this professionally')">
+                    🎯 Rewrite professionally
+                </button>
+
+                <button class="suggestion"
+                        onclick="useSuggestion('Continue this idea')">
+                    💭 Continue this idea
+                </button>
+
+            </div>
+
+
+            <div class="chat-area">
+
+                <div class="chat-box">
+
+                    <textarea
+                        id="aiInput"
+                        class="chat-input"
+                        placeholder="Ask Prism AI something..."
+                    ></textarea>
+
+
+                    <div class="chat-footer">
+
+                        <span class="enter-note">
+                            Enter to send
+                        </span>
+
+                        <button
+                            id="sendButton"
+                            class="send-btn"
+                            onclick="sendToAI()">
+                            Send ➤
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="responseBox"
+                    class="response">
+
+                    <div class="response-title">
+                        Prism AI Response
+                    </div>
+
+                    <div id="responseText"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+</main>
+
+
+<footer>
+    © 2026 Prism AI · Powered by your AI connection.
+</footer>
+
+
+<script>
+
+    /* ==========================
+       THEME
+    ========================== */
+
+    function applyTheme() {
+
+        const saved =
+            localStorage.getItem("prismTheme");
+
+        const button =
+            document.getElementById("themeButton");
+
+        if (saved === "light") {
+
+            document.body.classList.add("light-theme");
+
+            button.textContent = "🌙 Dark";
+
+        } else {
+
+            document.body.classList.remove("light-theme");
+
+            button.textContent = "☀️ Light";
+
+        }
+    }
+
+
+    function toggleTheme() {
+
+        const button =
+            document.getElementById("themeButton");
+
+        document.body.classList.toggle("light-theme");
+
+        if (
+            document.body.classList.contains("light-theme")
+        ) {
+
+            localStorage.setItem(
+                "prismTheme",
+                "light"
+            );
+
+            button.textContent = "🌙 Dark";
+
+        } else {
+
+            localStorage.setItem(
+                "prismTheme",
+                "dark"
+            );
+
+            button.textContent = "☀️ Light";
+        }
+    }
+
+
+    document
+        .getElementById("themeButton")
+        .addEventListener(
+            "click",
+            toggleTheme
+        );
+
+
+    /* ==========================
+       LOGIN
+    ========================== */
+
+    function updateLogin() {
+
+        const button =
+            document.getElementById("loginButton");
+
+        const loggedIn =
+            localStorage.getItem(
+                "prismLoggedIn"
+            ) === "true";
+
+        const name =
+            localStorage.getItem(
+                "prismUserName"
+            );
+
+        if (loggedIn && name) {
+
+            button.textContent =
+                "👤 " + name;
+
+            button.href = "#";
+
+            button.onclick = function(event) {
+
+                event.preventDefault();
+
+                alert(
+                    "Welcome back, " +
+                    name +
+                    "!"
+                );
+            };
+
+        } else {
+
+            button.textContent =
+                "Sign In / Log In";
+
+            button.href =
+                "login.html";
+
+            button.onclick = null;
+        }
+    }
+
+
+    /* ==========================
+       WORD COUNT
+    ========================== */
+
+    const editor =
+        document.getElementById(
+            "editorText"
+        );
+
+    function updateWordCount() {
+
+        const text =
+            editor.value.trim();
+
+        const words =
+            text === ""
+                ? 0
+                : text.split(/\s+/).length;
+
+        document.getElementById(
+            "wordCount"
+        ).textContent =
+            words +
+            " words · " +
+            editor.value.length +
+            " characters";
+    }
+
+
+    editor.addEventListener(
+        "input",
+        updateWordCount
+    );
+
+
+    /* ==========================
+       SAVE
+    ========================== */
+
+    function saveDocument() {
+
+        localStorage.setItem(
+            "prismEditorTitle",
+            document.getElementById(
+                "documentTitle"
+            ).value
+        );
+
+        localStorage.setItem(
+            "prismEditorText",
+            editor.value
+        );
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "✓ Saved locally";
+
+        setTimeout(function() {
+
+            document.getElementById(
+                "status"
+            ).textContent =
+                "Ready";
+
+        }, 1500);
+    }
+
+
+    function loadDocument() {
+
+        const title =
+            localStorage.getItem(
+                "prismEditorTitle"
+            );
+
+        const text =
+            localStorage.getItem(
+                "prismEditorText"
+            );
+
+        if (title) {
+
+            document.getElementById(
+                "documentTitle"
+            ).value = title;
+        }
+
+        if (text) {
+
+            editor.value = text;
+        }
+
+        updateWordCount();
+    }
+
+
+    /* ==========================
+       FORMAT
+    ========================== */
+
+    function formatText(type) {
+
+        const start =
+            editor.selectionStart;
+
+        const end =
+            editor.selectionEnd;
+
+        const selected =
+            editor.value.substring(
+                start,
+                end
+            );
+
+        if (!selected) {
+
+            alert(
+                "Select some text first."
+            );
+
+            return;
+        }
+
+        let replacement;
+
+        if (type === "bold") {
+
+            replacement =
+                "**" +
+                selected +
+                "**";
+
+        } else {
+
+            replacement =
+                "*" +
+                selected +
+                "*";
+        }
+
+        editor.setRangeText(
+            replacement,
+            start,
+            end,
+            "end"
+        );
+
+        updateWordCount();
+    }
+
+
+    /* ==========================
+       CLEAR
+    ========================== */
+
+    function clearDocument() {
+
+        if (
+            !confirm(
+                "Clear the document?"
+            )
+        ) {
+            return;
+        }
+
+        document.getElementById(
+            "documentTitle"
+        ).value = "";
+
+        editor.value = "";
+
+        updateWordCount();
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "Document cleared";
+    }
+
+
+    /* ==========================
+       TOOL SELECTION
+    ========================== */
+
+    function chooseTool(
+        button,
+        request
+    ) {
+
+        document
+            .querySelectorAll(".tool")
+            .forEach(function(tool) {
+
+                tool.classList.remove(
+                    "active"
+                );
+
+            });
+
+        button.classList.add("active");
+
+        document.getElementById(
+            "aiInput"
+        ).value = request;
+
+        document.getElementById(
+            "aiInput"
+        ).focus();
+    }
+
+
+    /* ==========================
+       SUGGESTIONS
+    ========================== */
+
+    function useSuggestion(text) {
+
+        document.getElementById(
+            "aiInput"
+        ).value = text;
+
+        document.getElementById(
+            "aiInput"
+        ).focus();
+    }
+
+
+    /* ==========================
+       REAL AI CONNECTION
+    ========================== */
+
+    async function sendToAI() {
+
+        const input =
+            document.getElementById(
+                "aiInput"
+            );
+
+        const sendButton =
+            document.getElementById(
+                "sendButton"
+            );
+
+        const responseBox =
+            document.getElementById(
+                "responseBox"
+            );
+
+        const responseText =
+            document.getElementById(
+                "responseText"
+            );
+
+        const request =
+            input.value.trim();
+
+        if (!request) {
+
+            input.focus();
+
+            return;
+        }
+
+
+        /*
+        Send both:
+        1. The user's instruction
+        2. The text currently inside the editor
+        */
+
+        let fullPrompt =
+            request;
+
+
+        if (editor.value.trim()) {
+
+            fullPrompt +=
+                "\n\nHere is the text from my editor:\n\n" +
+                editor.value;
+
+        }
+
+
+        sendButton.disabled = true;
+
+        sendButton.textContent =
+            "Thinking...";
+
+        responseBox.style.display =
+            "block";
+
+        responseText.textContent =
+            "Prism AI is thinking...";
+
+
+        try {
+
+            const result =
+                await fetch(
+                    "/api/ai",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            prompt: fullPrompt,
+
+                            tool: "editor"
+
+                        })
+                    }
+                );
+
+
+            const data =
+                await result.json();
+
+
+            if (!result.ok) {
+
+                throw new Error(
+                    data.error ||
+                    "AI request failed."
+                );
+            }
+
+
+            responseText.textContent =
+                data.response ||
+                "The AI returned an empty response.";
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            responseText.textContent =
+                "Unable to connect to Prism AI.\n\n" +
+                error.message +
+                "\n\n" +
+                "Make sure your Terminal is running " +
+                "server.js and that your API key is configured correctly.";
+
+        }
+
+
+        sendButton.disabled = false;
+
+        sendButton.textContent =
+            "Send ➤";
+    }
+
+
+    /* ==========================
+       ENTER TO SEND
+    ========================== */
+
+    document
+        .getElementById("aiInput")
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter" &&
+                    !event.shiftKey
+                ) {
+
+                    event.preventDefault();
+
+                    sendToAI();
+                }
+
+            }
+        );
+
+
+    /* ==========================
+       START
+    ========================== */
+
+    applyTheme();
+
+    updateLogin();
+
+    loadDocument();
+
+</script>
+
+</body>
+</html>

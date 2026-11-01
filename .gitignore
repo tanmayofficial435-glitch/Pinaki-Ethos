@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+node_modules/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+.vercel/
+.DS_Store
+**/.DS_Store
+__pycache__/
+.venv/
+venv/

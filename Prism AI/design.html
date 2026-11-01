@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>AI Design Generator — Prism AI</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        sans-serif;
+
+    min-height: 100vh;
+
+    color: white;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(124,92,255,.23),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(0,204,255,.12),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #080812,
+            #0e0b1d 55%,
+            #080812
+        );
+}
+
+
+nav {
+
+    height: 76px;
+
+    padding: 0 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background:
+        rgba(8,8,18,.78);
+
+    backdrop-filter:
+        blur(22px);
+
+    -webkit-backdrop-filter:
+        blur(22px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 21px;
+
+    font-weight: 800;
+}
+
+
+.logo span {
+
+    color: #a78bfa;
+
+    font-size: 28px;
+
+    text-shadow:
+        0 0 15px rgba(167,139,250,.8),
+        0 0 35px rgba(124,92,255,.4);
+}
+
+
+.nav-actions {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.nav-button {
+
+    padding: 10px 15px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    background:
+        rgba(255,255,255,.05);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+
+.nav-button:hover {
+
+    background:
+        rgba(255,255,255,.10);
+}
+
+
+main {
+
+    width:
+        min(1100px,90%);
+
+    margin:
+        auto;
+
+    padding:
+        75px 0 100px;
+}
+
+
+.hero {
+
+    max-width:
+        820px;
+}
+
+
+.badge {
+
+    display:
+        inline-flex;
+
+    padding:
+        8px 14px;
+
+    border-radius:
+        999px;
+
+    color:
+        #c4b5fd;
+
+    background:
+        rgba(124,92,255,.12);
+
+    border:
+        1px solid rgba(167,139,250,.22);
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    margin-bottom:
+        22px;
+}
+
+
+h1 {
+
+    font-size:
+        clamp(42px,7vw,76px);
+
+    line-height:
+        .98;
+
+    letter-spacing:
+        -3px;
+
+    margin-bottom:
+        22px;
+}
+
+
+.hero p {
+
+    color:
+        #aaa6bd;
+
+    font-size:
+        18px;
+
+    line-height:
+        1.7;
+}
+
+
+.generator {
+
+    margin-top:
+        45px;
+
+    padding:
+        30px;
+
+    border-radius:
+        27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.22);
+}
+
+
+.generator-title {
+
+    font-size:
+        21px;
+
+    margin-bottom:
+        7px;
+}
+
+
+.generator-description {
+
+    color:
+        #9691a7;
+
+    font-size:
+        14px;
+
+    margin-bottom:
+        25px;
+}
+
+
+label {
+
+    display:
+        block;
+
+    color:
+        #c9c4d7;
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    margin-bottom:
+        9px;
+}
+
+
+textarea {
+
+    width:
+        100%;
+
+    min-height:
+        170px;
+
+    resize:
+        vertical;
+
+    padding:
+        18px;
+
+    border-radius:
+        18px;
+
+    background:
+        #080812;
+
+    color:
+        white;
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    outline:
+        none;
+
+    font:
+        inherit;
+
+    line-height:
+        1.65;
+}
+
+
+textarea:focus {
+
+    border-color:
+        rgba(167,139,250,.65);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(124,92,255,.10);
+}
+
+
+.controls {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        12px;
+
+    margin-top:
+        18px;
+}
+
+
+.control {
+
+    padding:
+        15px;
+
+    border-radius:
+        16px;
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:
+        #d6d1e0;
+
+    cursor:
+        pointer;
+
+    text-align:
+        left;
+
+    transition:
+        .25s ease;
+}
+
+
+.control:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        rgba(167,139,250,.35);
+}
+
+
+.control.active {
+
+    border-color:
+        rgba(167,139,250,.7);
+
+    background:
+        rgba(124,92,255,.13);
+
+    box-shadow:
+        0 0 25px
+        rgba(124,92,255,.10);
+}
+
+
+.control strong {
+
+    display:
+        block;
+
+    margin-bottom:
+        5px;
+}
+
+
+.control small {
+
+    color:
+        #858093;
+
+    line-height:
+        1.5;
+}
+
+
+.actions {
+
+    display:
+        flex;
+
+    gap:
+        12px;
+
+    margin-top:
+        20px;
+}
+
+
+.primary,
+.secondary {
+
+    padding:
+        14px 21px;
+
+    border-radius:
+        14px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+}
+
+
+.primary {
+
+    border:
+        none;
+
+    color:
+        white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7655ff,
+            #a78bfa
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(124,92,255,.16);
+}
+
+
+.primary:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(124,92,255,.28);
+}
+
+
+.secondary {
+
+    color:
+        white;
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    background:
+        rgba(255,255,255,.05);
+}
+
+
+.status {
+
+    margin-top:
+        17px;
+
+    color:
+        #aaa6bd;
+
+    font-size:
+        14px;
+}
+
+
+.result {
+
+    display:
+        none;
+
+    margin-top:
+        25px;
+
+    padding:
+        23px;
+
+    border-radius:
+        19px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    color:
+        #ded9e9;
+
+    line-height:
+        1.75;
+
+    white-space:
+        pre-wrap;
+}
+
+
+.result.show {
+
+    display:
+        block;
+}
+
+
+/* LIGHT THEME */
+
+body.light {
+
+    color:
+        #171528;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(124,58,237,.13),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(6,182,212,.10),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #f8f7ff,
+            #eef2ff 52%,
+            #f7fbff
+        );
+}
+
+
+body.light nav {
+
+    background:
+        rgba(248,247,255,.82);
+
+    border-color:
+        rgba(40,30,80,.09);
+}
+
+
+body.light .logo {
+
+    color:
+        #171528;
+}
+
+
+body.light .nav-button {
+
+    color:
+        #29243d;
+
+    background:
+        rgba(255,255,255,.65);
+
+    border-color:
+        rgba(40,30,80,.10);
+}
+
+
+body.light .hero p,
+body.light .generator-description,
+body.light .status {
+
+    color:
+        #655d78;
+}
+
+
+body.light .generator {
+
+    background:
+        rgba(255,255,255,.78);
+
+    border-color:
+        rgba(60,40,120,.10);
+}
+
+
+body.light textarea {
+
+    background:
+        white;
+
+    color:
+        #211b35;
+
+    border-color:
+        rgba(40,30,80,.12);
+}
+
+
+body.light label {
+
+    color:
+        #42394f;
+}
+
+
+body.light .control {
+
+    color:
+        #342b49;
+
+    background:
+        rgba(255,255,255,.72);
+
+    border-color:
+        rgba(40,30,80,.10);
+}
+
+
+body.light .control small {
+
+    color:
+        #716b7e;
+}
+
+
+body.light .secondary {
+
+    color:
+        #342b49;
+
+    background:
+        white;
+
+    border-color:
+        rgba(40,30,80,.10);
+}
+
+
+body.light .result {
+
+    color:
+        #342b49;
+
+    background:
+        rgba(255,255,255,.70);
+
+    border-color:
+        rgba(40,30,80,.10);
+}
+
+
+@media(max-width:700px) {
+
+    nav {
+
+        padding:
+            0 18px;
+    }
+
+    main {
+
+        width:
+            92%;
+
+        padding-top:
+            50px;
+    }
+
+    .controls {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .actions {
+
+        flex-direction:
+            column;
+    }
+
+    .primary,
+    .secondary {
+
+        width:
+            100%;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+        <span>✦</span>
+        Prism AI
+    </a>
+
+
+    <div class="nav-actions">
+
+        <button
+            class="nav-button"
+            onclick="location.href='features.html'"
+        >
+            Features
+        </button>
+
+
+        <button
+            class="nav-button"
+            id="themeButton"
+            onclick="toggleTheme()"
+        >
+            ☀️ Light
+        </button>
+
+    </div>
+
+</nav>
+
+
+<main>
+
+
+<section class="hero">
+
+    <div class="badge">
+        🎨 Prism AI Design Generator
+    </div>
+
+
+    <h1>
+        Turn ideas into<br>
+        visual direction.
+    </h1>
+
+
+    <p>
+        Describe the design you need and Prism AI will help
+        transform your idea into a detailed visual concept,
+        layout and creative direction.
+    </p>
+
+</section>
+
+
+<section class="generator">
+
+    <h2 class="generator-title">
+        Describe your design
+    </h2>
+
+
+    <p class="generator-description">
+        Tell Prism what you want to create.
+    </p>
+
+
+    <label for="designInput">
+        Design prompt
+    </label>
+
+
+    <textarea
+        id="designInput"
+        placeholder="Example: Create a futuristic school poster about renewable energy with a clean purple and blue technology style..."
+    ></textarea>
+
+
+    <div class="controls">
+
+
+        <button
+            class="control active"
+            data-style="futuristic"
+            onclick="selectStyle(this)"
+        >
+
+            <strong>✦ Futuristic</strong>
+
+            <small>
+                Modern, glowing and technology-inspired.
+            </small>
+
+        </button>
+
+
+        <button
+            class="control"
+            data-style="minimal"
+            onclick="selectStyle(this)"
+        >
+
+            <strong>◈ Minimal</strong>
+
+            <small>
+                Clean, simple and focused.
+            </small>
+
+        </button>
+
+
+        <button
+            class="control"
+            data-style="creative"
+            onclick="selectStyle(this)"
+        >
+
+            <strong>✺ Creative</strong>
+
+            <small>
+                Expressive, colorful and imaginative.
+            </small>
+
+        </button>
+
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="primary"
+            id="generateButton"
+            onclick="generateDesign()"
+        >
+            ✦ Generate Design
+        </button>
+
+
+        <button
+            class="secondary"
+            onclick="clearDesign()"
+        >
+            Clear
+        </button>
+
+    </div>
+
+
+    <div
+        class="status"
+        id="status"
+    ></div>
+
+
+    <div
+        class="result"
+        id="result"
+    ></div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+
+let selectedStyle =
+    "futuristic";
+
+
+function applyTheme() {
+
+    const theme =
+        localStorage.getItem("prismTheme")
+        || "dark";
+
+
+    document.body.classList.toggle(
+        "light",
+        theme === "light"
+    );
+
+
+    document.getElementById(
+        "themeButton"
+    ).textContent =
+        theme === "light"
+            ? "🌙 Dark"
+            : "☀️ Light";
+}
+
+
+function toggleTheme() {
+
+    const current =
+        localStorage.getItem("prismTheme")
+        || "dark";
+
+
+    localStorage.setItem(
+        "prismTheme",
+
+        current === "dark"
+            ? "light"
+            : "dark"
+    );
+
+
+    applyTheme();
+}
+
+
+function selectStyle(button) {
+
+    document.querySelectorAll(
+        ".control"
+    ).forEach(function(control) {
+
+        control.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    selectedStyle =
+        button.dataset.style;
+}
+
+
+function clearDesign() {
+
+    document.getElementById(
+        "designInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "status"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "result"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "result"
+    ).classList.remove(
+        "show"
+    );
+}
+
+
+async function generateDesign() {
+
+    const input =
+        document.getElementById(
+            "designInput"
+        );
+
+
+    const button =
+        document.getElementById(
+            "generateButton"
+        );
+
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    const prompt =
+        input.value.trim();
+
+
+    if (!prompt) {
+
+        status.textContent =
+            "Please describe your design first.";
+
+        input.focus();
+
+        return;
+    }
+
+
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "✦ Designing...";
+
+
+    status.textContent =
+        "Prism is creating your design direction...";
+
+
+    result.classList.remove(
+        "show"
+    );
+
+
+    const system = `
+
+You are Prism AI's Design Generator.
+
+The user wants help creating a visual design concept.
+
+Selected style:
+${selectedStyle}
+
+Create a detailed but practical design specification.
+
+Use these sections:
+
+1. Design Concept
+2. Visual Style
+3. Layout
+4. Color Direction
+5. Typography
+6. Main Visual Elements
+7. Background
+8. Text Hierarchy
+9. Suggested Final Composition
+10. AI Image Generation Prompt
+
+Do not claim that an actual image has been generated.
+You are generating the design direction and a ready-to-use
+image-generation prompt.
+
+Make the result creative, specific and useful.
+
+`;
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ai",
+                {
+                    method:
+                        "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            prompt:
+                                prompt,
+
+                            system:
+                                system,
+
+                            tool:
+                                "ai-design-generator-" +
+                                selectedStyle
+
+                        })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "AI request failed."
+            );
+        }
+
+
+        const answer =
+            data.response ||
+            data.answer ||
+            data.message ||
+            data.text ||
+            "";
+
+
+        if (!answer) {
+
+            throw new Error(
+                "Prism AI returned an empty response."
+            );
+        }
+
+
+        result.textContent =
+            answer;
+
+
+        result.classList.add(
+            "show"
+        );
+
+
+        status.textContent =
+            "✨ Design direction generated.";
+
+    }
+
+    catch(error) {
+
+        status.textContent =
+            "❌ " +
+            error.message;
+
+    }
+
+    finally {
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "✦ Generate Design";
+    }
+
+}
+
+
+applyTheme();
+
+</script>
+
+
+</body>
+</html>

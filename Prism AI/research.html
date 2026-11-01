@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prism AI — Research Lab</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #080812;
+            --card: rgba(18, 17, 36, 0.82);
+            --border: rgba(155, 124, 255, 0.2);
+            --text: #f7f5ff;
+            --muted: #aaa6c3;
+            --purple: #9b7cff;
+            --blue: #62d8ff;
+            --pink: #ed8cff;
+        }
+
+        body.light-theme {
+            --bg: #f6f4ff;
+            --card: rgba(255,255,255,.85);
+            --border: rgba(115,82,232,.18);
+            --text: #19152e;
+            --muted: #6c6680;
+            --purple: #704ee5;
+            --blue: #079bc7;
+            --pink: #c44ddb;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 10% 0%, rgba(155,124,255,.18), transparent 30%),
+                radial-gradient(circle at 90% 10%, rgba(98,216,255,.12), transparent 28%),
+                var(--bg);
+            transition: .3s;
+        }
+
+        .topbar {
+            height: 74px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            background: rgba(8,8,18,.65);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        body.light-theme .topbar {
+            background: rgba(255,255,255,.72);
+        }
+
+        .brand {
+            display: flex;
+            gap: 9px;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .brand span:first-child {
+            color: var(--purple);
+            font-size: 28px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--text);
+        }
+
+        .theme {
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            border-radius: 12px;
+            padding: 10px 13px;
+            cursor: pointer;
+        }
+
+        .page {
+            width: min(1250px, 90%);
+            margin: auto;
+            padding: 60px 0 80px;
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            color: var(--purple);
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 6vw, 65px);
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .gradient {
+            background: linear-gradient(100deg,var(--purple),var(--pink),var(--blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 20px auto 35px;
+            max-width: 700px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            padding: 9px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--card);
+            box-shadow: 0 25px 80px rgba(0,0,0,.25);
+        }
+
+        .search-box input {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--text);
+            padding: 14px;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            border: none;
+            border-radius: 14px;
+            padding: 0 22px;
+            color: white;
+            background: linear-gradient(135deg,var(--purple),#7046e8);
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .research-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 45px;
+        }
+
+        .panel {
+            min-height: 420px;
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            padding: 25px;
+            background: var(--card);
+            backdrop-filter: blur(18px);
+        }
+
+        .panel h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .status {
+            display: inline-flex;
+            padding: 7px 11px;
+            border-radius: 20px;
+            background: rgba(155,124,255,.1);
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .result {
+            color: var(--muted);
+            line-height: 1.75;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        .sources {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .source {
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: rgba(155,124,255,.04);
+        }
+
+        .source strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .source span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .loading {
+            color: var(--purple);
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            50% { opacity: .4; }
+        }
+
+        @media(max-width:800px) {
+            .nav {
+                display: none;
+            }
+
+            .research-area {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box button {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <a class="brand" href="index.html">
+        <span>✦</span>
+        <span>Prism AI</span>
+    </a>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="workspace.html">Workspace</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+    </nav>
+
+    <button class="theme" onclick="toggleTheme()" id="themeButton">☀️</button>
+</header>
+
+<main class="page">
+
+    <section class="hero">
+        <div class="eyebrow">Prism AI Research Lab</div>
+
+        <h1>
+            Research anything with
+            <span class="gradient">Prism.</span>
+        </h1>
+
+        <p>
+            Ask a question, research a topic and turn information
+            into useful project material without leaving Prism AI.
+        </p>
+
+        <div class="search-box">
+            <input
+                id="researchInput"
+                placeholder="What do you want to research?"
+                onkeydown="if(event.key==='Enter') startResearch()"
+            >
+
+            <button onclick="startResearch()">
+                🔬 Research
+            </button>
+        </div>
+    </section>
+
+    <section class="research-area">
+
+        <div class="panel">
+            <h2>🧠 Research Result</h2>
+
+            <div class="status" id="status">
+                Ready
+            </div>
+
+            <div class="result" id="result">
+                Enter a topic above and Prism AI will research it for you.
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>🔎 Sources</h2>
+
+            <div class="sources" id="sources">
+                <div class="source">
+                    <strong>No research yet</strong>
+                    <span>Your sources will appear here.</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle("light-theme");
+
+        const light = document.body.classList.contains("light-theme");
+
+        localStorage.setItem(
+            "prismTheme",
+            light ? "light" : "dark"
+        );
+
+        document.getElementById("themeButton").textContent =
+            light ? "🌙" : "☀️";
+    }
+
+    function loadTheme() {
+        if (localStorage.getItem("prismTheme") === "light") {
+            document.body.classList.add("light-theme");
+            document.getElementById("themeButton").textContent = "🌙";
+        }
+    }
+
+    async function startResearch() {
+
+        const input = document.getElementById("researchInput");
+        const result = document.getElementById("result");
+        const sources = document.getElementById("sources");
+        const status = document.getElementById("status");
+
+        const query = input.value.trim();
+
+        if (!query) {
+            input.focus();
+            return;
+        }
+
+        status.textContent = "Researching...";
+        result.innerHTML = '<span class="loading">Prism is researching the topic...</span>';
+
+        sources.innerHTML = "";
+
+        try {
+
+            const response = await fetch("/api/google-search", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    query: query
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Research failed.");
+            }
+
+            const answer =
+                data.answer ||
+                data.response ||
+                data.message ||
+                "No answer returned.";
+
+            result.textContent = answer;
+
+            const sourceList =
+                data.sources ||
+                data.results ||
+                [];
+
+            if (Array.isArray(sourceList) && sourceList.length) {
+
+                sourceList.forEach((source, index) => {
+
+                    const title =
+                        source.title ||
+                        source.name ||
+                        `Source ${index + 1}`;
+
+                    const url =
+                        source.url ||
+                        source.link ||
+                        "";
+
+                    const div = document.createElement("div");
+
+                    div.className = "source";
+
+                    div.innerHTML = `
+                        <strong>${escapeHTML(title)}</strong>
+                        <span>${escapeHTML(url)}</span>
+                    `;
+
+                    sources.appendChild(div);
+                });
+
+            } else {
+
+                sources.innerHTML = `
+                    <div class="source">
+                        <strong>Research completed</strong>
+                        <span>No source list was returned by the provider.</span>
+                    </div>
+                `;
+            }
+
+            status.textContent = "Research complete";
+
+        } catch (error) {
+
+            status.textContent = "Error";
+
+            result.textContent =
+                "Unable to complete the research.\n\n" +
+                error.message;
+
+            sources.innerHTML = `
+                <div class="source">
+                    <strong>Something went wrong</strong>
+                    <span>Check that your Prism AI backend is running.</span>
+                </div>
+            `;
+        }
+    }
+
+    function escapeHTML(value) {
+        return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    loadTheme();
+</script>
+
+</body>
+</html>

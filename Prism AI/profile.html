@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prism AI — Edit Profile</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #f7f5ff;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(124, 58, 237, .20), transparent 32%),
+                radial-gradient(circle at 85% 20%, rgba(59, 130, 246, .15), transparent 30%),
+                linear-gradient(135deg, #080812, #0c0b18 55%, #080812);
+        }
+
+        body.light-theme {
+            color: #171528;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(124, 58, 237, .12), transparent 32%),
+                radial-gradient(circle at 85% 20%, rgba(6, 182, 212, .10), transparent 30%),
+                linear-gradient(135deg, #f8f7ff, #eef2ff 52%, #f7fbff);
+        }
+
+        nav {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            background: rgba(8,8,18,.72);
+            backdrop-filter: blur(18px);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        body.light-theme nav {
+            background: rgba(248,247,255,.78);
+            border-bottom-color: rgba(30,27,75,.10);
+        }
+
+        .logo {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: -.5px;
+        }
+
+        .logo span {
+            color: #9c7cff;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-link,
+        .theme-btn {
+            color: inherit;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,.10);
+            background: rgba(255,255,255,.04);
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        body.light-theme .nav-link,
+        body.light-theme .theme-btn {
+            border-color: rgba(30,27,75,.12);
+            background: rgba(255,255,255,.55);
+        }
+
+        .nav-link:hover,
+        .theme-btn:hover {
+            transform: translateY(-1px);
+            border-color: rgba(156,124,255,.55);
+        }
+
+        main {
+            min-height: calc(100vh - 72px);
+            display: flex;
+            justify-content: center;
+            padding: 55px 20px 80px;
+        }
+
+        .page {
+            width: min(720px, 100%);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(156,124,255,.28);
+            background: rgba(156,124,255,.08);
+            color: #bba9ff;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .8px;
+            margin-bottom: 16px;
+        }
+
+        body.light-theme .eyebrow {
+            color: #6445d6;
+            background: rgba(124,58,237,.08);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(36px, 7vw, 58px);
+            line-height: 1;
+            letter-spacing: -2.5px;
+        }
+
+        .intro {
+            margin: 18px 0 30px;
+            color: #aaa6bd;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        body.light-theme .intro {
+            color: #625f73;
+        }
+
+        .card {
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 28px;
+            padding: 30px;
+            background: rgba(17,16,29,.82);
+            box-shadow:
+                0 30px 90px rgba(0,0,0,.28),
+                0 0 60px rgba(124,58,237,.08);
+            backdrop-filter: blur(22px);
+        }
+
+        body.light-theme .card {
+            background: rgba(255,255,255,.78);
+            border-color: rgba(30,27,75,.10);
+            box-shadow:
+                0 30px 80px rgba(75,64,130,.13),
+                0 0 50px rgba(124,58,237,.06);
+        }
+
+        .profile-preview {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 17px;
+            margin-bottom: 28px;
+            border-radius: 19px;
+            border: 1px solid rgba(156,124,255,.18);
+            background: linear-gradient(
+                135deg,
+                rgba(124,58,237,.11),
+                rgba(59,130,246,.07)
+            );
+        }
+
+        .avatar {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            flex: 0 0 58px;
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+            background: linear-gradient(135deg, #7655e8, #3b82f6);
+            box-shadow: 0 10px 30px rgba(99,70,220,.30);
+        }
+
+        .preview-name {
+            font-weight: 800;
+            font-size: 17px;
+            overflow-wrap: anywhere;
+        }
+
+        .preview-email {
+            margin-top: 4px;
+            color: #9995aa;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        body.light-theme .preview-email {
+            color: #6d687c;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 750;
+        }
+
+        input {
+            width: 100%;
+            height: 54px;
+            padding: 0 16px;
+            border-radius: 15px;
+            border: 1px solid #302d43;
+            outline: none;
+            color: #fff;
+            background: #0d0c17;
+            font-size: 15px;
+            transition: .2s ease;
+        }
+
+        input:focus {
+            border-color: #9273ff;
+            box-shadow: 0 0 0 4px rgba(146,115,255,.11);
+        }
+
+        body.light-theme input {
+            color: #171528;
+            background: rgba(255,255,255,.85);
+            border-color: #d8d4e5;
+        }
+
+        .message {
+            display: none;
+            margin: 18px 0 0;
+            padding: 13px 15px;
+            border-radius: 13px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            border: 1px solid rgba(74,222,128,.28);
+            background: rgba(74,222,128,.08);
+            color: #8df0aa;
+        }
+
+        .message.error {
+            border: 1px solid rgba(248,113,113,.30);
+            background: rgba(248,113,113,.08);
+            color: #ffaaa8;
+        }
+
+        body.light-theme .message.success {
+            color: #18743a;
+            background: rgba(74,222,128,.10);
+        }
+
+        body.light-theme .message.error {
+            color: #a62d2d;
+            background: rgba(248,113,113,.10);
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            min-height: 52px;
+            padding: 0 20px;
+            border-radius: 15px;
+            border: 1px solid transparent;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .save-btn {
+            flex: 1;
+            color: white;
+            background: linear-gradient(135deg, #8b68f4, #6366f1);
+            box-shadow: 0 15px 35px rgba(99,102,241,.23);
+        }
+
+        .save-btn:disabled {
+            opacity: .6;
+            cursor: wait;
+            transform: none;
+        }
+
+        .cancel-btn {
+            color: inherit;
+            background: rgba(255,255,255,.04);
+            border-color: rgba(255,255,255,.12);
+        }
+
+        body.light-theme .cancel-btn {
+            background: rgba(255,255,255,.7);
+            border-color: rgba(30,27,75,.12);
+        }
+
+        .security-note {
+            margin-top: 22px;
+            color: #858194;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        body.light-theme .security-note {
+            color: #777285;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 16px;
+            }
+
+            .nav-link {
+                display: none;
+            }
+
+            main {
+                padding: 35px 14px 60px;
+            }
+
+            .card {
+                padding: 21px;
+                border-radius: 23px;
+            }
+
+            .actions {
+                flex-direction: column-reverse;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a class="logo" href="index.html">✦ Prism <span>AI</span></a>
+
+    <div class="nav-right">
+        <a class="nav-link" href="index.html">← Home</a>
+        <button class="theme-btn" id="themeToggle" type="button">☀️ Light</button>
+    </div>
+</nav>
+
+<main>
+    <section class="page">
+
+        <div class="eyebrow">✦ ACCOUNT SETTINGS</div>
+
+        <h1>Edit Profile</h1>
+
+        <p class="intro">
+            Update the information connected to your Prism AI account.
+            Your changes are saved to your Prism AI account database.
+        </p>
+
+        <div class="card">
+
+            <div class="profile-preview">
+                <div class="avatar" id="avatar">P</div>
+
+                <div>
+                    <div class="preview-name" id="previewName">Loading...</div>
+                    <div class="preview-email" id="previewEmail">Loading...</div>
+                </div>
+            </div>
+
+            <form id="profileForm">
+
+                <div class="field">
+                    <label for="name">Your name</label>
+                    <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        autocomplete="name"
+                        maxlength="80"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="email">Email address</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autocomplete="email"
+                        maxlength="180"
+                        required
+                    >
+                </div>
+
+                <div id="message" class="message"></div>
+
+                <div class="actions">
+                    <button
+                        type="button"
+                        class="btn cancel-btn"
+                        id="cancelBtn"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn save-btn"
+                        id="saveBtn"
+                    >
+                        Save Changes
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="security-note">
+                🔒 Your password is not changed on this page.
+                Only your name and email address are updated.
+            </div>
+
+        </div>
+
+    </section>
+</main>
+
+<script>
+    // ============================================================
+    // PRISM AI PROFILE
+    // IMPORTANT:
+    // This page DOES NOT call /api/ai.
+    // Profile changes use PUT /api/auth/profile.
+    // ============================================================
+
+    const API_BASE = "";
+
+    const profileForm = document.getElementById("profileForm");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const previewName = document.getElementById("previewName");
+    const previewEmail = document.getElementById("previewEmail");
+    const avatar = document.getElementById("avatar");
+    const message = document.getElementById("message");
+    const saveBtn = document.getElementById("saveBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const themeToggle = document.getElementById("themeToggle");
+
+    // ------------------------------------------------------------
+    // TOKEN
+    // Supports the main token key and a few common legacy keys.
+    // ------------------------------------------------------------
+
+    function getAuthToken() {
+        return (
+            localStorage.getItem("prismAuthToken") ||
+            localStorage.getItem("prismToken") ||
+            localStorage.getItem("authToken") ||
+            localStorage.getItem("token") ||
+            ""
+        );
+    }
+
+    // ------------------------------------------------------------
+    // ESCAPE HTML
+    // ------------------------------------------------------------
+
+    function escapeHTML(value) {
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    // ------------------------------------------------------------
+    // MESSAGE
+    // ------------------------------------------------------------
+
+    function showMessage(text, type) {
+        message.textContent = text;
+        message.className = "message show " + type;
+    }
+
+    function clearMessage() {
+        message.textContent = "";
+        message.className = "message";
+    }
+
+    // ------------------------------------------------------------
+    // AVATAR
+    // ------------------------------------------------------------
+
+    function updatePreview() {
+        const name = nameInput.value.trim() || "Prism User";
+        const email = emailInput.value.trim() || "No email";
+
+        previewName.textContent = name;
+        previewEmail.textContent = email;
+
+        const firstLetter = name.charAt(0).toUpperCase() || "P";
+        avatar.textContent = firstLetter;
+    }
+
+    nameInput.addEventListener("input", updatePreview);
+    emailInput.addEventListener("input", updatePreview);
+
+    // ------------------------------------------------------------
+    // LOAD USER
+    // ------------------------------------------------------------
+
+    async function loadProfile() {
+        const token = getAuthToken();
+
+        // If no API token exists, use the existing local data only
+        // for display, but saving will require authentication.
+        if (!token) {
+            const localName =
+                localStorage.getItem("prismUserName") || "";
+
+            const localEmail =
+                localStorage.getItem("prismUserEmail") || "";
+
+            if (!localName && !localEmail) {
+                showMessage(
+                    "You are not signed in. Please sign in first.",
+                    "error"
+                );
+                saveBtn.disabled = true;
+                return;
+            }
+
+            nameInput.value = localName;
+            emailInput.value = localEmail;
+
+            updatePreview();
+
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                API_BASE + "/api/auth/me",
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok || !data.ok || !data.user) {
+                throw new Error(
+                    data.error || "Could not load your profile."
+                );
+            }
+
+            nameInput.value = data.user.name || "";
+            emailInput.value = data.user.email || "";
+
+            // Keep browser account display synchronized.
+            localStorage.setItem(
+                "prismUserName",
+                data.user.name || ""
+            );
+
+            localStorage.setItem(
+                "prismUserEmail",
+                data.user.email || ""
+            );
+
+            if (data.user.id) {
+                localStorage.setItem(
+                    "prismUserId",
+                    data.user.id
+                );
+            }
+
+            localStorage.setItem(
+                "prismLoggedIn",
+                "true"
+            );
+
+            updatePreview();
+
+        } catch (error) {
+            console.error("Profile loading error:", error);
+
+            showMessage(
+                error.message || "Could not load your profile.",
+                "error"
+            );
+        }
+    }
+
+    // ------------------------------------------------------------
+    // SAVE PROFILE
+    // ------------------------------------------------------------
+
+    profileForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        clearMessage();
+
+        const token = getAuthToken();
+
+        if (!token) {
+            showMessage(
+                "Your login session was not found. Please sign in again.",
+                "error"
+            );
+            return;
+        }
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim().toLowerCase();
+
+        if (!name) {
+            showMessage(
+                "Please enter your name.",
+                "error"
+            );
+            nameInput.focus();
+            return;
+        }
+
+        if (!email) {
+            showMessage(
+                "Please enter your email address.",
+                "error"
+            );
+            emailInput.focus();
+            return;
+        }
+
+        saveBtn.disabled = true;
+        saveBtn.textContent = "Saving...";
+
+        try {
+            // ====================================================
+            // THIS IS THE ONLY ENDPOINT USED FOR PROFILE EDITING.
+            // It is NOT /api/ai.
+            // ====================================================
+
+            const response = await fetch(
+                API_BASE + "/api/auth/profile",
+                {
+                    method: "PUT",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + token
+                    },
+
+                    body: JSON.stringify({
+                        name: name,
+                        email: email
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok || !data.ok) {
+                throw new Error(
+                    data.error ||
+                    "Could not update your profile."
+                );
+            }
+
+            const updatedUser = data.user;
+
+            // ====================================================
+            // SYNCHRONIZE LOCAL ACCOUNT DISPLAY
+            // ====================================================
+
+            localStorage.setItem(
+                "prismLoggedIn",
+                "true"
+            );
+
+            localStorage.setItem(
+                "prismUserName",
+                updatedUser.name
+            );
+
+            localStorage.setItem(
+                "prismUserEmail",
+                updatedUser.email
+            );
+
+            if (updatedUser.id) {
+                localStorage.setItem(
+                    "prismUserId",
+                    updatedUser.id
+                );
+            }
+
+            nameInput.value = updatedUser.name;
+            emailInput.value = updatedUser.email;
+
+            updatePreview();
+
+            showMessage(
+                "✓ Profile updated successfully.",
+                "success"
+            );
+
+            // Give the success message a moment before returning.
+            setTimeout(function() {
+                window.location.href = "index.html";
+            }, 900);
+
+        } catch (error) {
+            console.error("Profile update error:", error);
+
+            showMessage(
+                error.message ||
+                "Something went wrong while updating your profile.",
+                "error"
+            );
+
+            saveBtn.disabled = false;
+            saveBtn.textContent = "Save Changes";
+        }
+    });
+
+    // ------------------------------------------------------------
+    // CANCEL
+    // ------------------------------------------------------------
+
+    cancelBtn.addEventListener("click", function() {
+        window.location.href = "index.html";
+    });
+
+    // ------------------------------------------------------------
+    // THEME
+    // ------------------------------------------------------------
+
+    function applyTheme(theme) {
+        const isLight = theme === "light";
+
+        document.body.classList.toggle(
+            "light-theme",
+            isLight
+        );
+
+        themeToggle.textContent =
+            isLight ? "🌙 Dark" : "☀️ Light";
+    }
+
+    function loadTheme() {
+        const savedTheme =
+            localStorage.getItem("prismTheme");
+
+        applyTheme(
+            savedTheme === "light"
+                ? "light"
+                : "dark"
+        );
+    }
+
+    themeToggle.addEventListener("click", function() {
+        const isLight =
+            document.body.classList.contains("light-theme");
+
+        const nextTheme =
+            isLight ? "dark" : "light";
+
+        localStorage.setItem(
+            "prismTheme",
+            nextTheme
+        );
+
+        applyTheme(nextTheme);
+    });
+
+    // ------------------------------------------------------------
+    // START
+    // ------------------------------------------------------------
+
+    loadTheme();
+    loadProfile();
+</script>
+
+</body>
+</html>
