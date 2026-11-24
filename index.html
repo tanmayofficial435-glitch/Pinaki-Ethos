@@ -1161,6 +1161,8 @@ overflow-y: auto;
         body.light-theme .prism-account-email { color: #6f6981; }
 
 </style>
+    <script defer crossorigin="anonymous" src="https://direct-impala-5382.clerk.accounts.dev/npm/@clerk/ui@1/dist/ui.browser.js"></script>
+    <script defer crossorigin="anonymous" data-clerk-publishable-key="pk_test_ZGlyZWN0LWltcGFsYS01MzgyLmNsZXJrLmFjY291bnRzLmRldiQ" src="https://direct-impala-5382.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js"></script>
 </head>
 
 <body>
@@ -1965,17 +1967,33 @@ overflow-y: auto;
     }
 }
 
-        function logoutPrism() {
-            localStorage.removeItem("prismLoggedIn");
-            localStorage.removeItem("prismUserName");
-            localStorage.removeItem("prismUserEmail");
-            localStorage.removeItem("prismUserId");
-            localStorage.removeItem("prismPlan");
-
+        async function logoutPrism() {
             const menu = document.getElementById("prismAccountMenu");
             if (menu) menu.classList.remove("open");
 
-            updateLoginStatus();
+            try {
+                if (window.Clerk) {
+                    await window.Clerk.load();
+                    if (window.Clerk.session) {
+                        await window.Clerk.signOut();
+                    }
+                }
+            } catch (error) {
+                console.error("Clerk sign-out failed:", error);
+            } finally {
+                [
+                    "prismLoggedIn",
+                    "prismUserName",
+                    "prismUserEmail",
+                    "prismUserId",
+                    "prismPlan",
+                    "prismAuthToken",
+                    "prismToken",
+                    "token"
+                ].forEach((key) => localStorage.removeItem(key));
+
+                window.location.replace("login.html");
+            }
         }
 
         document.addEventListener("click", function(event) {
