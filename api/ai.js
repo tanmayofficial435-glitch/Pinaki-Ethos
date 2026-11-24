@@ -13,7 +13,7 @@ module.exports = async function handler(req, res) {
     if (!workerUrl) {
         return res.status(503).json({
             ok: false,
-            error: "Pinaki Intelligence Cloudflare service is not configured. Add CLOUDFLARE_WORKER_URL to the production environment."
+            error: "Pinaki Intelligence assistant service service is not configured. Add CLOUDFLARE_WORKER_URL to the production environment."
         });
     }
 
@@ -83,16 +83,16 @@ module.exports = async function handler(req, res) {
         try {
             data = JSON.parse(raw);
         } catch {
-            console.error("Cloudflare Pinaki Intelligence returned non-JSON:", upstream.status, raw.slice(0, 500));
+            console.error("assistant service Pinaki Intelligence returned non-JSON:", upstream.status, raw.slice(0, 500));
             return res.status(502).json({
                 ok: false,
-                error: "Pinaki Intelligence Cloudflare service returned an invalid response. Check the Worker route and deployment."
+                error: "Pinaki Intelligence assistant service service returned an invalid response. Check the Worker route and deployment."
             });
         }
 
         if (!upstream.ok) {
-            const message = data?.error || data?.message || "Cloudflare Pinaki Intelligence request failed.";
-            console.error("Cloudflare Pinaki Intelligence error:", upstream.status, message);
+            const message = data?.error || data?.message || "assistant service Pinaki Intelligence request failed.";
+            console.error("assistant service Pinaki Intelligence error:", upstream.status, message);
             return res.status(upstream.status >= 400 && upstream.status < 600 ? upstream.status : 502).json({
                 ok: false,
                 error: String(message)
@@ -103,10 +103,10 @@ module.exports = async function handler(req, res) {
             data?.result?.reply || data?.result?.response || data?.choices?.[0]?.message?.content;
 
         if (typeof answer !== "string" || !answer.trim()) {
-            console.error("Cloudflare Pinaki Intelligence returned no answer:", JSON.stringify(data).slice(0, 1000));
+            console.error("assistant service Pinaki Intelligence returned no answer:", JSON.stringify(data).slice(0, 1000));
             return res.status(502).json({
                 ok: false,
-                error: "Pinaki Intelligence Cloudflare service connected but returned no reply. Check its /api/chat response format."
+                error: "Pinaki Intelligence assistant service service connected but returned no reply. Check its /api/chat response format."
             });
         }
 
@@ -119,12 +119,12 @@ module.exports = async function handler(req, res) {
             provider: "cloudflare"
         });
     } catch (error) {
-        console.error("Pinaki Ethos Cloudflare AI connection error:", error);
+        console.error("Pinaki Ethos assistant service AI connection error:", error);
         return res.status(502).json({
             ok: false,
             error: error?.name === "TimeoutError"
-                ? "Pinaki Intelligence Cloudflare service took too long to respond. Please try again."
-                : error?.message || "Unable to connect to Pinaki Intelligence Cloudflare service."
+                ? "Pinaki Intelligence assistant service service took too long to respond. Please try again."
+                : error?.message || "Unable to connect to Pinaki Intelligence assistant service service."
         });
     }
 };
