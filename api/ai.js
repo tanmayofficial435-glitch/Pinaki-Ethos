@@ -13,7 +13,7 @@ module.exports = async function handler(req, res) {
     if (!workerUrl) {
         return res.status(503).json({
             ok: false,
-            error: "Pinaki Intelligence assistant service service is not configured. Add CLOUDFLARE_WORKER_URL to the production environment."
+            error: "Pinaki Intelligence is temporarily unavailable. Please try again later."
         });
     }
 
@@ -44,8 +44,7 @@ module.exports = async function handler(req, res) {
             response: answer,
             reply: answer,
             answer,
-            provider: "cloudflare-knowledge"
-        });
+                    });
     }
 
     if (!prompt) {
@@ -116,8 +115,7 @@ module.exports = async function handler(req, res) {
             reply: answer.trim(),
             answer: answer.trim(),
             conversation_id: data?.conversation_id || data?.result?.conversation_id || null,
-            provider: "cloudflare"
-        });
+                    });
     } catch (error) {
         console.error("Pinaki Ethos assistant service AI connection error:", error);
         return res.status(502).json({
