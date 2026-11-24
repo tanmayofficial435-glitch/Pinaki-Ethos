@@ -929,8 +929,18 @@
                 );
 
 
-            const data =
-                await response.json();
+            const responseText = await response.text();
+            let data;
+            try {
+                data = JSON.parse(responseText);
+            } catch (parseError) {
+                console.error("AI endpoint returned a non-JSON response:", responseText.slice(0, 300));
+                throw new Error(
+                    response.status === 404
+                        ? "Pinaki Ethos AI endpoint is not deployed yet. Please wait for the latest deployment."
+                        : "The AI server returned an invalid response. Please try again shortly."
+                );
+            }
 
 
             if (!response.ok) {
