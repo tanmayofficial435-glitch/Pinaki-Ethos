@@ -1605,7 +1605,7 @@ overflow-y: auto;
     </button>
 
     <button class="create-tool" data-tool="magic">
-        🌟 <span>Prism Magic</span>
+        🌟 <span>Pinaki Magic</span>
     </button>
 
 </div>
@@ -1848,7 +1848,7 @@ overflow-y: auto;
             const userName =
                 localStorage.getItem(
                     "prismUserName"
-                ) || "Prism User";
+                ) || "Pinaki User";
 
             const button =
                 document.querySelector(
@@ -1912,7 +1912,7 @@ overflow-y: auto;
                 });
             }
 
-            const name = localStorage.getItem("prismUserName") || "Prism User";
+            const name = localStorage.getItem("prismUserName") || "Pinaki User";
             const email = localStorage.getItem("prismUserEmail") || "No email";
             const plan = localStorage.getItem("prismPlan") || "Free";
 
@@ -1930,7 +1930,7 @@ overflow-y: auto;
                 <button class="prism-account-item" type="button" onclick="seeProfile()">👤 See Profile</button>
                 <button class="prism-account-item" type="button" onclick="editProfile()">✎ Edit Profile</button>
                 <button class="prism-account-item" type="button" onclick="viewAccountPlan()">◇ View My Plan</button>
-                <button class="prism-account-item danger" type="button" onclick="logoutPrism()">↪ Log Out</button>
+                <button class="prism-account-item danger" type="button" onclick="logoutPinaki()">↪ Log Out</button>
             `;
 
             menu.classList.add("open");
@@ -1965,7 +1965,7 @@ overflow-y: auto;
     }
 }
 
-        function logoutPrism() {
+        function logoutPinaki() {
             localStorage.removeItem("prismLoggedIn");
             localStorage.removeItem("prismUserName");
             localStorage.removeItem("prismUserEmail");
@@ -2111,7 +2111,7 @@ const creationLabels = {
     design: "AI Design Generator",
     improve: "Make It Better",
     social: "Social Media Studio",
-    magic: "Prism Magic",
+    magic: "Pinaki Magic",
 
     // CREATE YOURSELF
     ppt: "Make a PPT",
