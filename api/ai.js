@@ -85,7 +85,7 @@ module.exports = async function handler(req, res) {
             console.error("assistant service Pinaki Intelligence returned non-JSON:", upstream.status, raw.slice(0, 500));
             return res.status(502).json({
                 ok: false,
-                error: "Pinaki Intelligence assistant service service returned an invalid response. Check the Worker route and deployment."
+                error: "Pinaki Intelligence assistant service returned an invalid response. Please try again later."
             });
         }
 
@@ -105,7 +105,7 @@ module.exports = async function handler(req, res) {
             console.error("assistant service Pinaki Intelligence returned no answer:", JSON.stringify(data).slice(0, 1000));
             return res.status(502).json({
                 ok: false,
-                error: "Pinaki Intelligence assistant service service connected but returned no reply. Check its /api/chat response format."
+                error: "Pinaki Intelligence assistant service connected but returned no reply. Please try again later."
             });
         }
 
@@ -121,8 +121,8 @@ module.exports = async function handler(req, res) {
         return res.status(502).json({
             ok: false,
             error: error?.name === "TimeoutError"
-                ? "Pinaki Intelligence assistant service service took too long to respond. Please try again."
-                : error?.message || "Unable to connect to Pinaki Intelligence assistant service service."
+                ? "Pinaki Intelligence assistant service took too long to respond. Please try again."
+                : error?.message || "Unable to connect to Pinaki Intelligence assistant service."
         });
     }
 };
