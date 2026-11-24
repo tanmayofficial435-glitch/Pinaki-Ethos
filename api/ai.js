@@ -13,7 +13,7 @@ module.exports = async function handler(req, res) {
     if (!workerUrl) {
         return res.status(503).json({
             ok: false,
-            error: "My AI Cloudflare service is not configured. Add CLOUDFLARE_WORKER_URL to the production environment."
+            error: "Pinaki Intelligence Cloudflare service is not configured. Add CLOUDFLARE_WORKER_URL to the production environment."
         });
     }
 
@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
     const prompt = String(body.prompt || body.message || "").trim();
     const baseSystem = String(
         body.system ||
-        "You are My AI, the intelligent assistant inside Pinaki Ethos. Give helpful, accurate, clear answers."
+        "You are Pinaki Intelligence, the intelligent assistant inside Pinaki Ethos. Give helpful, accurate, clear answers."
     );
     const system = baseSystem + "\n\n" + PINAKI_ETHOS_KNOWLEDGE;
 
@@ -38,7 +38,7 @@ module.exports = async function handler(req, res) {
         /\b(pinaki\s*ethos|pinaki|this platform|this website)\b/.test(normalizedQuestion);
 
     if (asksAboutCreator) {
-        const answer = "Pinaki Ethos was created by Mr. Tanmay Satpute. ChatGPT assisted with planning, coding, AI integration, website development, and troubleshooting, but Tanmay Satpute is the creator and founder.";
+        const answer = "Pinaki Ethos was founded by Mr. Tanmay Satpute, with Mr. Prajwal Gosh as co-founder. The company name is Pinaki.";
         return res.status(200).json({
             ok: true,
             response: answer,
@@ -83,16 +83,16 @@ module.exports = async function handler(req, res) {
         try {
             data = JSON.parse(raw);
         } catch {
-            console.error("Cloudflare My AI returned non-JSON:", upstream.status, raw.slice(0, 500));
+            console.error("Cloudflare Pinaki Intelligence returned non-JSON:", upstream.status, raw.slice(0, 500));
             return res.status(502).json({
                 ok: false,
-                error: "My AI Cloudflare service returned an invalid response. Check the Worker route and deployment."
+                error: "Pinaki Intelligence Cloudflare service returned an invalid response. Check the Worker route and deployment."
             });
         }
 
         if (!upstream.ok) {
-            const message = data?.error || data?.message || "Cloudflare My AI request failed.";
-            console.error("Cloudflare My AI error:", upstream.status, message);
+            const message = data?.error || data?.message || "Cloudflare Pinaki Intelligence request failed.";
+            console.error("Cloudflare Pinaki Intelligence error:", upstream.status, message);
             return res.status(upstream.status >= 400 && upstream.status < 600 ? upstream.status : 502).json({
                 ok: false,
                 error: String(message)
@@ -103,10 +103,10 @@ module.exports = async function handler(req, res) {
             data?.result?.reply || data?.result?.response || data?.choices?.[0]?.message?.content;
 
         if (typeof answer !== "string" || !answer.trim()) {
-            console.error("Cloudflare My AI returned no answer:", JSON.stringify(data).slice(0, 1000));
+            console.error("Cloudflare Pinaki Intelligence returned no answer:", JSON.stringify(data).slice(0, 1000));
             return res.status(502).json({
                 ok: false,
-                error: "My AI Cloudflare service connected but returned no reply. Check its /api/chat response format."
+                error: "Pinaki Intelligence Cloudflare service connected but returned no reply. Check its /api/chat response format."
             });
         }
 
@@ -123,8 +123,8 @@ module.exports = async function handler(req, res) {
         return res.status(502).json({
             ok: false,
             error: error?.name === "TimeoutError"
-                ? "My AI Cloudflare service took too long to respond. Please try again."
-                : error?.message || "Unable to connect to My AI Cloudflare service."
+                ? "Pinaki Intelligence Cloudflare service took too long to respond. Please try again."
+                : error?.message || "Unable to connect to Pinaki Intelligence Cloudflare service."
         });
     }
 };
