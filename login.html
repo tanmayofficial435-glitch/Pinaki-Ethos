@@ -648,7 +648,9 @@
         ========================================= */
 
         applyTheme();
-        initializeClerkAuth();
+        // Deferred Clerk scripts execute after HTML parsing. Wait until the page load event
+        // so window.Clerk exists before attempting to initialize the sign-in UI.
+        window.addEventListener("load", () => initializeClerkAuth(), { once: true });
 
     </script>
 
