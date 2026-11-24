@@ -7,133 +7,100 @@ module.exports = async function handler(req, res) {
         return res.status(405).json({ ok: false, error: "Method not allowed." });
     }
 
-    const readBody = () => {
-        let body = req.body;
-        if (typeof body === "string") {
-            try { body = JSON.parse(body); } catch { body = {}; }
-        }
-        return body && typeof body === "object" ? body : {};
-    };
+    const workerUrl = process.env.CLOUDFLARE_WORKER_URL;
+    if (!workerUrl) {
+        return res.status(503).json({
+            ok: false,
+            error: "My AI Cloudflare service is not configured. Add CLOUDFLARE_WORKER_URL to the production environment."
+        });
+    }
 
-    const extractText = (value) => {
-        if (typeof value === "string") return value.trim();
-        if (Array.isArray(value)) {
-            return value.map(part => typeof part === "string" ? part : (part?.text || ""))
-                .filter(Boolean).join("\n").trim();
-        }
-        return "";
-    };
+    let body = req.body;
+    if (typeof body === "string") {
+        try { body = JSON.parse(body); } catch { body = {}; }
+    }
+    body = body && typeof body === "object" ? body : {};
 
-    const body = readBody();
     const prompt = String(body.prompt || body.message || "").trim();
     const system = String(
         body.system ||
-        "You are Pinaki Ethos, a helpful, intelligent and creative AI assistant. Answer the user's question directly, accurately and clearly."
+        "You are My AI, the intelligent assistant inside Pinaki Ethos. Give helpful, accurate, clear answers."
     );
 
     if (!prompt) {
         return res.status(400).json({ ok: false, error: "Please enter a message." });
     }
 
-    const failures = [];
-
-    // Primary provider: Gemini. This uses the existing production GEMINI_API_KEY.
-    if (process.env.GEMINI_API_KEY) {
-        try {
-            const response = await fetch(
-                "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "x-goog-api-key": process.env.GEMINI_API_KEY
-                    },
-                    body: JSON.stringify({
-                        systemInstruction: { parts: [{ text: system }] },
-                        contents: [{ role: "user", parts: [{ text: prompt }] }],
-                        generationConfig: { temperature: 0.7, maxOutputTokens: 2048 }
-                    })
-                }
-            );
-
-            const raw = await response.text();
-            let data;
-            try { data = JSON.parse(raw); } catch { data = {}; }
-
-            if (!response.ok) {
-                const message = data?.error?.message || "Gemini request failed with status " + response.status;
-                failures.push("Gemini: " + message);
-                console.error("Pinaki Ethos Gemini error:", response.status, message);
-            } else {
-                const answer = extractText(
-                    data?.candidates?.[0]?.content?.parts?.map(part => part.text || "")
-                );
-                if (answer) {
-                    return res.status(200).json({ ok: true, answer, provider: "gemini" });
-                }
-                const reason = data?.promptFeedback?.blockReason ||
-                    data?.candidates?.[0]?.finishReason ||
-                    "No text content returned";
-                failures.push("Gemini: " + reason);
-                console.error("Pinaki Ethos Gemini empty response:", reason, JSON.stringify(data).slice(0, 1200));
-            }
-        } catch (error) {
-            failures.push("Gemini: " + (error?.message || "Network error"));
-            console.error("Pinaki Ethos Gemini connection error:", error);
+    try {
+        // CLOUDFLARE_WORKER_URL may be either the Worker base URL or its full /api/chat URL.
+        const endpoint = new URL(workerUrl);
+        if (!endpoint.pathname.replace(/\/$/, "").endsWith("/api/chat")) {
+            endpoint.pathname = endpoint.pathname.replace(/\/$/, "") + "/api/chat";
         }
-    } else {
-        failures.push("Gemini: GEMINI_API_KEY is not configured");
-    }
 
-    // Fallback provider: OpenRouter.
-    if (process.env.OPENROUTER_API_KEY) {
+        const upstream = await fetch(endpoint.toString(), {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                message: prompt,
+                prompt,
+                system,
+                conversation_id: body.conversation_id || undefined,
+                tool: body.tool || "chat"
+            }),
+            signal: AbortSignal.timeout(55000)
+        });
+
+        const raw = await upstream.text();
+        let data;
         try {
-            const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + process.env.OPENROUTER_API_KEY,
-                    "Content-Type": "application/json",
-                    "HTTP-Referer": "https://pinaki-ethos.vercel.app",
-                    "X-Title": "Pinaki Ethos"
-                },
-                body: JSON.stringify({
-                    model: "openrouter/free",
-                    messages: [
-                        { role: "system", content: system },
-                        { role: "user", content: prompt }
-                    ],
-                    max_tokens: 2048
-                })
+            data = JSON.parse(raw);
+        } catch {
+            console.error("Cloudflare My AI returned non-JSON:", upstream.status, raw.slice(0, 500));
+            return res.status(502).json({
+                ok: false,
+                error: "My AI Cloudflare service returned an invalid response. Check the Worker route and deployment."
             });
-
-            const raw = await response.text();
-            let data;
-            try { data = JSON.parse(raw); } catch { data = {}; }
-
-            if (!response.ok) {
-                const message = data?.error?.message || "OpenRouter request failed with status " + response.status;
-                failures.push("OpenRouter: " + message);
-                console.error("Pinaki Ethos OpenRouter error:", response.status, message);
-            } else {
-                const message = data?.choices?.[0]?.message || {};
-                const answer = extractText(message.content) || extractText(message.reasoning);
-                if (answer) {
-                    return res.status(200).json({ ok: true, answer, provider: "openrouter" });
-                }
-                const reason = data?.choices?.[0]?.finish_reason || "No text content returned";
-                failures.push("OpenRouter: " + reason);
-                console.error("Pinaki Ethos OpenRouter empty response:", reason, JSON.stringify(data).slice(0, 1200));
-            }
-        } catch (error) {
-            failures.push("OpenRouter: " + (error?.message || "Network error"));
-            console.error("Pinaki Ethos OpenRouter connection error:", error);
         }
-    } else {
-        failures.push("OpenRouter: OPENROUTER_API_KEY is not configured");
-    }
 
-    return res.status(502).json({
-        ok: false,
-        error: "Pinaki Ethos could not get a response from its AI providers. " + failures.join(" | ")
-    });
+        if (!upstream.ok) {
+            const message = data?.error || data?.message || "Cloudflare My AI request failed.";
+            console.error("Cloudflare My AI error:", upstream.status, message);
+            return res.status(upstream.status >= 400 && upstream.status < 600 ? upstream.status : 502).json({
+                ok: false,
+                error: String(message)
+            });
+        }
+
+        const answer = data?.reply || data?.response || data?.answer ||
+            data?.result?.reply || data?.result?.response || data?.choices?.[0]?.message?.content;
+
+        if (typeof answer !== "string" || !answer.trim()) {
+            console.error("Cloudflare My AI returned no answer:", JSON.stringify(data).slice(0, 1000));
+            return res.status(502).json({
+                ok: false,
+                error: "My AI Cloudflare service connected but returned no reply. Check its /api/chat response format."
+            });
+        }
+
+        return res.status(200).json({
+            ok: true,
+            response: answer.trim(),
+            reply: answer.trim(),
+            answer: answer.trim(),
+            conversation_id: data?.conversation_id || data?.result?.conversation_id || null,
+            provider: "cloudflare"
+        });
+    } catch (error) {
+        console.error("Pinaki Ethos Cloudflare AI connection error:", error);
+        return res.status(502).json({
+            ok: false,
+            error: error?.name === "TimeoutError"
+                ? "My AI Cloudflare service took too long to respond. Please try again."
+                : error?.message || "Unable to connect to My AI Cloudflare service."
+        });
+    }
 };
