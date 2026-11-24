@@ -1952,20 +1952,9 @@ overflow-y: auto;
             window.location.href = "pricing.html";
         }
         function openOwnCreationTools() {
-    console.log("Create it Yourself clicked");
-
-    const ownStep = document.getElementById("createStepOwn");
-    const aiStep = document.getElementById("createStepAI");
-
-    if (aiStep) {
-        aiStep.style.display = "none";
-    }
-
-    if (ownStep) {
-        ownStep.style.display = "block";
-        onclick="openOwnCreationTools()"
-    }
-}
+            localStorage.setItem("prismCreateMode", "self");
+            window.location.href = "editor-choice.html";
+        }
 
         async function logoutPrism() {
             const menu = document.getElementById("prismAccountMenu");
@@ -2160,7 +2149,7 @@ const creationLabels = {
         }
         function openSelfCreator() {
             localStorage.setItem("prismCreateMode", "self");
-            window.location.href = "self-create.html";
+            window.location.href = "editor-choice.html";
         }
 
         function openAICreator() {
