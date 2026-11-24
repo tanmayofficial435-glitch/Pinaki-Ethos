@@ -42,7 +42,10 @@ module.exports = async function handler(req, res) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                ...(process.env.PE_API_SECRET
+                    ? { "Authorization": "Bearer " + process.env.PE_API_SECRET }
+                    : {})
             },
             body: JSON.stringify({
                 message: prompt,
