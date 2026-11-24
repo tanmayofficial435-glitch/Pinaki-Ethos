@@ -31,11 +31,11 @@ module.exports = async function handler(req, res) {
     const system = baseSystem + "\n\n" + PINAKI_ETHOS_KNOWLEDGE;
 
     // Keep the creator fact exact and reliable, even if the model is uncertain.
-    const normalizedQuestion = prompt.toLowerCase().replace(/[^a-z0-9\\s]/g, " ");
+    const normalizedQuestion = prompt.toLowerCase().replace(/[^a-z0-9\s]/g, " ");
     const asksAboutCreator =
-        /\\b(who|which person|name of)\\b/.test(normalizedQuestion) &&
-        /\\b(made|make|created|creator|founded|founder|built|developed|owner|owns)\\b/.test(normalizedQuestion) &&
-        /\\b(pinaki\\s*ethos|pinaki|this platform|this website)\\b/.test(normalizedQuestion);
+        /\b(who|which person|name of)\b/.test(normalizedQuestion) &&
+        /\b(made|make|created|creator|founded|founder|built|developed|owner|owns)\b/.test(normalizedQuestion) &&
+        /\b(pinaki\s*ethos|pinaki|this platform|this website)\b/.test(normalizedQuestion);
 
     if (asksAboutCreator) {
         const answer = "Pinaki Ethos was created by Mr. Tanmay Satpute. ChatGPT assisted with planning, coding, AI integration, website development, and troubleshooting, but Tanmay Satpute is the creator and founder.";
