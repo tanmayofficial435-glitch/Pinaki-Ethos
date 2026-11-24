@@ -62,7 +62,7 @@ function updateLoginStatus() {
         localStorage.getItem("prismLoggedIn") === "true";
 
     const userName =
-        localStorage.getItem("prismUserName") || "Prism User";
+        localStorage.getItem("prismUserName") || "Pinaki User";
 
     const loginButtons =
         document.querySelectorAll(".login-btn, .login");
@@ -145,7 +145,7 @@ function createAccountPanel() {
 
                 <button
                     class="prism-account-logout"
-                    onclick="logoutPrism()"
+                    onclick="logoutPinaki()"
                 >
                     Log Out
                 </button>
@@ -172,7 +172,7 @@ function showAccountMenu() {
     const name =
         localStorage.getItem(
             "prismUserName"
-        ) || "Prism User";
+        ) || "Pinaki User";
 
     const email =
         localStorage.getItem(
@@ -208,7 +208,7 @@ function seeProfile() {
     const name =
         localStorage.getItem(
             "prismUserName"
-        ) || "Prism User";
+        ) || "Pinaki User";
 
     const email =
         localStorage.getItem(
@@ -232,7 +232,7 @@ function editProfile() {
     const name =
         localStorage.getItem(
             "prismUserName"
-        ) || "Prism User";
+        ) || "Pinaki User";
 
     const newName =
         prompt(
@@ -351,7 +351,7 @@ function closeAccountMenu() {
 // LOGOUT
 // ------------------------------------------------------------
 
-function logoutPrism() {
+function logoutPinaki() {
 
     localStorage.removeItem("prismLoggedIn");
     localStorage.removeItem("prismUserName");
