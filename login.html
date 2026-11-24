@@ -414,6 +414,9 @@
             }
         }
     </style>
+
+    <script defer crossorigin="anonymous" src="https://direct-impala-5382.clerk.accounts.dev/npm/@clerk/ui@1/dist/ui.browser.js"></script>
+    <script defer crossorigin="anonymous" data-clerk-publishable-key="pk_test_ZGlyZWN0LWltcGFsYS01MzgyLmNsZXJrLmFjY291bnRzLmRldiQ" src="https://direct-impala-5382.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js"></script>
 </head>
 
 <body>
@@ -457,105 +460,9 @@
             </p>
 
 
-            <div class="switch">
-
-                <button
-                    id="loginTab"
-                    class="active"
-                    onclick="setMode('login')">
-
-                    Log In
-
-                </button>
+            <div id="clerk-auth" style="min-height: 360px;"></div>
 
 
-                <button
-                    id="signupTab"
-                    onclick="setMode('signup')">
-
-                    Sign Up
-
-                </button>
-
-            </div>
-
-
-            <form id="authForm">
-
-                <div
-                    class="field"
-                    id="nameField"
-                    style="display:none;">
-
-                    <label for="name">
-                        Full Name
-                    </label>
-
-                    <input
-                        id="name"
-                        type="text"
-                        placeholder="Enter your name"
-                        autocomplete="name">
-
-                </div>
-
-
-                <div class="field">
-
-                    <label for="email">
-                        Email Address
-                    </label>
-
-                    <input
-                        id="email"
-                        type="email"
-                        placeholder="you@example.com"
-                        autocomplete="email"
-                        required>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label for="password">
-                        Password
-                    </label>
-
-                    <div class="password">
-
-                        <input
-                            id="password"
-                            type="password"
-                            placeholder="Enter your password"
-                            autocomplete="current-password"
-                            required>
-
-                        <button
-                            type="button"
-                            class="show"
-                            id="showButton"
-                            onclick="togglePassword()">
-
-                            Show
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="submit"
-                    id="submitButton">
-
-                    Log In →
-
-                </button>
-
-            </form>
 
 
             <div
@@ -656,423 +563,85 @@
 
 
         /* =========================================
-           AUTH MODE
+           CLERK AUTHENTICATION
         ========================================= */
 
-        let mode = "login";
-
-
-        function setMode(newMode) {
-
-            mode = newMode;
-
-            const loginTab =
-                document.getElementById(
-                    "loginTab"
-                );
-
-            const signupTab =
-                document.getElementById(
-                    "signupTab"
-                );
-
-            const nameField =
-                document.getElementById(
-                    "nameField"
-                );
-
-            const heading =
-                document.getElementById(
-                    "heading"
-                );
-
-            const description =
-                document.getElementById(
-                    "description"
-                );
-
-            const submitButton =
-                document.getElementById(
-                    "submitButton"
-                );
-
-
-            clearMessage();
-
-
-            if (mode === "signup") {
-
-                loginTab.classList.remove(
-                    "active"
-                );
-
-                signupTab.classList.add(
-                    "active"
-                );
-
-                nameField.style.display =
-                    "block";
-
-                heading.textContent =
-                    "Create your account.";
-
-                description.textContent =
-                    "Join Pinaki Ethos and start creating.";
-
-                submitButton.textContent =
-                    "Create Account →";
-
-            } else {
-
-                signupTab.classList.remove(
-                    "active"
-                );
-
-                loginTab.classList.add(
-                    "active"
-                );
-
-                nameField.style.display =
-                    "none";
-
-                heading.textContent =
-                    "Welcome back.";
-
-                description.textContent =
-                    "Log in to continue your Pinaki Ethos experience.";
-
-                submitButton.textContent =
-                    "Log In →";
-            }
-        }
-
-
-        /* =========================================
-           PASSWORD
-        ========================================= */
-
-        function togglePassword() {
-
-            const password =
-                document.getElementById(
-                    "password"
-                );
-
-            const button =
-                document.getElementById(
-                    "showButton"
-                );
-
-
-            if (
-                password.type === "password"
-            ) {
-
-                password.type = "text";
-
-                button.textContent =
-                    "Hide";
-
-            } else {
-
-                password.type = "password";
-
-                button.textContent =
-                    "Show";
-            }
-        }
-
-
-        /* =========================================
-           MESSAGE
-        ========================================= */
-
-        function showMessage(
-            text,
-            type
-        ) {
-
-            const message =
-                document.getElementById(
-                    "message"
-                );
-
-            message.textContent = text;
-
-            message.className =
-                "message show " + type;
-        }
-
-
-        function clearMessage() {
-
-            const message =
-                document.getElementById(
-                    "message"
-                );
-
-            message.textContent = "";
-
-            message.className =
-                "message";
-        }
-
-
-        /* =========================================
-           FORM
-        ========================================= */
-
-        document
-            .getElementById("authForm")
-            .addEventListener(
-                "submit",
-                async function(event) {
-
-                    event.preventDefault();
-
-                    clearMessage();
-
-
-                    const name =
-                        document
-                            .getElementById("name")
-                            .value
-                            .trim();
-
-                    const email =
-                        document
-                            .getElementById("email")
-                            .value
-                            .trim();
-
-                    const password =
-                        document
-                            .getElementById("password")
-                            .value;
-
-
-                    if (
-                        mode === "signup" &&
-                        name.length === 0
-                    ) {
-
-                        showMessage(
-                            "Please enter your name.",
-                            "error"
-                        );
-
-                        return;
-                    }
-
-
-                    const submitButton =
-                        document.getElementById(
-                            "submitButton"
-                        );
-
-                    submitButton.disabled =
-                        true;
-
-
-                    submitButton.textContent =
-                        mode === "signup"
-                            ? "Creating Account..."
-                            : "Logging In...";
-
-
-                    try {
-
-                        /*
-                         * IMPORTANT:
-                         *
-                         * Because login.html is being
-                         * opened through:
-                         *
-                         * http://localhost:3000/login.html
-                         *
-                         * this URL automatically goes
-                         * to the same Pinaki Ethos server.
-                         */
-
-                        const endpoint =
-                            mode === "signup"
-                                ? "/api/auth/signup"
-                                : "/api/auth/login";
-
-
-                        const requestData =
-                            mode === "signup"
-                                ? {
-                                    name: name,
-                                    email: email,
-                                    password: password
-                                }
-                                : {
-                                    email: email,
-                                    password: password
-                                };
-
-
-                        console.log(
-                            "Sending authentication request:",
-                            endpoint
-                        );
-
-
-                        const response =
-                            await fetch(
-                                endpoint,
-                                {
-                                    method: "POST",
-
-                                    headers: {
-                                        "Content-Type":
-                                            "application/json"
-                                    },
-
-                                    body:
-                                        JSON.stringify(
-                                            requestData
-                                        )
-                                }
-                            );
-
-
-                     const responseText = await response.text();
-
-console.log("HTTP STATUS:", response.status);
-console.log("RAW BACKEND RESPONSE:", responseText);
-
-let data;
-
-try {
-    data = JSON.parse(responseText);
-} catch (parseError) {
-    throw new Error(
-        "Backend returned an invalid response: " +
-        responseText
-    );
-}
-
-console.log("BACKEND DATA:", data);
-
-
-                       if (
-    !response.ok ||
-    !data.ok ||
-    !data.user
-) {
-
-    throw new Error(
-        data.error ||
-        "Authentication failed."
-    );
-}
-
-
-                        /*
-                         * SAVE USER INFORMATION
-                         */
-
-                        localStorage.setItem(
-                            "prismLoggedIn",
-                            "true"
-                        );
-
-                        localStorage.setItem(
-                            "prismUserName",
-                            data.user.name
-                        );
-
-                        localStorage.setItem(
-                            "prismUserEmail",
-                            data.user.email
-                        );
-
-                        localStorage.setItem(
-                            "prismUserId",
-                            data.user.id
-                        );
-                        if (data.token) {
-
-    localStorage.setItem(
-        "prismAuthToken",
-        data.token
-    );
-
-    localStorage.setItem(
-        "prismToken",
-        data.token
-    );
-
-    localStorage.setItem(
-        "token",
-        data.token
-    );
-}
-
-
-                        showMessage(
-                            mode === "signup"
-                                ? "Account created successfully!"
-                                : "Login successful!",
-                            "success"
-                        );
-
-
-                        submitButton.textContent =
-                            "Success ✓";
-
-
-                        /*
-                         * GO HOME
-                         */
-
-                        setTimeout(
-                            function() {
-
-                                window.location.href =
-                                    "/index.html";
-
-                            },
-                            900
-                        );
-
-
-                    } catch (error) {
-
-                        console.error(
-                            "Authentication error:",
-                            error
-                        );
-
-
-                        showMessage(
-                            error.message ||
-                            "Could not connect to the Pinaki Ethos backend.",
-                            "error"
-                        );
-
-
-                        submitButton.disabled =
-                            false;
-
-
-                        submitButton.textContent =
-                            mode === "signup"
-                                ? "Create Account →"
-                                : "Log In →";
-                    }
-
+        async function initializeClerkAuth() {
+            const host = document.getElementById("clerk-auth");
+            const submitButton = document.getElementById("submitButton");
+
+            try {
+                if (!window.Clerk) {
+                    throw new Error("Clerk could not load. Refresh the page and try again.");
                 }
-            );
 
+                await window.Clerk.load({
+                    ui: { ClerkUI: window.__internal_ClerkUICtor }
+                });
+
+                const clerk = window.Clerk;
+
+                async function saveClerkSession(state) {
+                    const user = state?.user || clerk.user;
+                    const session = state?.session || clerk.session;
+                    if (!user || !session) return;
+
+                    const email = user.primaryEmailAddress?.emailAddress ||
+                        user.emailAddresses?.[0]?.emailAddress || "";
+                    const name = user.fullName ||
+                        [user.firstName, user.lastName].filter(Boolean).join(" ") ||
+                        email.split("@")[0] || "Pinaki Ethos User";
+                    const token = await session.getToken();
+                    const legacyId = user.externalId || user.id;
+
+                    localStorage.setItem("prismLoggedIn", "true");
+                    localStorage.setItem("prismUserName", name);
+                    localStorage.setItem("prismUserEmail", email);
+                    localStorage.setItem("prismUserId", legacyId);
+                    if (token) {
+                        localStorage.setItem("prismAuthToken", token);
+                        localStorage.setItem("prismToken", token);
+                        localStorage.setItem("token", token);
+                    }
+                }
+
+                clerk.addListener((state) => {
+                    saveClerkSession(state).catch((error) =>
+                        console.error("Could not sync Clerk session:", error)
+                    );
+                });
+
+                if (clerk.isSignedIn) {
+                    await saveClerkSession({ user: clerk.user, session: clerk.session });
+                    window.location.replace("/index.html");
+                    return;
+                }
+
+                clerk.mountSignIn(host, {
+                    routing: "hash",
+                    signInForceRedirectUrl: "/index.html",
+                    signUpForceRedirectUrl: "/index.html",
+                    signUpFallbackRedirectUrl: "/index.html",
+                    signInFallbackRedirectUrl: "/index.html",
+                    appearance: {
+                        elements: {
+                            rootBox: { width: "100%" },
+                            card: { background: "transparent", boxShadow: "none", border: "none" }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error("Clerk initialization failed:", error);
+                showMessage(error.message || "Could not connect to Clerk.", "error");
+            }
+        }
 
         /* =========================================
            START
         ========================================= */
 
         applyTheme();
+        initializeClerkAuth();
 
     </script>
 
