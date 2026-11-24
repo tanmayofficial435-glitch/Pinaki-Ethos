@@ -415,6 +415,7 @@
         }
     </style>
 
+    <script defer crossorigin="anonymous" src="https://direct-impala-5382.clerk.accounts.dev/npm/@clerk/ui@1/dist/ui.browser.js"></script>
     <script defer crossorigin="anonymous" data-clerk-publishable-key="pk_test_ZGlyZWN0LWltcGFsYS01MzgyLmNsZXJrLmFjY291bnRzLmRldiQ" src="https://direct-impala-5382.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js"></script>
 </head>
 
@@ -561,6 +562,13 @@
         }
 
 
+        function showMessage(text, type = "error") {
+            const message = document.getElementById("message");
+            if (!message) return;
+            message.textContent = text;
+            message.className = "message show " + type;
+        }
+
         /* =========================================
            CLERK AUTHENTICATION
         ========================================= */
@@ -574,7 +582,9 @@
                     throw new Error("Clerk could not load. Refresh the page and try again.");
                 }
 
-                await window.Clerk.load();
+                await window.Clerk.load({
+                    ui: { ClerkUI: window.__internal_ClerkUICtor }
+                });
 
                 const clerk = window.Clerk;
 
