@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prism Magic — Pinaki Ethos</title>
+<title>Pinaki Magic — Pinaki Ethos</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -232,11 +232,11 @@ button.magic:hover{
     <div class="magic-symbol">✦</div>
 
     <h1>
-        <span class="gradient">Prism Magic</span>
+        <span class="gradient">Pinaki Magic</span>
     </h1>
 
     <p>
-        Give Prism a goal. Let it understand what you are trying
+        Give Pinaki a goal. Let it understand what you are trying
         to accomplish and work out the right way to help.
     </p>
 
@@ -250,7 +250,7 @@ What do you want to accomplish?
 
 <textarea
 id="magicInput"
-placeholder="Tell Prism what you want...
+placeholder="Tell Pinaki what you want...
 
 Example:
 I have to make a school project about space exploration.
@@ -260,7 +260,7 @@ to explain it clearly to my class."></textarea>
 <div class="actions">
 
 <button class="magic" onclick="runMagic()">
-    ✦ Let Prism Handle It
+    ✦ Let Pinaki Handle It
 </button>
 
 </div>
@@ -289,19 +289,19 @@ async function runMagic(){
     if(!input){
 
         status.textContent =
-            "Tell Prism what you want to accomplish.";
+            "Tell Pinaki what you want to accomplish.";
 
         return;
     }
 
     status.textContent =
-        "✦ Prism is understanding your goal...";
+        "✦ Pinaki is understanding your goal...";
 
     result.style.display = "none";
 
     const system = `
 
-You are Prism Magic.
+You are Pinaki Magic.
 
 The user gives you a goal rather than a specific tool.
 
@@ -316,7 +316,7 @@ Return:
 3. Recommended Approach
 4. First Step
 5. Suggested Workflow
-6. Useful Prism Features
+6. Useful Pinaki Features
 7. Final Guidance
 
 Do not pretend that actions were completed when they were not.
@@ -365,12 +365,12 @@ Be practical and student-friendly when appropriate.
             "";
 
         result.textContent =
-            answer || "Prism could not generate a response.";
+            answer || "Pinaki could not generate a response.";
 
         result.style.display = "block";
 
         status.textContent =
-            "✨ Prism Magic completed.";
+            "✨ Pinaki Magic completed.";
 
     }catch(error){
 
