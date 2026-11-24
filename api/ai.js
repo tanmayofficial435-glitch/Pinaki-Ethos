@@ -1,3 +1,5 @@
+const PINAKI_ETHOS_KNOWLEDGE = require("./pinaki-ethos-knowledge");
+
 module.exports = async function handler(req, res) {
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.setHeader("Cache-Control", "no-store");
@@ -22,10 +24,29 @@ module.exports = async function handler(req, res) {
     body = body && typeof body === "object" ? body : {};
 
     const prompt = String(body.prompt || body.message || "").trim();
-    const system = String(
+    const baseSystem = String(
         body.system ||
         "You are My AI, the intelligent assistant inside Pinaki Ethos. Give helpful, accurate, clear answers."
     );
+    const system = baseSystem + "\n\n" + PINAKI_ETHOS_KNOWLEDGE;
+
+    // Keep the creator fact exact and reliable, even if the model is uncertain.
+    const normalizedQuestion = prompt.toLowerCase().replace(/[^a-z0-9\\s]/g, " ");
+    const asksAboutCreator =
+        /\\b(who|which person|name of)\\b/.test(normalizedQuestion) &&
+        /\\b(made|make|created|creator|founded|founder|built|developed|owner|owns)\\b/.test(normalizedQuestion) &&
+        /\\b(pinaki\\s*ethos|pinaki|this platform|this website)\\b/.test(normalizedQuestion);
+
+    if (asksAboutCreator) {
+        const answer = "Pinaki Ethos was created by Mr. Tanmay Satpute. ChatGPT assisted with planning, coding, AI integration, website development, and troubleshooting, but Tanmay Satpute is the creator and founder.";
+        return res.status(200).json({
+            ok: true,
+            response: answer,
+            reply: answer,
+            answer,
+            provider: "cloudflare-knowledge"
+        });
+    }
 
     if (!prompt) {
         return res.status(400).json({ ok: false, error: "Please enter a message." });
