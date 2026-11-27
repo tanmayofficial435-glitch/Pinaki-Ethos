@@ -1249,11 +1249,11 @@ overflow-y: auto;
             <div class="hero-buttons">
 
                 <a
-                    href="features.html"
+                    href="#"
                     class="primary-btn"
-                    id="exploreFeaturesButton"
+                    id="startCreatingButton"
                 >
-                    Explore Features →
+                    Start Creating →
                 </a>
 
                 <a
@@ -2011,7 +2011,7 @@ const creationLabels = {
             if (startButton) {
                 startButton.addEventListener("click", function() {
                     closeWelcomePopup();
-                    window.location.href = "features.html";
+                    window.setTimeout(openCreateFlow, 220);
                 });
             }
         }
