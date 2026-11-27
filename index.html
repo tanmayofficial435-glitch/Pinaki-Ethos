@@ -2209,6 +2209,22 @@ const creationLabels = {
             const methodAI = document.getElementById("methodAI");
             if (methodAI) methodAI.addEventListener("click", openAICreator);
 
+            const createWithAIButton = document.getElementById("createWithAIButton");
+            if (createWithAIButton) {
+                createWithAIButton.addEventListener("click", function() {
+                    localStorage.setItem("prismCreateMode", "ai");
+                    chooseCreateMode("ai");
+                });
+            }
+
+            const createYourselfButton = document.getElementById("createYourselfButton");
+            if (createYourselfButton) {
+                createYourselfButton.addEventListener("click", function() {
+                    localStorage.setItem("prismCreateMode", "self");
+                    chooseCreateMode("self");
+                });
+            }
+
             document.querySelectorAll(".create-tool").forEach(function(button) {
 
     button.addEventListener("click", function(event) {
@@ -2329,10 +2345,10 @@ const creationLabels = {
             }
 
             if (startButton) {
-                startButton.addEventListener(
-                    "click",
-                    closeWelcomePopup
-                );
+                startButton.addEventListener("click", function() {
+                    closeWelcomePopup();
+                    openCreateFlow();
+                });
             }
         }
 
@@ -2355,82 +2371,6 @@ const creationLabels = {
 
             }
         );
-// ==========================================
-// START CREATING - CREATION METHOD BUTTONS
-// ==========================================
-
-const createWithAIButton =
-    document.getElementById("createWithAIButton");
-
-const createYourselfButton =
-    document.getElementById("createYourselfButton");
-
-if (createWithAIButton) {
-    createWithAIButton.addEventListener("click", function () {
-
-        console.log("Create with Pinaki Ethos clicked");
-
-        selectedCreateMode = "ai";
-
-        localStorage.setItem("prismCreateMode", "ai");
-
-        const aiGrid = document.getElementById("aiToolGrid");
-        const ownGrid = document.getElementById("ownToolGrid");
-
-        const stepTwo = document.getElementById("createStepTwo");
-        const stepThree = document.getElementById("createStepThree");
-
-        if (aiGrid) {
-            aiGrid.hidden = false;
-        }
-
-        if (ownGrid) {
-            ownGrid.hidden = true;
-        }
-
-        if (stepTwo) {
-            stepTwo.hidden = false;
-        }
-
-        if (stepThree) {
-            stepThree.hidden = true;
-        }
-    });
-}
-
-
-if (createYourselfButton) {
-    createYourselfButton.addEventListener("click", function () {
-
-        console.log("Create Yourself clicked");
-
-        selectedCreateMode = "self";
-
-        localStorage.setItem("prismCreateMode", "self");
-
-        const aiGrid = document.getElementById("aiToolGrid");
-        const ownGrid = document.getElementById("ownToolGrid");
-
-        const stepTwo = document.getElementById("createStepTwo");
-        const stepThree = document.getElementById("createStepThree");
-
-        if (aiGrid) {
-            aiGrid.hidden = true;
-        }
-
-        if (ownGrid) {
-            ownGrid.hidden = false;
-        }
-
-        if (stepTwo) {
-            stepTwo.hidden = false;
-        }
-
-        if (stepThree) {
-            stepThree.hidden = true;
-        }
-    });
-}
     </script>
 
 </body>
