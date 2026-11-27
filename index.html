@@ -1529,7 +1529,6 @@ overflow-y: auto;
     type="button"
     id="createYourselfButton"
     class="create-choice own-choice"
-    onclick="openOwnCreationTools()"
 >
     <span class="create-choice-icon">✎</span>
     <strong>Create it Yourself</strong>
@@ -2049,6 +2048,8 @@ overflow-y: auto;
 
             stepOne.hidden = false;
             stepTwo.hidden = true;
+            const stepThree = document.getElementById("createStepThree");
+            if (stepThree) stepThree.hidden = true;
             flow.classList.add("show");
             flow.setAttribute("aria-hidden", "false");
         }
@@ -2243,22 +2244,6 @@ const creationLabels = {
 
     });
 
-});
-
-            document.querySelectorAll(".create-tool").forEach(function(button) {
-    button.addEventListener("click", function(event) {
-        event.preventDefault();
-
-        const tool = button.dataset.tool;
-
-        // LOGO HAS ITS OWN PAGE
-        if (tool === "logo") {
-            window.location.href = "logo.html";
-            return;
-        }
-
-        selectCreateTool(tool);
-    });
 });
 
             if (flow) {
