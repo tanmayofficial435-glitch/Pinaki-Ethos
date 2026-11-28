@@ -1315,7 +1315,173 @@ overflow-y: auto;
          START CREATING FLOW
     ====================================================== -->
 
-    <!-- Homepage tool chooser removed. Visitors can explore all tools on features.html. -->
+<div
+        class="create-overlay"
+        id="createFlow"
+        aria-hidden="true"
+    >
+        <div class="create-modal">
+
+            <button
+                class="create-close"
+                id="createFlowClose"
+                aria-label="Close create flow"
+            >
+                ×
+            </button>
+
+            <div class="create-step" id="createStepOne">
+                <div class="create-badge">✦ LET'S CREATE</div>
+
+                <h2>What do you want to create?</h2>
+
+                <p>
+                    Choose whether Pinaki Ethos should help generate it,
+                    or whether you want to create it yourself.
+                </p>
+
+               <div class="create-choice-grid">
+                    <button type="button" id="createWithAIButton" class="create-choice ai-choice">
+                        <span class="create-choice-icon">✦</span>
+                        <strong>Create with Pinaki Ethos</strong>
+                        <span>Start with an idea and let Pinaki Ethos generate, organize and improve your creation.</span>
+                    </button>
+
+                    <button
+    type="button"
+    id="createYourselfButton"
+    class="create-choice own-choice"
+>
+    <span class="create-choice-icon">✎</span>
+    <strong>Create it Yourself</strong>
+    <span>
+        Start from a blank canvas and control every part of your creation yourself.
+    </span>
+</button>
+                </div>
+            </div>
+
+            <div class="create-step" id="createStepTwo" hidden>
+                <div class="create-badge">✦ CHOOSE A TOOL</div>
+
+                <h2 id="createModeTitle">What do you want to make?</h2>
+
+                <p id="createModeText">Choose what you want to create and Pinaki Ethos will take you there.</p>
+
+               <div class="create-tool-grid" id="aiToolGrid">
+
+    <button class="create-tool" data-tool="editor">
+        ✍️ <span>AI Editor</span>
+    </button>
+
+    <button class="create-tool" data-tool="code">
+        💻 <span>Code</span>
+    </button>
+
+    <button class="create-tool" data-tool="ppt">
+        📊 <span>Presentation</span>
+    </button>
+
+    <button class="create-tool" data-tool="translator">
+        🌐 <span>Translation</span>
+    </button>
+
+    <button class="create-tool" data-tool="ideas">
+        💡 <span>Ideas</span>
+    </button>
+
+    <button class="create-tool" data-tool="ai">
+        🧠 <span>AI Assistant</span>
+    </button>
+   <button
+    class="create-tool"
+    id="makeLogoButton"
+    type="button"
+    onclick="window.location.href='logo.html';"
+>
+    ✦ <span>Make a Logo</span>
+</button>
+    <!-- NEW Pinaki Ethos FEATURES -->
+
+    <button class="create-tool" data-tool="understand">
+        🧠 <span>Understand My Project</span>
+    </button>
+
+    <button class="create-tool" data-tool="mindmap">
+        🗺️ <span>AI Mind Map</span>
+    </button>
+
+    <button class="create-tool" data-tool="coach">
+        🎤 <span>Presentation Coach</span>
+    </button>
+
+    <button class="create-tool" data-tool="design">
+        🎨 <span>AI Design Generator</span>
+    </button>
+
+    <button class="create-tool" data-tool="improve">
+        ✨ <span>Make It Better</span>
+    </button>
+
+    <button class="create-tool" data-tool="social">
+        📱 <span>Social Media Studio</span>
+    </button>
+
+    <button class="create-tool" data-tool="magic">
+        🌟 <span>Pinaki Ethos Magic</span>
+    </button>
+
+</div>
+
+                <div class="create-tool-grid" id="ownToolGrid" hidden>
+                    <button class="create-tool" data-tool="ppt">📊 <span>Make a PPT</span></button>
+                    <button class="create-tool" data-tool="advertisement">📢 <span>Make an Advertisement</span></button>
+                    <button class="create-tool" data-tool="image-edit">🖼️ <span>Edit an Image</span></button>
+                    <button class="create-tool" data-tool="instagram">📱 <span>Make an Instagram Page</span></button>
+                    <button class="create-tool" data-tool="website">🌐 <span>Make a Website</span></button>
+                    <button class="create-tool" data-tool="poster">🎨 <span>Make a Poster</span></button>
+                    <button class="create-tool" data-tool="logo">✦ <span>Make a Logo</span></button>
+                    <button class="create-tool" data-tool="social-post">📲 <span>Make a Social Post</span></button>
+                    <button class="create-tool" data-tool="video-script">🎬 <span>Make a Video Script</span></button>
+                </div>
+
+                <button class="create-back" id="createFlowBack">← Back</button>
+            </div>
+
+            <div class="create-step" id="createStepThree" hidden>
+                <div class="create-badge">✦ CHOOSE HOW TO CREATE</div>
+
+                <h2 id="creationMethodTitle">How do you want to make it?</h2>
+
+                <p id="creationMethodText">Choose whether you want to build it yourself or let Pinaki Ethos help you.</p>
+
+                <div class="create-choice-grid">
+                    <button class="create-choice own-choice" id="methodOwn">
+                        <span class="create-choice-icon">✎</span>
+                        <strong>I’ll make it myself</strong>
+                        <span>Start with a blank canvas and build everything yourself.</span>
+                    </button>
+
+                    <button class="create-choice ai-choice" id="methodAI">
+                        <span class="create-choice-icon">✦</span>
+                        <strong>Let Pinaki Ethos make it</strong>
+                        <span>Tell Pinaki Ethos what you want and get a generated starting point.</span>
+                    </button>
+                </div>
+
+                <button class="create-back" id="createMethodBack">← Back</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         WELCOME POPUP
+    ====================================================== -->
+
+    <div
+        class="welcome-overlay"
 
 
         <!-- =====================================================
