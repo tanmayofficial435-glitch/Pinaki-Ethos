@@ -88,6 +88,40 @@
            NAVIGATION
         ===================================================== */
 
+        .creator-ribbon {
+            width: 100%;
+            min-height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+            padding: 8px 16px;
+            color: #ffffff;
+            background: linear-gradient(90deg, #5426c8 0%, #7138df 45%, #078eae 100%);
+            text-align: center;
+            font-size: 13px;
+            font-weight: 650;
+            letter-spacing: .25px;
+        }
+
+        .creator-ribbon strong {
+            color: #ffffff;
+            font-weight: 850;
+        }
+
+        .creator-ribbon-star {
+            color: #baf5ff;
+            font-size: 13px;
+        }
+
+        @media (max-width: 560px) {
+            .creator-ribbon {
+                gap: 6px;
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+        }
+
         nav {
             position: sticky;
             top: 0;
@@ -1182,6 +1216,12 @@ overflow-y: auto;
     <!-- =====================================================
          NAVIGATION
     ====================================================== -->
+
+    <div class="creator-ribbon" role="note" aria-label="Creators">
+        <span class="creator-ribbon-star" aria-hidden="true">✦</span>
+        <span>Made by <strong>Tanmay Satpute</strong> &amp; <strong>Prajwal Ghosh</strong></span>
+        <span class="creator-ribbon-star" aria-hidden="true">✦</span>
+    </div>
 
     <nav>
 
