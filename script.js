@@ -665,3 +665,32 @@ document.addEventListener("DOMContentLoaded", function () {
     updateLoginStatus();
 
 });
+
+
+<script>
+(function () {
+    if (window.__pinakiAdminShortcutInstalled) return;
+    window.__pinakiAdminShortcutInstalled = true;
+
+    document.addEventListener("keydown", function (event) {
+        const isShortcut =
+            event.altKey &&
+            event.shiftKey &&
+            !event.ctrlKey &&
+            !event.metaKey &&
+            event.code === "KeyP";
+
+        if (!isShortcut || event.repeat) return;
+
+        const target = event.target;
+        const isTyping =
+            target &&
+            (target.isContentEditable ||
+             ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
+
+        if (isTyping) return;
+
+        event.preventDefault();
+        window.location.assign("/management");
+    });
+})();
