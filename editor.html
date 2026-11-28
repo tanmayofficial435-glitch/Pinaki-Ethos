@@ -826,18 +826,6 @@ summarize, explain or continue it."
                 </div>
 
 
-                <div
-                    id="responseBox"
-                    class="response">
-
-                    <div class="response-title">
-                        Pinaki Ethos Response
-                    </div>
-
-                    <div id="responseText"></div>
-
-                </div>
-
             </div>
 
         </div>
@@ -1214,16 +1202,6 @@ summarize, explain or continue it."
                 "sendButton"
             );
 
-        const responseBox =
-            document.getElementById(
-                "responseBox"
-            );
-
-        const responseText =
-            document.getElementById(
-                "responseText"
-            );
-
         const request =
             input.value.trim();
 
@@ -1259,11 +1237,8 @@ summarize, explain or continue it."
         sendButton.textContent =
             "Thinking...";
 
-        responseBox.style.display =
-            "block";
-
-        responseText.textContent =
-            "Pinaki Ethos is thinking...";
+        document.getElementById("status").textContent =
+            "Pinaki Ethos is working...";
 
 
         try {
@@ -1303,21 +1278,29 @@ summarize, explain or continue it."
             }
 
 
-            responseText.textContent =
-                data.response ||
-                "The AI returned an empty response.";
+            const answer =
+                data.response || data.answer || data.message || data.text || "";
+
+            if (!String(answer).trim()) {
+                throw new Error("Pinaki Ethos returned an empty response.");
+            }
+
+            // Put the AI result directly into the main document editor.
+            editor.value = String(answer).trim();
+            updateWordCount();
+
+            document.getElementById("status").textContent =
+                "✓ Answer added to your document. Press Save to keep it.";
+
+            editor.focus();
 
 
         } catch (error) {
 
             console.error(error);
 
-            responseText.textContent =
-                "Unable to connect to Pinaki Ethos.\n\n" +
-                error.message +
-                "\n\n" +
-                "Make sure your Terminal is running " +
-                "server.js and that your API key is configured correctly.";
+            document.getElementById("status").textContent =
+                "AI error: " + error.message;
 
         }
 
@@ -1326,6 +1309,10 @@ summarize, explain or continue it."
 
         sendButton.textContent =
             "Send ➤";
+
+        if (document.getElementById("status").textContent === "Pinaki Ethos is working...") {
+            document.getElementById("status").textContent = "Ready";
+        }
     }
 
 
