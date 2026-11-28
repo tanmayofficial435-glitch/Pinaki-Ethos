@@ -138,16 +138,19 @@ module.exports = async function handler(req, res) {
 
     if (req.method === "GET") {
         if (!isConfigured()) {
-            return res.status(503).json({
-                ok: false,
+            // A missing setup secret is an expected first-run state, not a failed network request.
+            return res.status(200).json({
+                ok: true,
+                configured: false,
                 authenticated: false,
-                error: "The management portal is not configured."
+                error: "Management access is not configured yet. Add ADMIN_PASSWORD and ADMIN_SESSION_SECRET in Vercel Project Settings."
             });
         }
 
         const authenticated = hasValidSession(req);
         return res.status(200).json({
             ok: true,
+            configured: true,
             authenticated,
             ...(authenticated ? {
                 sessionExpiresIn: SESSION_TTL_SECONDS,
